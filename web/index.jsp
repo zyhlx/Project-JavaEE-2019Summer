@@ -54,7 +54,7 @@
 
     <div class="col-sm-1 row" id="user-button-div">
 
-        <button class="btn" type="button" >
+        <button class="btn" type="button">
             <img src="images/nav/user.PNG">
         </button>
 
@@ -65,6 +65,17 @@
 
 <nav class="navbar nav-pills navbar-light flex-column" id="mobile-menu" aria-hidden="true">
     <ul class="navbar-nav">
+        <li class="nav-item p-2">
+            <a href="/" class="nav-link slide-nav-active" data-gacategory="navigation" data-gaaction="clicked" data-galabel="home">
+                <svg x="0px" y="0px" viewBox="0 0 24 24">
+                    <g>
+                        <path d="M12,3L4,9v12h16V9L12,3z M18,19h-3v-6H9v6H6v-9l6-4.5l6,4.5V19z"></path>
+                    </g>
+                    <path fill="none" d="M0,0h24v24H0V0z"></path>
+                </svg>
+                Home
+            </a>
+        </li>
         <li class="nav-item p-2">
             <a class="nav-link" href="#">Link</a>
         </li>
