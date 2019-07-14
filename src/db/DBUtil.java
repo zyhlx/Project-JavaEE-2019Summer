@@ -48,42 +48,6 @@ public class DBUtil {
         return rs;
     }
 
-    public List<Integer> select(int userID) throws SQLException {
-        List<Integer> results = new ArrayList<>();
-        //获取连接
-        Connection conn = new OpenConnection().getConnection();
-        //sql, 每行加空格
-        String sql = "select * from favours where userId=?";
-        //预编译SQL，减少sql执行
-        PreparedStatement ptmt = conn.prepareStatement(sql);
-        //传参
-        ptmt.setInt(1, userID);
-        //执行
-        ResultSet rs = ptmt.executeQuery();
-        while (rs.next()) {
-            results.add(rs.getInt("artworkID"));
-        }
-        return results;
-
-    }
-
-    public static List<ResultSet> getResult(String query) {
-        List<ResultSet> results = new ArrayList<>();
-        //获取连接
-        Connection conn = new OpenConnection().getConnection();
-        try {
-            //预编译SQL，减少sql执行
-            PreparedStatement ptmt = conn.prepareStatement(query);
-            //执行
-            ResultSet rs = ptmt.executeQuery();
-            while (rs.next()) {
-                results.add(rs);
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return results;
-    }
 
     public static int getUserID(String userName) {
         int userID = 0;
@@ -161,6 +125,25 @@ public class DBUtil {
             System.out.println(e.getMessage());
         }
         return results;
+
+    }
+
+    public static boolean isExisted(String query) {
+        //获取连接
+        Connection conn = new OpenConnection().getConnection();
+        try {
+            //预编译SQL，减少sql执行
+            PreparedStatement ptmt = conn.prepareStatement(query);
+            //执行
+            ResultSet rs = ptmt.executeQuery();
+            if (!rs.next()) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return true;
 
     }
 

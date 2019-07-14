@@ -26,15 +26,60 @@
 
 </head>
 <body>
-<%@ include file="nav.jsp"%>
+<%@ include file="nav.jsp" %>
 
-<div class="container">
-    <h3>折叠导航栏</h3>
-    <p>通常，小屏幕上我们都会折叠导航栏，通过点击来显示导航选项。</p>
-    <p>提示: 如果你删除 .navbar-expand-md 类，导航链接会一直隐藏，且切换按钮会一直显示。</p>
-</div>
+<%--<div class="container">--%>
+<%--<h3>折叠导航栏</h3>--%>
+<%--<p>通常，小屏幕上我们都会折叠导航栏，通过点击来显示导航选项。</p>--%>
+<%--<p>提示: 如果你删除 .navbar-expand-md 类，导航链接会一直隐藏，且切换按钮会一直显示。</p>--%>
+<%--</div>--%>
+
+<%--<main class="d-flex flex-column">--%>
+    <%--<div class="border card">--%>
+        <%--<div class="card-body">--%>
+            <%--<div id="demo" class="carousel slide mb-3 mr-3 ml-3" data-ride="carousel">--%>
+                <%--<!-- 指示符 -->--%>
+                <%--<ul class="carousel-indicators">--%>
+                    <%--<li data-target="#demo" data-slide-to="0" class="active"></li>--%>
+                    <%--<li data-target="#demo" data-slide-to="1"></li>--%>
+                    <%--<li data-target="#demo" data-slide-to="2"></li>--%>
+                <%--</ul>--%>
+                <%--<!-- 轮播图片 -->--%>
+                <%--<div class="carousel-inner">--%>
+                    <%--<% %>--%>
+
+                    <%--<div class="carousel-item active media border p-1">--%>
+                        <%--<img src="img/.$row['imageFileName']." class="img-responsive center-block mr-3 mt-1"--%>
+                             <%--height='600px'>--%>
+                        <%--<div class=\"carousel-caption-reset\">--%>
+                            <%--<a href=\"details.php?artworkID={$row['artworkID']}\"><h3></h3></a>--%>
+                            <%--<p></p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="carousel-item media border p-1">--%>
+                        <%--<img src=\"img/".$row['imageFileName']."\" class="img-responsive center-block mr-3 mt-1"--%>
+                             <%--height='600px'>--%>
+                        <%--<div class=\"carousel-caption-reset\">--%>
+                            <%--<a href=\"details.php?artworkID={$row['artworkID']}\"><h3></h3></a>--%>
+                            <%--<p></p>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
 
+                <%--</div>--%>
+
+                <%--<!-- 左右切换按钮 -->--%>
+                <%--<a class="carousel-control-prev" href="#demo" data-slide="prev">--%>
+                    <%--<span class="carousel-control-prev-icon"></span>--%>
+                <%--</a>--%>
+                <%--<a class="carousel-control-next" href="#demo" data-slide="next">--%>
+                    <%--<span class="carousel-control-next-icon"></span>--%>
+                <%--</a>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</main>--%>
 
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>

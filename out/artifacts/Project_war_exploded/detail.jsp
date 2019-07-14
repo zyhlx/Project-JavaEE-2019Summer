@@ -48,6 +48,7 @@
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="nav.jsp"%>
@@ -98,18 +99,19 @@
 
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
-        // $.session.set('user','master');
-
+        var userName = "<%=session.getAttribute("user")%>";
+        if(userName!=null) {
         var userName ="<%=session.getAttribute("user")%> ";
-            // $.session.get('user');
-        if(userName!="null") {
+
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
+            }, function (result) {
+                $.simplyToast(result.msg, 'info');
             });
         }
         else {
-            $("#info").text( "please log in first!");
+            $.simplyToast("please log in first!", 'warning');
         }
     });
 </script>
