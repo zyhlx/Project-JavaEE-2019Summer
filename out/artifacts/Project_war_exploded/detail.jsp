@@ -43,6 +43,7 @@
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="nav.jsp"%>
@@ -58,13 +59,8 @@
     <div class="col-4 bg-light text-dark" id="picture">
         <img src="博物馆图片资源/其他/001050.jpg" alt="" class="large-pic">
         <div>
-            <button type="button" class="btn btn-outline-light">
-                <img src="博物馆图片资源/网站/收藏.png" class="icon" id="icon-favour">
-            </button>
-            <button type="button" class="btn btn-outline-light" >
-                <img src="博物馆图片资源/网站/管理.png" class="icon">
-            </button>
-            <p id="info"></p>
+            <i class="icon-heart-empty" id="icon-favour"></i>
+            <i class="icon-folder-open"></i>
         </div>
 
     </div>
@@ -104,7 +100,7 @@
             });
         }
         else {
-            $("#info").text( "please log in first!");
+            $.simplyToast("please log in first!", 'warning');
         }
     });
 </script>
