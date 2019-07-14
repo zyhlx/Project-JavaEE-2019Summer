@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tomcat-api">
+    <CLASSES>
+      <root url="jar://D:/apache-tomcat-8.5.35/lib/tomcat-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

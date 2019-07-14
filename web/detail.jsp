@@ -93,12 +93,14 @@
 
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
-        $.session.set('user','master');
-        var userName = $.session.get('user');
+        //$.session.set('user','master');
+        var userName = "<%=session.getAttribute("user")%>";
         if(userName!=null) {
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
+            }, function (result) {
+                $.simplyToast(result.msg, 'info');
             });
         }
         else {

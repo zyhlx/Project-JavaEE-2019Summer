@@ -42,7 +42,7 @@
 
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/header_line.css">
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 </head>
 <body>
 <%@ include file="nav.jsp"%>
@@ -93,12 +93,14 @@
 
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
-        $.session.set('user','master');
-        var userName = $.session.get('user');
+        //$.session.set('user','master');
+        var userName = "<%=session.getAttribute("user")%>";
         if(userName!=null) {
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
+            }, function (result) {
+                $.simplyToast(result.msg, 'info');
             });
         }
         else {
@@ -112,9 +114,9 @@
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast.js"></script>
-<script src="common/registe.js"></script>
-<script src="common/login.js"></script>
-<script src="js/moveline.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
 <script>
     $('#move').moveline({
         color: '#1a73e8',

@@ -25,7 +25,7 @@
 
             <li class="nav-item list-inline-item"><a href="#" class="nav-link"><i class="fa fa-sign-out"></i>登出</a></li>
             <li class="nav-item list-inline-item"><a href="#" class="nav-link"><i class="fa fa-user-circle"></i><%= session.getAttribute("user")%></a></li>
-            <li class="nav-item list-inline-item"><a href="#" class="nav-link"><i class="fa fa-user-plus"></i>收藏夹</a></li>
+            <li class="nav-item list-inline-item"><a href="favours.jsp" class="nav-link"><i class="fa fa-user-plus"></i>收藏夹</a></li>
             <%}else {%>
             <li class="nav-item list-inline-item">
                 <a href="#" class="nav-link" data-toggle="modal" data-target="#Register">Register</a>
@@ -73,7 +73,7 @@
             </a>
         </li>
         <li class="nav-item p-2">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="detail.jsp">详情</a>
         </li>
         <li class="nav-item p-2">
             <a class="nav-link" href="#">Link</a>
