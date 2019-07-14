@@ -20,63 +20,13 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-
+    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/header_line.css">
 
 </head>
 <body>
-<nav class="navbar nav-pills navbar-light navbar-fix" id="fixed-nar">
-
-    <div class="col-sm-4 navbar-header row" id="nav-header-form">
-
-        <button class="btn mobile-nav-taggle btn-collase" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand nav-item logo" href="#">Art Museum</a>
-    </div>
-    <div class="col-sm-7 row justify-content-end">
-        <ul class="nav nav-pills list-inline-item col-sm-10 justify-content-end " id="move">
-            <li class="nav-item list-inline-item">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li>
-                <a href="#" class="nav-link">
-                    <svg width="24px" height="24px" viewBox="0 0 48 48">
-                        <path
-                                d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"></path>
-                    </svg>
-                </a>
-            </li>
-        </ul>
-
-    </div>
-
-    <div class="col-sm-1 row" id="user-button-div">
-
-        <button class="btn" type="button" >
-            <img src="images/nav/user.PNG">
-        </button>
-
-    </div>
-
-
-</nav>
-
-<nav class="navbar nav-pills navbar-light flex-column" id="mobile-menu" aria-hidden="true">
-    <ul class="navbar-nav">
-        <li class="nav-item p-2">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item p-2">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item p-2">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-    </ul>
-</nav>
-
+<%@ include file="nav.jsp"%>
 
 <div class="container">
     <h3>折叠导航栏</h3>
@@ -84,8 +34,14 @@
     <p>提示: 如果你删除 .navbar-expand-md 类，导航链接会一直隐藏，且切换按钮会一直显示。</p>
 </div>
 
+
+
+
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
+<script src="common/simply-toast.js"></script>
+<script src="common/registe.js"></script>
+<script src="common/login.js"></script>
 <script src="js/moveline.js"></script>
 <script>
     $('#move').moveline({

@@ -11,8 +11,41 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
 
+
+
+    <style>
+
+        #picture{
+            height: 500px;
+            margin-left: 7%;
+        }
+        .large-pic{
+
+            max-height: 90%;
+        }
+        .icon{
+            height: 20px;
+            width: auto;
+        }
+
+    </style>
+    <style>
+        #detail-panel{
+            padding-left: 20%;
+            padding-right: 20%;
+            text-align: center;
+        }
+        .detail-title{
+            font-weight: bold;
+        }
+    </style>
+
+    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 </head>
 <body>
+<%@ include file="nav.jsp"%>
 <div class="row">
     <div class="col-2"></div>
     <div class="col-4">
@@ -33,22 +66,7 @@
             </button>
             <p id="info"></p>
         </div>
-        <style>
 
-            #picture{
-                height: 500px;
-                margin-left: 7%;
-            }
-            .large-pic{
-
-                max-height: 90%;
-            }
-            .icon{
-                height: 20px;
-                width: auto;
-            }
-
-        </style>
     </div>
 
 </div>
@@ -65,16 +83,7 @@
             <td class="detail-title">Date:</td><td>1888</td></tr>
     </table>
 </div>
-<style>
-    #detail-panel{
-        padding-left: 20%;
-        padding-right: 20%;
-        text-align: center;
-    }
-    .detail-title{
-        font-weight: bold;
-    }
-</style>
+
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -97,4 +106,38 @@
         }
     });
 </script>
+
+
+
+<script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
+<script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
+<script src="common/simply-toast.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+<script>
+    $('#move').moveline({
+        color: '#1a73e8',
+        position: 'inner',
+        click: function (ret) {
+            ret.ele.addClass('active').siblings().removeClass('active');
+        }
+    });
+</script>
+<script>
+    $(".mobile-nav-taggle").click(function () {
+        var mobileMenu = $("#mobile-menu");
+        if (mobileMenu.hasClass("show-nav")) {
+            setTimeout(function () {
+                mobileMenu.addClass("hide-nav").removeClass("show-nav");
+            }, 100)
+        }
+        else {
+            setTimeout(function () {
+                mobileMenu.addClass("show-nav").removeClass("hide-nav");
+            }, 100)
+        }
+    });
+</script>
+
 </html>
