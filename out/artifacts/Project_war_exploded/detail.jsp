@@ -10,6 +10,11 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
 
@@ -43,7 +48,10 @@
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+<<<<<<< HEAD
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
+=======
+>>>>>>> refs/remotes/origin/master
 </head>
 <body>
 <%@ include file="nav.jsp"%>
@@ -89,9 +97,17 @@
 
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
+<<<<<<< HEAD
         //$.session.set('user','master');
         var userName = "<%=session.getAttribute("user")%>";
         if(userName!=null) {
+=======
+        // $.session.set('user','master');
+
+        var userName ="<%=session.getAttribute("user")%> ";
+            // $.session.get('user');
+        if(userName!="null") {
+>>>>>>> refs/remotes/origin/master
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
