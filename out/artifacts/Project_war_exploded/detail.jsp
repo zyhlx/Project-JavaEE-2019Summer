@@ -10,6 +10,11 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
 
@@ -42,7 +47,7 @@
 
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/header_line.css">
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 </head>
 <body>
 <%@ include file="nav.jsp"%>
@@ -93,9 +98,11 @@
 
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
-        $.session.set('user','master');
-        var userName = $.session.get('user');
-        if(userName!=null) {
+        // $.session.set('user','master');
+
+        var userName ="<%=session.getAttribute("user")%> ";
+            // $.session.get('user');
+        if(userName!="null") {
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
@@ -112,9 +119,9 @@
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast.js"></script>
-<script src="common/registe.js"></script>
-<script src="common/login.js"></script>
-<script src="js/moveline.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
 <script>
     $('#move').moveline({
         color: '#1a73e8',

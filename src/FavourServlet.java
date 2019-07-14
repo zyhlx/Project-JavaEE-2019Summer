@@ -21,14 +21,14 @@ public class FavourServlet extends HttpServlet {
 
         // 写入收藏表
         if (userID!=0) {
-            String writeIntoFavours = "INSERT INTO favours(favourID, userID, artworkID)"
-                    +" VALUES(" + "?,?,?)";
+            String writeIntoFavours = "INSERT INTO favours( userID, artworkID)"
+                    +" VALUES(" + "?,?)";
             try{
                 Connection conn = new OpenConnection().getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(writeIntoFavours);
-            ptmt1.setInt(1,1);
-            ptmt1.setInt(2,userID);
-            ptmt1.setInt(3,Integer.parseInt(artworkID));
+
+            ptmt1.setInt(1,userID);
+            ptmt1.setInt(2,Integer.parseInt(artworkID));
             ptmt1.executeUpdate();
             conn.commit();
 

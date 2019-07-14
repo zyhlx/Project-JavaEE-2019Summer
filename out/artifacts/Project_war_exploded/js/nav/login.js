@@ -34,7 +34,7 @@ function login() {
                 }
             },
             error : function() {
-                $.simplyToast(result.msg,'warning');
+                $.simplyToast("未知错误",'warning');
                 // alert("异常！");
             }
         });
