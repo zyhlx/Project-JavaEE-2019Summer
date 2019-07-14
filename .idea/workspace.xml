@@ -7,14 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea9fca6a-595c-4d60-9814-db89bfd1ba44" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RegisterServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/common/modal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/common/simply-toast.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/common/simply-toast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/nav/header_line.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/js/nav/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/js/nav/registe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/jsporder/buy1.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/jsporder/buy2.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/jsporder/display.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/nav.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/css/header_line.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/css/header_line.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/db/DBUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/header_line.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Project_war_exploded/css/header_line.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/moveline.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/nav/moveline.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/session.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/博物馆图片资源/书画/清 弘仁 疏泉洗砚图卷.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web/博物馆图片资源/书画/清 弘仁 疏泉洗砚图卷.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/博物馆图片资源/书画/清 沈铨 孔雀图轴.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web/博物馆图片资源/书画/清 沈铨 孔雀图轴.jpg" afterDir="false" />
@@ -386,11 +399,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+            <state relative-caret-position="-144">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -405,7 +418,7 @@
         </entry>
       </file>
       <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/common/login.js">
+        <entry file="file://$PROJECT_DIR$/web/js/nav/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-133">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
@@ -432,7 +445,7 @@
         </entry>
       </file>
       <file leaf-file-name="registe.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/common/registe.js">
+        <entry file="file://$PROJECT_DIR$/web/js/nav/registe.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
               <caret line="111" column="22" lean-forward="true" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
@@ -449,11 +462,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nav.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/nav.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="27" column="104" selection-start-line="27" selection-start-column="104" selection-end-line="27" selection-end-column="104" />
+            <state relative-caret-position="189">
+              <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -470,11 +483,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="detail.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/detail.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="83" column="12" lean-forward="true" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+            <state relative-caret-position="190">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
             </state>
           </provider>
         </entry>
@@ -503,7 +516,6 @@
         <option value="$PROJECT_DIR$/web/common/modal.css" />
         <option value="$PROJECT_DIR$/src/FServlet.java" />
         <option value="$PROJECT_DIR$/src/FavourServlet.java" />
-        <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/detail.jsp" />
         <option value="$PROJECT_DIR$/web/js/session.js" />
         <option value="$PROJECT_DIR$/src/db/DBUtil.java" />
@@ -512,6 +524,7 @@
         <option value="$PROJECT_DIR$/web/common/login.js" />
         <option value="$PROJECT_DIR$/web/common/registe.js" />
         <option value="$PROJECT_DIR$/web/nav.jsp" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
       </list>
     </option>
   </component>
@@ -589,6 +602,12 @@
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -627,11 +646,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\College\sophomore\JavaEE\Project\web\css\nav" />
+      <recent name="D:\College\sophomore\JavaEE\Project\web\js\nav" />
       <recent name="D:\College\sophomore\JavaEE\Project\web\博物馆图片资源" />
       <recent name="D:\College\sophomore\JavaEE\Project\web" />
       <recent name="D:\College\sophomore\JavaEE\Project\web\images\nav" />
-      <recent name="D:\College\sophomore\JavaEE\Project\web\WEB-INF\lib" />
-      <recent name="D:\College\sophomore\JavaEE\Project\web\WEB-INF" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\College\sophomore\JavaEE\Project\web\common" />
@@ -763,7 +782,7 @@
       <workItem from="1562938619409" duration="8436000" />
       <workItem from="1562989077675" duration="2185000" />
       <workItem from="1562999030127" duration="10904000" />
-      <workItem from="1563076011584" duration="24971000" />
+      <workItem from="1563076011584" duration="25220000" />
     </task>
     <task id="LOCAL-00001" summary="feat #all header-nav">
       <created>1563003977094</created>
@@ -786,11 +805,18 @@
       <option name="project" value="LOCAL" />
       <updated>1563009338645</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat #all 注册登录">
+      <created>1563106543869</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1563106543869</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74400000" />
+    <option name="totallyTimeSpent" value="74649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -803,7 +829,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3281471" />
@@ -818,7 +843,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.4427157" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32956153" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66809726" visible="true" weight="0.17225201" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.66809726" visible="true" weight="0.25201073" />
       <window_info id="Web" order="2" sideWeight="0.33095577" side_tool="true" weight="0.57261413" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -843,17 +868,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat #all header-nav" />
     <MESSAGE value="opt #all slide-nav 优化外观" />
-    <option name="LAST_COMMIT_MESSAGE" value="opt #all slide-nav 优化外观" />
+    <MESSAGE value="feat #all 注册登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat #all 注册登录" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/js/moveline.js">
+    <entry file="file://$PROJECT_DIR$/web/js/nav/moveline.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1197">
           <caret line="63" selection-start-line="63" selection-end-line="65" selection-end-column="1" />
@@ -895,7 +921,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2926">
           <caret line="154" column="22" selection-start-line="154" selection-start-column="22" selection-end-line="154" selection-end-column="22" />
@@ -923,7 +949,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2185">
           <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
@@ -937,7 +963,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="665">
           <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
@@ -965,7 +991,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
           <caret line="46" column="1" lean-forward="true" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
@@ -1014,7 +1040,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/moveline.js">
+    <entry file="file://$PROJECT_DIR$/web/js/nav/moveline.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
@@ -1035,7 +1061,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/header_line.css">
+    <entry file="file://$PROJECT_DIR$/web/css/nav/header_line.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="119" column="4" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="4" />
@@ -1135,13 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1156,7 +1175,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/common/login.js">
+    <entry file="file://$PROJECT_DIR$/web/js/nav/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-133">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
@@ -1187,7 +1206,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/common/registe.js">
+    <entry file="file://$PROJECT_DIR$/web/js/nav/registe.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="111" column="22" lean-forward="true" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
@@ -1201,17 +1220,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/detail.jsp">
+    <entry file="file://$PROJECT_DIR$/web/nav.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="83" column="12" lean-forward="true" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        <state relative-caret-position="189">
+          <caret line="31" column="17" lean-forward="true" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/nav.jsp">
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="27" column="104" selection-start-line="27" selection-start-column="104" selection-end-line="27" selection-end-column="104" />
+        <state relative-caret-position="-144">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
         </state>
       </provider>
     </entry>
