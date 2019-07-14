@@ -11,7 +11,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -64,13 +64,13 @@
     <div class="col-4 bg-light text-dark" id="picture">
         <img src="博物馆图片资源/其他/001050.jpg" alt="" class="large-pic">
         <div>
-            <button type="button" class="btn btn-outline-light">
-                <img src="博物馆图片资源/网站/收藏.png" class="icon" id="icon-favour">
+            <button type="button" class="btn btn-light">
+                <i class="fa fa-heart-o" id="icon-favour"></i>
             </button>
-            <button type="button" class="btn btn-outline-light" >
-                <img src="博物馆图片资源/网站/管理.png" class="icon">
+            <button type="button" class="btn btn-light" >
+                <i class="fa fa-folder-open"></i>
             </button>
-            <p id="info"></p>
+
         </div>
 
     </div>
@@ -100,9 +100,7 @@
     $("#icon-favour").on("click",function () {
         //如果已登录，收藏
         var userName = "<%=session.getAttribute("user")%>";
-        if(userName!=null) {
-        var userName ="<%=session.getAttribute("user")%> ";
-
+        if(userName!=="null") {
             $.post("./favour",{
                 userName: userName,
                 artworkID: 5
@@ -111,7 +109,7 @@
             });
         }
         else {
-            $.simplyToast("please log in first!", 'warning');
+            $.simplyToast("请先登录",'warning');
         }
     });
 </script>
