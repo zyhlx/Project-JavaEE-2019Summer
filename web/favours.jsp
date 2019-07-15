@@ -1,8 +1,8 @@
 <%@ page import="java.util.List" %>
-<%@ page import="objects.Painting" %>
+<%@ page import="bean.Painting" %>
 <%@ page import="db.DBUtil" %><%--
   Created by IntelliJ IDEA.
-  User: christine
+  bean.User: christine
   Date: 2019/7/14
   Time: 17:15
   To change this template use File | Settings | File Templates.

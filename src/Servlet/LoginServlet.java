@@ -1,3 +1,6 @@
+package Servlet;
+
+import dao.impl.UserDAOImpl;
 import db.DBUtil;
 
 import javax.servlet.ServletException;
@@ -9,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "LoginServlet", value = "/login")
+@WebServlet(name = "Servlet.LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("username");
@@ -17,8 +20,16 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        if (DBUtil.login(name, pwd)) {
+
+
+        UserDAOImpl userDAO = new UserDAOImpl();
+
+        if (userDAO.login(name, pwd)) {
+
+            //TODO 获得ID
             session.setAttribute("user", name);
+
+            session.setAttribute("userID", userDAO.getUserID(name));
             //session.setAttribute("id", "very good!");
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
             PrintWriter out = response.getWriter();

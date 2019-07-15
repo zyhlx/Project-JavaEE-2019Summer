@@ -82,6 +82,9 @@
     border-color: white;
 }
 
+
+
+
 #user-button-div {
     padding-left: 0
 }
@@ -126,6 +129,19 @@
 }
 #mobile-menu ul{
     padding-left: 40px;
+}
+#mobile-menu ul ::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    background-color: #dadce0;
+    height: 1px;
+    width: -webkit-calc(100% - 64px);
+    width: calc(100% - 64px);
 }
 #mobile-menu ul li a{
 

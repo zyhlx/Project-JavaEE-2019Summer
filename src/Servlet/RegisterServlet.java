@@ -1,3 +1,6 @@
+package Servlet;
+
+import dao.impl.UserDAOImpl;
 import db.DBUtil;
 import db.OpenConnection;
 
@@ -14,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "RegisterServlet", value = "/register")
+@WebServlet(name = "Servlet.RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("username-register");
@@ -23,7 +26,9 @@ public class RegisterServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String address = request.getParameter("address");
 
-        int userID = DBUtil.getUserID(name);
+        UserDAOImpl userDAO = new UserDAOImpl();
+
+        int userID = userDAO.getUserID(name);
 
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -36,8 +41,12 @@ public class RegisterServlet extends HttpServlet {
             out.close();
         }else {
             HttpSession session = request.getSession(true);
-            if (DBUtil.insertUser(name,pwd,email,tel,address)!=0){
+            if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
                 session.setAttribute("user", name);
+
+                //TODO 获得id
+                userID = userDAO.getUserID(name);
+                session.setAttribute("userID", userID);
                 //session.setAttribute("id", "very good!");
                 String temp = "{\"type\":\"true\",\"msg\":\"注册成功！自动登陆\"}";
                 PrintWriter out = response.getWriter();
