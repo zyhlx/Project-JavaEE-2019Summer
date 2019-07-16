@@ -1,4 +1,6 @@
 
+import bean.Favour;
+import dao.factory.DAOFactory;
 import dao.impl.UserDAOImpl;
 import db.DBUtil;
 import db.OpenConnection;
@@ -28,7 +30,7 @@ public class FavourServlet extends HttpServlet {
 
         // 避免重复收藏
         String queryForExistedFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'" + " AND" + " artworkID=" + "'" + artworkID + "'";
-        if (DBUtil.isExisted(queryForExistedFavours)) {
+        if (!DAOFactory.getIFavourDAOInstance().getFavour(queryForExistedFavours).isEmpty()) {
             String temp = "{\"type\":\"false\",\"msg\":\"您已经收藏过了哦\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
@@ -38,32 +40,22 @@ public class FavourServlet extends HttpServlet {
         }
 
         // 写入收藏表
-        if (userID!=0) {
-            String writeIntoFavours = "INSERT INTO favours(userID, artworkID)"
-
-                    +" VALUES(" + "?,?)";
-            try{
-                Connection conn = new OpenConnection().getConnection();
-            PreparedStatement ptmt1 = conn.prepareStatement(writeIntoFavours);
-            ptmt1.setInt(1,userID);
-            ptmt1.setInt(2,Integer.parseInt(artworkID));
-            ptmt1.executeUpdate();
-            conn.commit();
+        Favour tempFavour = new Favour();
+        tempFavour.setUserID(userID);
+        tempFavour.setPaintingID(Integer.parseInt(artworkID));
+        DAOFactory.getIFavourDAOInstance().insert(tempFavour);
                 String temp = "{\"type\":\"true\",\"msg\":\"收藏成功\"}";
                 PrintWriter out = response.getWriter();
                 out.println(temp);
                 out.flush();
                 out.close();
 
-        }
-            catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+
+
 
         }
 
 
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 doPost(request,response);

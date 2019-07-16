@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-<%@ include file="nav.jsp"%>
+<%@ include file="common/nav.jsp"%>
 
 <section id="content">
     <%
@@ -42,7 +42,7 @@
         int userID = 0;
         // 查找userID
         if (userName != null) {
-            userID = db.DBUtil.getUserID(userName);
+            userID = dao.factory.DAOFactory.getIUserDAOInstance().getUserID(userName);
         }
         System.out.println(userID);
         // 查找 artworkID
@@ -54,7 +54,7 @@
         // 打印图片
         for (int id: artworkIDs) {
             String searchForPainting =  "SELECT * FROM  paintings where paintingID=" + "'" + id + "'";
-            Painting temp = DBUtil.getPaintings(searchForPainting).get(0);
+            Painting temp = dao.factory.DAOFactory.getIPaintingDAOInstance().getPaintings(searchForPainting).get(0);
             out.print("<div class=\"row border favour-result\">\n" +
                     "        <div class=\"col-4\">\n" +
                     "            <p class=\"type text-muted\">Artwork</p>\n" +
