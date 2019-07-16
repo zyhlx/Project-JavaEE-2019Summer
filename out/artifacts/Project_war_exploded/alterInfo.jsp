@@ -2,66 +2,13 @@
   Created by IntelliJ IDEA.
   User: christine
   Date: 2019/7/15
-  Time: 16:01
+  Time: 16:49
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <style>
-
-        #picture-container{
-            height: 600px;
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-        }
-        #icons{
-            text-align: left;
-        }
-        #picture{
-            margin-top: 5%;
-            margin-bottom: 3%;
-            height: 85%;
-        }
-        #description-container{
-            margin-right: 3em;
-        }
-
-
-
-    </style>
-    <style>
-        #detail-panel{
-            padding-left: 20%;
-            padding-right: 20%;
-            padding-top: 2em;
-            text-align: center;
-        }
-        .detail-title{
-            font-weight: bold;
-        }
-        section {
-            padding-top: 2em;
-            padding-left: 10%;
-            padding-right: 5%;
-        }
-        #upper-part {
-            margin-bottom: 2em;
-        }
-        .panel-heading{
-            font-size: larger;
-            text-align: left;
-            padding-bottom: 1em;
-        }
-    </style>
-
-    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
-    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="common/nav.jsp"%>
@@ -143,7 +90,6 @@
         }
     });
 </script>
-
 
 <%--<div class="container">--%>
     <%--<h2>堆叠表单</h2>--%>

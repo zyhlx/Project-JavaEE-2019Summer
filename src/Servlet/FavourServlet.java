@@ -1,7 +1,9 @@
+package Servlet;
 
 import dao.impl.UserDAOImpl;
 import db.DBUtil;
 import db.OpenConnection;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-@WebServlet(name = "FavourServlet",value = "/favour")
+@WebServlet(name = "Servlet.FavourServlet",value = "/favour")
 public class FavourServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");

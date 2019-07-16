@@ -1,10 +1,11 @@
 package dao.impl;
-
+import dao.IUserDAO;
+import db.OpenConnection;
 import bean.Adimn;
 import bean.NormalUser;
 import bean.User;
-import dao.IUserDAO;
-import db.OpenConnection;
+
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,31 +19,24 @@ public class UserDAOImpl implements IUserDAO {
         conn = new OpenConnection().getConnection();
     }
 
-    private static Connection getConnection() throws SQLException {
-        return   new OpenConnection().getConnection();
-    }
-
     public int insertUser(String name, String pwd, String email, String tel, String address) {
-//        int rs = 0;
-//        String query = "INSERT INTO users(name,password,email,tel,address,balance) values (" + "?,?,?,?,?,0)";
-//        try {
-//            Connection conn = this.conn;
-//            PreparedStatement ptmt1 = conn.prepareStatement(query);
-//            ptmt1.setString(1, name);
-//            ptmt1.setString(2, pwd);
-//            ptmt1.setString(3, email);
-//            ptmt1.setString(4, tel);
-//            ptmt1.setString(5, address);
-//            rs = ptmt1.executeUpdate();
-//            conn.commit();
-//
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return rs;
-        return 0;
+        int rs = 0;
+        String query = "INSERT INTO users(name,password,email,,balance) values (" + "?,?,?,,0)";
+        try {
+            Connection conn = this.conn;
+            PreparedStatement ptmt1 = conn.prepareStatement(query);
+            ptmt1.setString(1, name);
+            ptmt1.setString(2, pwd);
+            ptmt1.setString(3, email);
+            rs = ptmt1.executeUpdate();
+            conn.commit();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return rs;
     }
 
 
