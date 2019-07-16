@@ -1,7 +1,9 @@
 package dao.factory;
 
+import dao.IFavourDAO;
 import dao.IPaintingDAO;
 import dao.IUserDAO;
+import dao.impl.FavourDAOImpl;
 import dao.impl.PaintingDAOImpl;
 import dao.impl.UserDAOImpl;
 
@@ -15,6 +17,10 @@ public class DAOFactory {
 
     public static IUserDAO getIUserDAOInstance(){//由外部传入形参
         return new UserDAOImpl();//双重形参
+    }
+
+    public static IFavourDAO getIFavourDAOInstance() {
+        return new FavourDAOImpl();
     }
 
 }

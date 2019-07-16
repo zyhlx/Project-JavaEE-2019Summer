@@ -46,7 +46,7 @@
     </style>
 
 </head>
-<%@ include file="nav.jsp"%>
+<%@ include file="common/nav.jsp"%>
 <body>
 <%
     // 从数据库获得所有用户对象

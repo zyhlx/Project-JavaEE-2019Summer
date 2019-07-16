@@ -46,7 +46,7 @@
     </style>
 
 </head>
-<%@ include file="nav.jsp"%>
+<%@ include file="common/nav.jsp"%>
 <body>
 <%
     // 从数据库获得所有用户对象
@@ -123,8 +123,8 @@
              function: "0",
               userID: userID
           },function (result) {
-              $.simplyToast(result.msg, 'info');
               window.location.reload();
+              $.simplyToast(result.msg, 'info');
           });
     });
 
@@ -134,8 +134,8 @@
             function: "1",
             userID: userID
         },function (result) {
-            $.simplyToast(result.msg, 'info');
             window.location.reload();
+            $.simplyToast(result.msg, 'info');
         });
     });
 

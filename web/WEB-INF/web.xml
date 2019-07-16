@@ -3,29 +3,4 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
-    <!-- 对JSP的设置都是静态设置 -->
-    <!--<jsp-config>-->
-        <!--<jsp-property-group>-->
-            <!--&lt;!&ndash; 配置的应用文件 &ndash;&gt;-->
-            <!--<url-pattern>/jsporder/buy1.jsp</url-pattern>-->
-            <!--&lt;!&ndash; 是否允许EL表达式,true不可以,false可以.注意，这里的设置是静态设置 &ndash;&gt;-->
-            <!--<el-ignored>true</el-ignored>-->
-            <!--&lt;!&ndash; 编码格式 &ndash;&gt;-->
-            <!--&lt;!&ndash;<page-encoding>utf-8</page-encoding>&ndash;&gt;-->
-            <!--<page-encoding>GBK</page-encoding>-->
-            <!--&lt;!&ndash; 不允许使用JAVA脚本 &ndash;&gt;-->
-            <!--&lt;!&ndash;<scripting-invalid>false</scripting-invalid>&ndash;&gt;-->
-            <!--&lt;!&ndash; 隐式导入页面头 &ndash;&gt;-->
-            <!--&lt;!&ndash;<include-prelude>/header.jsp</include-prelude>&ndash;&gt;-->
-            <!--&lt;!&ndash; 隐式导入页面尾 &ndash;&gt;-->
-            <!--&lt;!&ndash;<include-coda>/foot.jsp</include-coda>&ndash;&gt;-->
-        <!--</jsp-property-group>-->
-        <!--&lt;!&ndash; 这里可以配置多个并列的文件 &ndash;&gt;-->
-    <!--</jsp-config>-->
-
-
-
-
 </web-app>
-
