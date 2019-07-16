@@ -1,7 +1,8 @@
 package Servlet;
 
-import dao.impl.UserDAOImpl;
-import db.DBUtil;
+import dao.IUserDAO;
+import dao.factory.DAOFactory;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,15 +21,9 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-
-
-        UserDAOImpl userDAO = new UserDAOImpl();
-
+        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
         if (userDAO.login(name, pwd)) {
-
-            //TODO 获得ID
             session.setAttribute("user", name);
-
             session.setAttribute("userID", userDAO.getUserID(name));
             //session.setAttribute("id", "very good!");
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";

@@ -13,8 +13,8 @@ public class DAOFactory {
         return new PaintingDAOImpl();//双重形参
     }
 
-
     public static IUserDAO getIUserDAOInstance(){//由外部传入形参
         return new UserDAOImpl();//双重形参
     }
+
 }

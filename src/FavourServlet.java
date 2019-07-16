@@ -1,3 +1,4 @@
+import dao.impl.UserDAOImpl;
 import db.DBUtil;
 import db.OpenConnection;
 
@@ -21,7 +22,7 @@ public class FavourServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         // 查找用户ID
-        int userID = DBUtil.getUserID(userName);
+        int userID = new UserDAOImpl().getUserID(userName);
 
         // 避免重复收藏
         String queryForExistedFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'" + " AND" + " artworkID=" + "'" + artworkID + "'";
