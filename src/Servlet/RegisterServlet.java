@@ -1,8 +1,8 @@
 package Servlet;
 
-import dao.impl.UserDAOImpl;
-import db.DBUtil;
-import db.OpenConnection;
+import dao.IUserDAO;
+import dao.factory.DAOFactory;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @WebServlet(name = "Servlet.RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -26,10 +22,8 @@ public class RegisterServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String address = request.getParameter("address");
 
-        UserDAOImpl userDAO = new UserDAOImpl();
-
+        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
         int userID = userDAO.getUserID(name);
-
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         // 写入收藏表

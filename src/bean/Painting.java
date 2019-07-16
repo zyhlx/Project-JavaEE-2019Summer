@@ -2,15 +2,6 @@ package bean;
 
 public class Painting {
     private int paintingID;
-
-    public int getPaintingID() {
-        return paintingID;
-    }
-
-    public void setPaintingID(int paintingID) {
-        this.paintingID = paintingID;
-    }
-
     private String imageFileName;
     private String title;
     private int artistID;
@@ -21,6 +12,14 @@ public class Painting {
     private int height;
     private int cost;
     private int msrp;
+
+    public int getPaintingID() {
+        return paintingID;
+    }
+
+    public void setPaintingID(int paintingID) {
+        this.paintingID = paintingID;
+    }
 
     public String getDescription() {
         return description;

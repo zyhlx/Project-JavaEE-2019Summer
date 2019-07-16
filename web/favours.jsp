@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-<%@ include file="nav.jsp"%>
+<%@ include file="common/nav.jsp"%>
 
 <section id="content">
     <%

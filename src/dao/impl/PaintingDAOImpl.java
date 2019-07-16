@@ -15,43 +15,32 @@ public class PaintingDAOImpl implements IPaintingDAO {
     private Connection conn;
     private PreparedStatement pstmt;
 
-    public PaintingDAOImpl(){
+    public PaintingDAOImpl() {
         conn = new OpenConnection().getConnection();
     }
 
-//
-    public Painting[] getHotPaintings(){
+    //
+    public Painting[] getHotPaintings() {
+        String query = "SELECT * FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
         Painting[] results = new Painting[3];
-        //获取连接
-        Connection conn = this.conn;
-        try {
-            String query = "SELECT * FROM paintings  WHERE PaintingID <=> NULL ORDER BY MSRP desc LIMIT 0 , 3";
-            //预编译SQL，减少sql执行
-            PreparedStatement ptmt = conn.prepareStatement(query);
-            //执行
-            ResultSet rs = ptmt.executeQuery();
-            int i =0;
-            while (rs.next()) {
-                Painting temp = new Painting();
-                temp.setImageFileName(rs.getString("ImageFileName"));
-                temp.setTitle(rs.getString("Title"));
-                temp.setArtistID(rs.getInt("ArtistID"));
-                temp.setDescription(rs.getString("Description"));
-                temp.setGalleryID(rs.getInt("GalleryID"));
-                temp.setPaintingID(rs.getInt("PaintingID"));
-                results[i] = temp;
-                i++;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        List<Painting> temp = getPaintings(query);
+        results[0] = temp.get(0);
+        results[1] = temp.get(1);
+        results[2] = temp.get(2);
         return results;
-
-
 
     }
 
+    public Painting[] getNewPostPaintings() {
+        Painting[] results = new Painting[3];
+        String query = "SELECT * FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
+        List<Painting> temp = getPaintings(query);
+        results[0] = temp.get(0);
+        results[1] = temp.get(1);
+        results[2] = temp.get(2);
+        return results;
 
+    }
 
 
     public List<Painting> getPaintings(String query) {
@@ -67,6 +56,9 @@ public class PaintingDAOImpl implements IPaintingDAO {
                 Painting temp = new Painting();
                 temp.setImageFileName(rs.getString("ImageFileName"));
                 temp.setTitle(rs.getString("Title"));
+                temp.setDescription(rs.getString("Description"));
+                temp.setPaintingID(rs.getInt("PaintingID"));
+
                 results.add(temp);
             }
         } catch (SQLException e) {

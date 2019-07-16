@@ -1,3 +1,6 @@
+nav{
+    background-color: white;
+}
 #nav-header-form {
     margin-left: 3%;
 }
@@ -71,9 +74,9 @@
     margin-right: 3%;
 }
 
-#fixed-nar::after {
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
+/*#fixed-nar::after {*/
+    /*box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);*/
+/*}*/
 
 .btn-collase {
     color: #fff;
@@ -103,10 +106,12 @@
 /*侧滑关键*/
 .show-nav {
     transform: translateX(220px);
+    transition: transform 5s;
 }
 
 .hide-nav {
     transform: translateX(-440px);
+    transition: transform 5s;
 }
 
 /*.navbar-fix{*/
@@ -117,11 +122,11 @@
     position: fixed;
     top: 0;
     left: -220px;
-    width: 200px;
+    width: 210px;
     height: 100%;
     background-color: white;
     z-index: 1;
-    margin-top: 56.9px;
+    margin-top: 55px;
     transition: width 2s;
     -moz-transition: width 2s; /* Firefox 4 */
     -webkit-transition: width 2s; /* Safari 和 Chrome */
