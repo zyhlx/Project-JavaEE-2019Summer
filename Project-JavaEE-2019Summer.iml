@@ -19,7 +19,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.35" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.351" level="application_server_libraries" />
     <orderEntry type="library" name="mysql-connector-java-8.0.16" level="project" />
     <orderEntry type="library" name="commons-beanutils" level="project" />
     <orderEntry type="library" name="commons-collections-3.0" level="project" />
@@ -27,5 +27,7 @@
     <orderEntry type="library" name="commons-logging" level="project" />
     <orderEntry type="library" name="ezmorph-1.0.2" level="project" />
     <orderEntry type="library" name="json-lib-1.1-jdk13" level="project" />
+    <orderEntry type="library" exported="" name="standard" level="project" />
+    <orderEntry type="library" exported="" name="jstl" level="project" />
   </component>
 </module>

@@ -2,6 +2,7 @@ package dao.impl;
 
 import bean.Painting;
 import dao.IPaintingDAO;
+import db.DBUtil;
 import db.OpenConnection;
 
 import java.sql.Connection;
@@ -21,20 +22,24 @@ public class PaintingDAOImpl implements IPaintingDAO {
 
     //
     public Painting[] getHotPaintings() {
-        String query = "SELECT * FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
+//        String query = "SELECT * FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
+        String query = "SELECT ImageFileName imageFileName,Title title,Description description,PaintingID paintingID FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
         Painting[] results = new Painting[3];
-        List<Painting> temp = getPaintings(query);
+        List<Painting> temp = DBUtil.get(Painting.class,query);
         results[0] = temp.get(0);
         results[1] = temp.get(1);
         results[2] = temp.get(2);
         return results;
 
+
     }
 
     public Painting[] getNewPostPaintings() {
         Painting[] results = new Painting[3];
-        String query = "SELECT * FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
-        List<Painting> temp = getPaintings(query);
+        String query = "SELECT ImageFileName imageFileName,Title title,Description description,PaintingID paintingID FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
+
+//        String query = "SELECT * FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
+        List<Painting> temp = DBUtil.get(Painting.class,query);
         results[0] = temp.get(0);
         results[1] = temp.get(1);
         results[2] = temp.get(2);

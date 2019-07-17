@@ -30,7 +30,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">好友列表</a>
                         <a class="dropdown-item" href="#">信箱</a>
-                        <a href="../favours.jsp" class="dropdown-item"><i
+                        <a href="favours.jsp" class="dropdown-item"><i
                                 class="fa fa-user-plus"></i>收藏夹</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
                     </div>
@@ -73,7 +73,7 @@
         <div class="col-sm-1 row" id="user-button-div">
 
             <button class="btn" type="button">
-                <img src="../images/nav/user.PNG">
+                <img src="images/nav/user.PNG">
             </button>
 
         </div>

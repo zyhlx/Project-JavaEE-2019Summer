@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   bean.User: DELL
@@ -6,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Art Museum</title>
@@ -124,9 +125,9 @@
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast.js"></script>
-<%--<script src="js/nav/registe.js"></script>--%>
-<%--<script src="js/nav/login.js"></script>--%>
-<%--<script src="js/nav/moveline.js"></script>--%>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
 <%--<script>--%>
 
