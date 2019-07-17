@@ -2,9 +2,6 @@ package Servlet;
 
 import bean.Favour;
 import dao.factory.DAOFactory;
-import dao.impl.UserDAOImpl;
-import db.DBUtil;
-import db.OpenConnection;
 
 
 import javax.servlet.ServletException;
@@ -14,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @WebServlet(name = "Servlet.FavourServlet",value = "/favour")
 public class FavourServlet extends HttpServlet {
@@ -27,7 +21,7 @@ public class FavourServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         // 查找用户ID
-        int userID = new UserDAOImpl().getUserID(userName);
+        int userID =DAOFactory.getIUserDAOInstance().getUserID(userName);
 
 
         // 避免重复收藏
