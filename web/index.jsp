@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   bean.User: DELL
@@ -7,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Art Museum</title>
@@ -72,7 +71,6 @@
                         </div>
                     </c:forEach>
 
-
                     <c:forEach items="${hotPaintings}" var="paintingItem" begin="1" end="2" step="1"
                                varStatus="paintingStatus">
                         <div class="carousel-item media p-1">
@@ -124,10 +122,17 @@
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
+<<<<<<< HEAD
+<script src="common/simply-toast.js"></script>
+<%--<script src="js/nav/registe.js"></script>--%>
+<%--<script src="js/nav/login.js"></script>--%>
+<%--<script src="js/nav/moveline.js"></script>--%>
+=======
 <script src="common/simply-toast/simply-toast.js"></script>
 <script src="js/nav/registe.js"></script>
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
+>>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
 <script src="js/nav/nav.js"></script>
 <%--<script>--%>
 

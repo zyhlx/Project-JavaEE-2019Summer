@@ -8,13 +8,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%--%>
-    <%--String flag = (String) request.getAttribute("flag");--%>
-    <%--if (flag == null) {--%>
 
-        <%--request.getRequestDispatcher("/workDisplay").forward(request, response);--%>
-    <%--}--%>
-<%--%>--%>
+<%
+    String flag = (String) request.getAttribute("flag");
+    if (flag == null) {
+
+        request.getRequestDispatcher("/workDisplay").forward(request, response);
+    }
+%>
+
 <html>
 <head>
     <title>Art Museum</title>
@@ -74,8 +76,10 @@
         <input type="file" name="video" id="video" onchange="" required="required">
         <div id="showVideo"></div>
     </div>
+
     <button type="submit" class="btn" id="btn-change">保存修改</button>
 </form>
+
 
     <button type="button" class="btn" id="btn-delete">删除</button>
     <button type="button" class="btn" id="btn-add">添加作品</button>

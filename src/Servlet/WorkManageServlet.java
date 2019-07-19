@@ -23,21 +23,27 @@ public class WorkManageServlet extends HttpServlet {
 
         switch (function) {
             case "0":
-                changeInfo(request,response);
+                changeInfo(request, response);
                 break;
-            default:break;
+
+            default:
+                break;
+
         }
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         doPost(request, response);
+
     }
 
     private void changeInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // 从表单获取数据
 
         String title = request.getParameter("title");
+
         String description = request.getParameter("description");
         String gallery = request.getParameter("place");
         String year = request.getParameter("year");
@@ -54,12 +60,13 @@ public class WorkManageServlet extends HttpServlet {
         painting.setYearOfWork(Integer.parseInt(year));
 
 
-
         // 文件处理
+
         if (changed.equals("1")) {
-            request.setAttribute("painting",painting);
-            request.getRequestDispatcher("./upload").forward(request,response);
+            request.setAttribute("painting", painting);
+            request.getRequestDispatcher("./upload").forward(request, response);
         }
+
 
     }
 
@@ -70,7 +77,6 @@ public class WorkManageServlet extends HttpServlet {
     private void addWork(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
 
 
 }
