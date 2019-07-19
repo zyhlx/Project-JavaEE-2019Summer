@@ -23,7 +23,7 @@ public class UserDAOImpl implements IUserDAO {
 
     public int insertUser(String name, String pwd, String email, String tel, String address) {
         int rs = 0;
-        String query = "INSERT INTO users(name,password,email,,balance) values (" + "?,?,?,,0)";
+        String query = "INSERT INTO users(name,password,email) values (" + "?,?,?)";
         Connection conn = null;
         try {
             conn = getConnection();
@@ -164,14 +164,9 @@ public class UserDAOImpl implements IUserDAO {
 
     }
 
-    public boolean login(String userName, String pwd) {
-        boolean isRight = false;
-        String searchForUserID = "select * from  users where name=? and password =?";
-        List<User> users = DBUtil.get(User.class, searchForUserID, userName, pwd);
-        if (users.size() > 0) {
-            isRight = true;
-        }
-        return isRight;
+    public List<User> login(String userName, String pwd) {
+        String searchForUserID = "select * from  users where name='"+userName+"' and password ='"+pwd+"'";
+        return getUser(searchForUserID);
     }
 
     public int delete(String userID) {

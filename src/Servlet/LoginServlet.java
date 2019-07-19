@@ -1,5 +1,7 @@
 package Servlet;
 
+import bean.Adimn;
+import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
 
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "Servlet.LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -22,10 +25,15 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
-        if (userDAO.login(name, pwd)) {
+        List<User> users = userDAO.login(name, pwd);
+        if (users.size()>0) {
             session.setAttribute("user", name);
-            session.setAttribute("userID", userDAO.getUserID(name));
-            //session.setAttribute("id", "very good!");
+            session.setAttribute("userID", users.get(0).getUserID());
+            if (users.get(0) instanceof Adimn){
+                session.setAttribute("userType","adimin");
+            }else {
+                session.setAttribute("userType", "normal");
+            }
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
