@@ -11,6 +11,7 @@ public abstract class User {
     private Timestamp loadTime;
     private String password;
 
+
     public int getUserID() {
         return userID;
     }
