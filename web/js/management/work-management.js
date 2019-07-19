@@ -186,3 +186,18 @@ $("#btn-change").on("click", function() {
         }
     });
 });
+
+$("#btn-add").on("click", function () {
+    location.href = "./workDisplay?artworkID=0";
+});
+
+$(".btn-delete").on("click", function () {
+    //如果已登录，收藏
+    var artworkID = $(this).attr("id").substring(4);
+        $.post("./workDelete", {
+            artworkID: artworkID
+        }, function (result) {
+            $.simplyToast(result.msg, 'info');
+        });
+
+});

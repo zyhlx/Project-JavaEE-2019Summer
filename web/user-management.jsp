@@ -59,7 +59,7 @@
         String type = "Normal User";
         String srcOfImg = "images/user/normal.jpg";
         String changePermission = "提升为管理员";
-        if (user instanceof bean.Adimn) {
+        if (user.getType().equals("admin")) {
             type = "Admin";
             srcOfImg = "images/user/admin.jpg";
             changePermission = "降为普通用户";

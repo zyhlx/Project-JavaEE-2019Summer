@@ -13,12 +13,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-<<<<<<< HEAD
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
-=======
+
     <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
->>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
+
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">

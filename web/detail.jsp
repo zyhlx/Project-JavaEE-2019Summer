@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -77,24 +78,19 @@
     <div class="row" id="upper-part">
 
         <div class="col-4" id="description-container">
-            <h3><b>Shoes</b>,1888
+            <h3><b>${painting.title}</b>,1888
             </h3>
-            <p>van Gogh</p>
-            <p>Van Gogh painted several still lifes of shoes or boots during his Paris period. This picture, painted
-                later, in Arles, evinces a unique return to the earlier motif. However, here Van Gogh has placed the
-                shoes within a specific spatial context: namely, the red-tile floor of the Yellow House. Not only may we
-                identify the setting, but perhaps the owner of the shoes as well. It has been suggested that this "still
-                life of old peasants' shoes" may have been those of Patience Escalier, whose portrait Van Gogh executed
-                around the same time, late summer 1888.</p>
+
+            <p>${painting.description}</p>
 
         </div>
         <div class="col-7 bg-light text-dark" id="picture-container">
-            <img src="博物馆图片资源/其他/001080.jpg" alt="" id="picture">
+            <img src="博物馆图片资源/其他/${painting.imageFileName}.jpg" alt="" id="picture">
             <div id="icons">
-                <button type="button" class="btn btn-light text-left">
-                    <i class="fa fa-heart-o" id="icon-favour"></i>
+                <button type="button" class="btn btn-light text-left btn-favour" id="btn-favour-${painting.paintingID}">
+                    <i class="fa fa-heart-o"></i>
                 </button>
-                <button type="button" class="btn btn-light text-left">
+                <button type="button" class="btn btn-light text-left btn-manage" id="btn-manage-${painting.paintingID}">
                     <i class="fa fa-folder-open"></i>
                 </button>
 
@@ -110,13 +106,17 @@
         <div class="panel-heading">Object Details</div>
         <table class="table">
             <tr>
-                <td class="detail-title">Artist:</td>
-                <td>Vincent van Gogh (Dutch, Zundert 1853–1890 Auvers-sur-Oise)
+                <td class="detail-title">On view:</td>
+                <td>${painting.gallery.galleryName}
                 </td>
             </tr>
             <tr>
-                <td class="detail-title">Date:</td>
-                <td>1888</td>
+                <td class="detail-title">Year of work:</td>
+                <td>${painting.yearOfWork}</td>
+            </tr>
+            <tr>
+                <td class="detail-title">Heat:</td>
+                <td>${painting.msrp}</td>
             </tr>
         </table>
     </div>
@@ -130,13 +130,14 @@
 <script src="js/session.js"></script>
 <script>
 
-    $("#icon-favour").on("click", function () {
+    $(".btn-favour").on("click", function () {
         //如果已登录，收藏
         var userName = "<%=session.getAttribute("user")%>";
+        var artworkID = $(this).attr("id").substring(11);
         if (userName !== "null") {
             $.post("./favour", {
                 userName: userName,
-                artworkID: 5
+                artworkID: artworkID
             }, function (result) {
                 $.simplyToast(result.msg, 'info');
             });
@@ -145,22 +146,27 @@
             $.simplyToast("请先登录", 'warning');
         }
     });
+
+    $(".btn-manage").on("click", function () {
+        var artworkID = $(this).attr("id").substring(11);
+        location.href = "./workDisplay?artworkID="+artworkID;
+    });
 </script>
 
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<<<<<<< HEAD
+
 <script src="common/simply-toast.js"></script>
 <%--<script src="js/nav/registe.js"></script>--%>
 <%--<script src="js/nav/login.js"></script>--%>
 <%--<script src="js/nav/moveline.js"></script>--%>
-=======
+
 <script src="common/simply-toast/simply-toast.js"></script>
 <script src="js/nav/registe.js"></script>
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
->>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
+
 <script src="js/nav/nav.js"></script>
 
 </html>

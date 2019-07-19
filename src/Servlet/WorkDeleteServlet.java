@@ -1,9 +1,7 @@
 package Servlet;
 
-import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,33 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "Servlet.LoginServlet", value = "/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "WorkDeleteServlet", value = "/workDelete")
+public class WorkDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("username");
-        String pwd = request.getParameter("password");
-        HttpSession session = request.getSession(true);
+        int paintingID = Integer.parseInt(request.getParameter("artworkID"));
+
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
-        List<User> users = userDAO.login(name, pwd);
-        if (users.size()>0) {
-            session.setAttribute("user", name);
-            session.setAttribute("userID", users.get(0).getUserID());
-            if (users.get(0) instanceof Adimn){
-                session.setAttribute("userType","adimin");
-            }else {
-                session.setAttribute("userType", "normal");
-            }
-            String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
+        if (DAOFactory.getIPaintingDAOInstance().delete(paintingID) == 1) {
+
+            String temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
             out.flush();
             out.close();
-        }else {
-            String temp = "{\"type\":\"false\",\"msg\":\"用户名密码错误\"}";
+        } else {
+            String temp = "{\"type\":\"false\",\"msg\":\"删除失败\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
             out.flush();
@@ -48,6 +36,6 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+doPost(request, response);
     }
 }

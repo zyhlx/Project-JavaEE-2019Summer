@@ -135,10 +135,16 @@ public class UploadServlet extends HttpServlet {
                     }
 
                     // 更新数据库
-                    artworkID = "601";
-                    String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
-                   painting = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting).get(0);
 
+                    String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
+                    List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);
+                    if (!results.isEmpty()) {
+                        painting = results.get(0);
+                    }
+                    else {
+                        painting = new Painting();
+                        painting.setPaintingID(0);
+                    }
                     painting.setTitle(title);
                     painting.setDescription(description);
                     painting.setGallery(gallery);

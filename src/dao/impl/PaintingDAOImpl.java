@@ -68,7 +68,7 @@ public class PaintingDAOImpl implements IPaintingDAO {
                 temp.setDescription(rs.getString("Description"));
                 temp.setPaintingID(rs.getInt("PaintingID"));
                 temp.setGallery(rs.getString("Gallery"));
-
+                temp.setMsrp(rs.getBigDecimal("MSRP"));
                 temp.setYearOfWork(rs.getInt("YearOfWork"));
 
 
@@ -110,15 +110,32 @@ public class PaintingDAOImpl implements IPaintingDAO {
         Connection conn = null;
         try {
             conn = getConnection();
-            String updatePainting = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
+
+//            String updatePainting = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
+//            //预编译SQL，减少sql执行
+//            PreparedStatement ptmt = conn.prepareStatement(updatePainting);
+//            ptmt.setString(1, painting.getGallery());
+
+            // 新的painting
+            String query = null;
+            if (painting.getPaintingID() == 0) {
+                query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork) VALUES (?,?,?,?,?) ";
+            }
+            else {
+                query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
+            }
             //预编译SQL，减少sql执行
-            PreparedStatement ptmt = conn.prepareStatement(updatePainting);
+            PreparedStatement ptmt = conn.prepareStatement(query);
             ptmt.setString(1, painting.getGallery());
+
             ptmt.setString(2, painting.getImageFileName());
             ptmt.setString(3, painting.getTitle());
             ptmt.setString(4, painting.getDescription());
             ptmt.setInt(5, painting.getYearOfWork());
-            ptmt.setInt(6, painting.getPaintingID());
+
+            if (painting.getPaintingID()!=0) {
+                ptmt.setInt(6, painting.getPaintingID());
+            }
 
             // 执行
             ptmt.executeUpdate();
@@ -129,7 +146,26 @@ public class PaintingDAOImpl implements IPaintingDAO {
         }
         return 0;
     }
+
+    @Override
+    public int delete(int paintingID) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String deleteQuery = "DELETE FROM paintings WHERE PaintingID=?";
+            PreparedStatement ptmt = conn.prepareStatement(deleteQuery);
+            ptmt.setInt(1, paintingID);
+            ptmt.executeUpdate();
+            conn.commit();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 1;
+    }
 }
+
+
 
         //
 //    public void add(Painting painting) {

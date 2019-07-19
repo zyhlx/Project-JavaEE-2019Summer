@@ -1,10 +1,7 @@
 package dao.impl;
 
 import dao.IUserDAO;
-import db.DBUtil;
 import db.OpenConnection;
-import bean.Adimn;
-import bean.NormalUser;
 import bean.User;
 
 
@@ -90,18 +87,13 @@ public class UserDAOImpl implements IUserDAO {
             PreparedStatement ptmt = conn.prepareStatement(query);
             ResultSet rs = ptmt.executeQuery();
             while (rs.next()) {
-                User user = null;
-                // 设置user信息
-                if (rs.getString("type").equals("normal")) {
-                    user = new NormalUser();
-                } else {
-                    user = new Adimn();
-                }
+                User user = new User();
                 user.setUserID(rs.getInt("userID"));
                 user.setUsername(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 user.setLoadTime(rs.getTimestamp("loadTime"));
+                user.setType(rs.getString("type"));
 
                 users.add(user);
             }
@@ -138,11 +130,7 @@ public class UserDAOImpl implements IUserDAO {
             ptmt.setString(2, user.getEmail());
             ptmt.setString(3, user.getPassword());
             ptmt.setTimestamp(4, user.getLoadTime());
-            if (user instanceof NormalUser) {
-                ptmt.setString(5, "normal");
-            } else {
-                ptmt.setString(5, "admin");
-            }
+            ptmt.setString(5, user.getType());
             ptmt.setInt(6, user.getUserID());
             ptmt.executeUpdate();
             conn.commit();
@@ -196,4 +184,25 @@ public class UserDAOImpl implements IUserDAO {
         return 1;
     }
 
+    @Override
+    public List<User> getFriends(int userID) {
+        List<User> friends = new ArrayList<>();
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
+            ResultSet rs = ptmt.executeQuery();
+            while (rs.next()) {
+                int clientID = rs.getInt("clientID");
+                String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + clientID + "'";
+
+            }
+
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
