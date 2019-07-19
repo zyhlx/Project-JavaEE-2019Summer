@@ -8,5 +8,6 @@ public interface IPaintingDAO {
     public Painting[] getHotPaintings();
     public List<Painting> getPaintings(String query);
     public Painting[] getNewPostPaintings();
+    public int update(Painting painting);
 
 }

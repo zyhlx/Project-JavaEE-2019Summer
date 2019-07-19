@@ -7,11 +7,38 @@ public class Painting {
     private int artistID;
     private String description;
     private int galleryID;
+    private Gallery gallery;
     private int shapeID;
     private int width;
     private int height;
     private int cost;
     private int msrp;
+    private int yearOfWork;
+    private int postOfTime;
+
+    public int getPostOfTime() {
+        return postOfTime;
+    }
+
+    public void setPostOfTime(int postOfTime) {
+        this.postOfTime = postOfTime;
+    }
+
+    public int getYearOfWork() {
+        return yearOfWork;
+    }
+
+    public void setYearOfWork(int yearOfWork) {
+        this.yearOfWork = yearOfWork;
+    }
+
+    public void setGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+    public Gallery getGallery() {
+        return gallery;
+    }
 
     public int getPaintingID() {
         return paintingID;

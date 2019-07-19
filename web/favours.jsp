@@ -13,21 +13,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
     <style>
         img{
             max-height: 150px;
             width: auto;
         }
         #content{
+            margin-top: 5em;
             margin-left: 15%;
             margin-right: 15%;
             width: 70%;
         }
         td{
             width: 20%;
+        }
+        .favour-result{
+            margin-top: 1.5em;
         }
 
     </style>
