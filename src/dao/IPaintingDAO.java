@@ -7,5 +7,6 @@ import java.util.List;
 public interface IPaintingDAO {
     public Painting[] getHotPaintings();
     public Painting[] getNewPostPaintings();
-
+    public int update(Painting painting);
+    public List<Painting> getPaintings(String query);
 }

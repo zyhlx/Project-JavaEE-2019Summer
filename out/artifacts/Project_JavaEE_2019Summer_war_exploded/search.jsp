@@ -91,7 +91,7 @@
                     <div>
                         <div class="filter__group">
                             <div class="filter">
-                                <input id="" type="radio"
+                                <input type="checkbox"
                                        class="visuallyhidden filter__checkbox " name="facets" value="All Results">
                                 <label ng-click="facetFilter.handleLabelClick(filter)"
                                        class="filter__label filter__checkedbox">
