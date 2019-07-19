@@ -25,12 +25,12 @@
 
     <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+
 
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 
     <link rel="stylesheet" href="css/search/search.css">
-
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
     <%--<link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">--%>
     <%--<link href="http://cdn.staticfile.org/highlight.js/7.3/styles/github.min.css" rel="stylesheet" type="text/css" media="all">--%>
 
@@ -54,13 +54,14 @@
 
         <h1 class="page-title--search">
             Search
-            <span class="page-title__delimiter">/</span>
-            <span>Title</span></h1>
+            <%--<span class="page-title__delimiter">/</span>--%>
+            <%--<span>Title</span>--%>
+        </h1>
 
 
         <div class="page-title__input">
             <div>
-                <form name="keyword-filter" onsubmit="update()">
+                <form name="keyword-filter">
                     <fieldset class="filter filter--keyword">
                         <div class="filter__input">
                             <div class="filter__input-wrapper">
@@ -71,7 +72,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <button class="filter__submit" type="button" onclick="load(1,'','')" id="search">
+                            <button class="filter__submit" type="button" onclick="load(1)" id="search">
                                 <svg class="icon" viewBox="0 0 14 14">
                                     <path d="M13.992 7.505l-6.487 6.487-1.497-1.498L10.502 8H0V6h10.503L6.008 1.505 7.505.008l6.487 6.487-.505.505.505.505z"
                                           id="path-1" class="cls-2" fill-rule="evenodd"></path>
@@ -90,12 +91,41 @@
                 <div class="filter__container z-container">
                     <div>
                         <div class="filter__group">
+                            <%--<div class="filter">--%>
+                                <%--<input type="checkbox" id="all_results" checked--%>
+                                       <%--class="visuallyhidden filter__checkbox " name="facets" value="All Results">--%>
+                                <%--<label onclick="document.getElementById('all_results').click()"--%>
+                                       <%--class="filter__label filter__checkedbox">--%>
+                                    <%--All Results--%>
+                                <%--</label>--%>
+                                <%--&lt;%&ndash;<span class="filter--radio-facet-count ng-binding ng-scope">510803</span>&ndash;%&gt;--%>
+                            <%--</div>--%>
                             <div class="filter">
-                                <input type="checkbox"
-                                       class="visuallyhidden filter__checkbox " name="facets" value="All Results">
-                                <label ng-click="facetFilter.handleLabelClick(filter)"
+                                <input type="checkbox" id="title_search" checked="checked"
+                                       class="visuallyhidden filter__checkbox " name="facets" value="Title">
+                                <label onclick="document.getElementById('title_search').click()"
                                        class="filter__label filter__checkedbox">
-                                    All Results<span class="filter__count ng-binding ng-scope">&nbsp;(510803)</span>
+                                    Title
+                                </label>
+                                <%--<span class="filter--radio-facet-count ng-binding ng-scope">510803</span>--%>
+                            </div>
+
+                            <div class="filter">
+                                <input type="checkbox" id="gallery_search" checked=""
+                                       class="visuallyhidden filter__checkbox " name="facets" value="Gallery">
+                                <label onclick="document.getElementById('gallery_search').click()"
+                                       class="filter__label filter__checkedbox">
+                                    Gallery
+                                </label>
+                                <%--<span class="filter--radio-facet-count ng-binding ng-scope">510803</span>--%>
+                            </div>
+
+                            <div class="filter">
+                                <input type="checkbox" id="description_search" checked=""
+                                       class="visuallyhidden filter__checkbox " name="facets" value="Description">
+                                <label onclick="document.getElementById('description_search').click()"
+                                       class="filter__label filter__checkedbox">
+                                    Description
                                 </label>
                                 <%--<span class="filter--radio-facet-count ng-binding ng-scope">510803</span>--%>
                             </div>
@@ -151,9 +181,8 @@
                     <input type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" oninput="if(value>64)value=64"
                            class="jump-ipt" id="jump-ipt">
                     <a href="javascript:" class="jump-btn" onclick="load(parseInt(document.getElementById('jump-ipt').value),'','')">跳转</a>
+                    <span id="current_page"></span>/<span id="total_page"></span>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -170,12 +199,17 @@
 <script rel="script" type="text/javascript" src="js/search/search.js"></script>
 <script type="text/javascript" src="common/dist/jq-paginator.js"></script>
 <script>
-    load(1,"","");
+    load(1);
 
-    function load(pageNum,method,input_text) {
+    function load(pageNum) {
         if (pageNum === "") {
             pageNum = 1;
         }
+        var input_text = $('#search_ipt').val();
+        var method = "";
+        $("[name='facets']:checked").each(function(){
+            method+=$(this).val()+"&";
+        });
         $.ajax({
             //需要提交的服务器地址
             url: "./page",
@@ -215,13 +249,20 @@
                         "                                </a>\n" +
                         "                            </div>");
                 });
+                $("#current_page").html(pageNum);
+                $("#total_page").html(Math.ceil(data.total/data.pageSize));
 
                 $('.M-box3').jqPaginator({
-                    totalCounts: data.total,
+                    totalCounts: data.total+1,
                     visiblePages: 10,
                     pageSize: data.pageSize,
                     currentPage: pageNum,
                     onPageChange: function (num, type) {
+                        // var input_text = $('#search_ipt').val();
+                        // var method = "";
+                        // $("[name='facets'][checked]").each(function(){
+                        //     method+=$(this).val()+"&";
+                        // });
                         $.ajax({
                             //需要提交的服务器地址
                             url: "./page",
@@ -235,6 +276,8 @@
                                 //每次清空数据,防止每次点击都叠加
                                 $("#list-content").html('');
                                 //追加数据  data.list表示需要遍历的对象  list必须是实体类pageInfo中的list属性名
+                                $("#current_page").html(num);
+                                $("#total_page").html(Math.ceil(data.total/data.pageSize));
                                 $.each(data.list, function (i, news) {
                                     //一个dom就是一个用户对象
                                     $("#list-content").append("  <div class=\"result-card__container\">\n" +
@@ -253,7 +296,7 @@
                                         "                                        <div class=\"result-card__main-content\">\n" +
                                         "                                            <div class=\"result-card__content-wrapper\">\n" +
                                         "                                                <h2 class=\"alt ng-binding\">" + news.title + "</h2>\n" +
-                                        "                                                <div class=\"result-card__body text-leave\">\n热度："+news.msrp +"<br><br>"+ news.description +
+                                        "                                                <div class=\"result-card__body text-leave\">\n热度："+news.msrp +"<br>馆藏："+news.gallery+"<br>"+ news.description +
                                         "                                                </div>" +
                                         "                                            </div>\n" +
                                         "                                        </div>\n" +
@@ -261,6 +304,7 @@
                                         "                                </a>\n" +
                                         "                            </div>");
                                 });
+
                             }
                         })
                     }

@@ -1,10 +1,10 @@
-main *, *::after, *::before {
+main *,main *::after,main *::before {
     box-sizing: inherit;
 }
 
-main article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-}
+/*main article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {*/
+    /*display: block;*/
+/*}*/
 
 main h1 {
     font-family: "MetSerif", "Georgia", serif;
@@ -33,7 +33,7 @@ main h2 {
     line-height: 1.11;
 }
 
-main input, select, textarea {
+main input,main select,main textarea {
     font-family: "MetSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /*font-size: 19px;*/
     font-weight: 400;
@@ -41,10 +41,22 @@ main input, select, textarea {
     font-size: 16px;
 }
 
-main input, textarea, button {
+main input,main textarea,main button {
     margin: 0;
     box-sizing: border-box;
     font: inherit;
+}
+main input[type=email],main  input[type=number],main  input[type=password],main  input[type=text],main  textarea {
+    font-family: "MetSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-weight: 600;*/
+    font-style: normal;
+    display: block;
+    width: 100%;
+    padding: 7px 10px 6px;
+    background: #fff;
+    border: 1px solid #dfe0e0;
+    -webkit-appearance: none;
+    margin-bottom: 10px;
 }
 
 main .wrapper {
@@ -100,7 +112,7 @@ main .content-full {
     }
 }
 
-.content-full > * {
+main .content-full > * {
     grid-column-start: span 12;
     grid-column-end: auto;
 }
@@ -110,18 +122,18 @@ main .rich-text {
     width: 100%;
 }
 
-.z-container {
+main .z-container {
     margin-bottom: 20px;
     width: 100%;
 }
 
 @media only screen and (min-width: 500px) {
-    .z-container {
+    main .z-container {
         margin-bottom: 40px;
     }
 }
 
-.filter__container {
+main .filter__container {
     border-bottom: 1px solid #dfe0e0;
     /*padding-top: 40px;*/
     padding-top: 2.5rem;
@@ -129,12 +141,12 @@ main .rich-text {
 }
 
 @media only screen and (min-width: 900px) {
-    .filter__container {
+    main .filter__container {
         padding-top: 0;
     }
 }
 
-.filter__group {
+main .filter__group {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -142,29 +154,44 @@ main .rich-text {
     flex-wrap: wrap;
 }
 
-.filter__label {
+main .filter__label {
     color: #959798;
     display: inline-block;
     font-size: 24px;
     padding-bottom: 0;
 }
 
-.filter__label:hover {
+main .filter__label:hover {
     cursor: pointer;
 }
 
-.filter__checkedbox .filter__label {
+main .filter__checkedbox .filter__label {
     color: #000006;
 }
 
+main .filter__container .filter :after {
+    background-color: #dfe0e0;
+    content: "";
+    display: inline-block;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 1px;
+}
+
 @media only screen and (min-width: 500px) {
-    .page-title--wrapper {
+    main .page-title--wrapper {
         padding-left: 40px;
         padding-right: 40px;
     }
 }
 
-.page-title--wrapper {
+main .page-title--wrapper {
     margin: 0 auto;
     width: 100%;
     max-width: 1240px;
@@ -173,7 +200,7 @@ main .rich-text {
     overflow: hidden;
 }
 
-.page-title--search {
+main .page-title--search {
     margin-bottom: 0;
     /*padding: 20px 0;*/
     /*padding: 1.25rem 0;*/
@@ -182,32 +209,32 @@ main .rich-text {
 }
 
 @media only screen and (min-width: 900px) {
-    .page-title--search {
+    main  .page-title--search {
         /*font-size: 36px;*/
         font-size: 2.25rem;
     }
 }
 
 @media only screen and (min-width: 500px) {
-    .page-title--search {
+    main .page-title--search {
         /*padding: 40px 0;*/
         padding: 2.5rem 0;
     }
 }
 
-.page-title__input {
+main .page-title__input {
     clear: both;
     margin-bottom: 0;
     position: relative;
 }
 
 @media only screen and (min-width: 900px) {
-    .page-title__input {
+    main .page-title__input {
         margin-bottom: 10px;
     }
 }
 
-.filter {
+main .filter {
     font-family: "MetSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     font-style: normal;
@@ -218,11 +245,11 @@ main .rich-text {
     position: relative;
 }
 
-.filter input[type="radio"] {
+main .filter input[type="radio"] {
     display: none;
 }
 
-.visuallyhidden {
+main .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -233,7 +260,7 @@ main .rich-text {
     width: 1px;
 }
 
-.filter__input-wrapper {
+main .filter__input-wrapper {
     border: 1px solid #dfe0e0;
     border-right: 0;
     display: -webkit-box;
@@ -244,7 +271,7 @@ main .rich-text {
     flex-grow: 1;
 }
 
-.filter__input {
+main .filter__input {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -264,18 +291,18 @@ main .rich-text {
 }
 
 @media only screen and (min-width: 500px) {
-    .filter__input input {
+    main  .filter__input input {
         /*font-size: 24px;*/
         font-size: 1.5rem;
     }
 }
 
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+main button,main input[type="button"], main input[type="reset"],main input[type="submit"] {
     -webkit-appearance: button;
     cursor: pointer;
 }
 
-.filter__submit {
+main .filter__submit {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -283,7 +310,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 }
 
 @media only screen and (min-width: 900px) {
-    .filter__submit {
+    main .filter__submit {
         /*width: 60px;*/
         width: 3.75rem;
         /*height: 60px;*/
@@ -291,25 +318,14 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
     }
 }
 
-.filter__input button.filter__submit {
+main .filter__input button.filter__submit {
     background: #000006;
     border: none;
 }
 
-main input[type=email], input[type=number], input[type=password], input[type=text], textarea {
-    font-family: "MetSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    display: block;
-    width: 100%;
-    padding: 7px 10px 6px;
-    background: #fff;
-    border: 1px solid #dfe0e0;
-    -webkit-appearance: none;
-    margin-bottom: 10px;
-}
 
-.filter__input input {
+
+main .filter__input input {
     border: 0;
     -webkit-box-flex: 1;
     -ms-flex: 1;
@@ -325,7 +341,7 @@ main input[type=email], input[type=number], input[type=password], input[type=tex
     padding: 0 .625rem;
 }
 
-.filter__clear-text {
+main .filter__clear-text {
     background-color: transparent;
     border: none;
     color: #dfe0e0;
@@ -335,7 +351,13 @@ main input[type=email], input[type=number], input[type=password], input[type=tex
     margin-right: 10px;
 }
 
-.icon {
+main .filter__checkbox:checked+.filter__label {
+    color: #000006;
+}
+
+
+
+main .icon {
     display: inline-block;
     /*width: 24px;*/
     width: 1.5rem;
@@ -345,12 +367,12 @@ main input[type=email], input[type=number], input[type=password], input[type=tex
     fill: currentColor;
 }
 
-.filter__clear-text .icon {
+main .filter__clear-text .icon {
     fill: #dfe0e0;
     transition: fill 0.3s ease-out;
 }
 
-.filter__input .icon {
+main .filter__input .icon {
     /*display: -webkit-inline-box;*/
     /*display: -ms-inline-flexbox;*/
     display: inline-flex;
@@ -361,11 +383,11 @@ main input[type=email], input[type=number], input[type=password], input[type=tex
     height: 16px;
 }
 
-.result-card__container {
+main .result-card__container {
     margin-bottom: 20px;
 }
 
-.result-card {
+main .result-card {
     display: grid;
     grid-column-gap: 20px;
     grid-template-columns: repeat(12, 1fr);
@@ -377,130 +399,130 @@ main input[type=email], input[type=number], input[type=password], input[type=tex
 }
 
 @media screen and (min-width: 500px) {
-    .result-card {
+    main .result-card {
         grid-column-gap: 20px;
     }
 
 }
 
 @media screen and (min-width: 500px) {
-    .result-card {
+    main .result-card {
         padding: 40px 0;
     }
 
 }
 
-.result-card__category {
+main .result-card__category {
     color: #dfe0e0;
     text-transform: capitalize;
 }
 
-.result-card__image-wrapper {
+main .result-card__image-wrapper {
     line-height: 0;
     margin: 0 20px 20px;
 }
 
 @media screen and (min-width: 500px) {
-    .result-card__image-wrapper {
+    main .result-card__image-wrapper {
         margin: 0 0 0 40px;
     }
 }
-.result-card__image {
+main .result-card__image {
     width: 100%;
     height: 240px;
 }
 
-a.result-card__link {
+main a.result-card__link {
     color: #000006;
     text-decoration: none;
 }
 
-.rich-text *:last-child {
+main .rich-text *:last-child {
     margin-bottom: 0;
 }
 
-.result-card__left-container {
+main .result-card__left-container {
     grid-column: span 12;
 }
 
 @media screen and (min-width: 500px) {
-    .result-card__left-container {
+    main .result-card__left-container {
         grid-column: span 6;
     }
 
 }
 
 @media screen and (min-width: 900px) {
-    .result-card__left-container {
+    main .result-card__left-container {
         grid-column: span 3;
     }
 
 }
 
-.result-card__main-content {
+main .result-card__main-content {
     grid-column: span 12;
 }
 
 @media screen and (min-width: 500px) {
-    .result-card__main-content {
+    main .result-card__main-content {
         grid-column: span 5;
     }
 }
 
 @media screen and (min-width: 900px) {
-    .result-card__main-content {
+    main  .result-card__main-content {
         grid-column: span 8;
     }
 }
 
 @media screen and (min-width: 500px) {
-    .result-card__content-wrapper {
+    main .result-card__content-wrapper {
         padding: 0;
     }
 }
 
-.result-card__content-wrapper {
+main .result-card__content-wrapper {
     padding: 0 20px;
 }
 
-h2.alt {
+main h2.alt {
     font-family: "MetSerif", "Georgia", serif;
     font-size: 36px;
     font-weight: 400;
     line-height: 1.11;
 }
 
-.rich-text h2 {
+main .rich-text h2 {
     font-family: "MetSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 36px;
     font-weight: 300;
     line-height: 1.11;
 }
 
-.rich-text h2.alt {
+main .rich-text h2.alt {
     font-family: "MetSerif", "Georgia", serif;
     font-size: 36px;
     font-weight: 400;
     line-height: 1.11;
 }
 
-.result-card__body:last-child {
+main .result-card__body:last-child {
     margin-bottom: 0;
 }
 
-.result-card__body {
+main .result-card__body {
     font-size: 19px;
     margin-bottom: 20px;
 }
 
 @media screen and (min-width: 500px) {
-    .result-card__body {
+    main  .result-card__body {
         margin-bottom: 40px;
     }
 
 }
 
-.text-leave{
+main .text-leave{
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -521,7 +543,7 @@ h2.alt {
     color: #bdbdbd;
     font-size: 14px;
 }
-.jump-btn{
+main .jump-btn{
     padding: .5rem .75rem;
     line-height: 1.25;
     color: #007bff;

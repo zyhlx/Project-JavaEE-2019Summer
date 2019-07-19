@@ -56,7 +56,7 @@ public class WorkManageServlet extends HttpServlet {
 
         painting.setTitle(title);
         painting.setDescription(description);
-        painting.setGalleryID(DAOFactory.getIGalleryDAOInstance().getGalleryID(gallery));
+        painting.setGallery(gallery);
         painting.setYearOfWork(Integer.parseInt(year));
 
 

@@ -67,12 +67,8 @@ public class PaintingDAOImpl implements IPaintingDAO {
                 temp.setTitle(rs.getString("Title"));
                 temp.setDescription(rs.getString("Description"));
                 temp.setPaintingID(rs.getInt("PaintingID"));
-                temp.setGalleryID(rs.getInt("GalleryID"));
-                String queryForGallery = "SELECT * FROM galleries WHERE GalleryID=" + "'" + temp.getGalleryID() + "'";
-                List<Gallery> galleries = DAOFactory.getIGalleryDAOInstance().getGalleries(queryForGallery);
-                if (!galleries.isEmpty()) {
-                    temp.setGallery(DAOFactory.getIGalleryDAOInstance().getGalleries(queryForGallery).get(0));
-                }
+                temp.setGallery(rs.getString("Gallery"));
+
                 temp.setYearOfWork(rs.getInt("YearOfWork"));
 
 
@@ -114,10 +110,10 @@ public class PaintingDAOImpl implements IPaintingDAO {
         Connection conn = null;
         try {
             conn = getConnection();
-            String updatePainting = "UPDATE paintings SET GalleryID=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
+            String updatePainting = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
             //预编译SQL，减少sql执行
             PreparedStatement ptmt = conn.prepareStatement(updatePainting);
-            ptmt.setInt(1, painting.getGalleryID());
+            ptmt.setString(1, painting.getGallery());
             ptmt.setString(2, painting.getImageFileName());
             ptmt.setString(3, painting.getTitle());
             ptmt.setString(4, painting.getDescription());
