@@ -1,9 +1,6 @@
 package dao.impl;
 
-import bean.Adimn;
 import bean.Favour;
-import bean.NormalUser;
-import bean.User;
 import dao.IFavourDAO;
 import db.OpenConnection;
 

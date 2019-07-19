@@ -1,16 +1,45 @@
 package bean;
 
+import dao.factory.DAOFactory;
+
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
-public abstract class User {
+public class User {
     private int userID;
     private String username;
     private String email;
     private Timestamp loadTime;
     private String password;
+    private List<Painting> favours;
+    private String signature;
+    private String type;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public List<Painting> getFavours() {
+        return favours;
+    }
+
+    public void setFavours(List<Painting> favours) {
+        this.favours = favours;
+    }
 
     public int getUserID() {
         return userID;
@@ -52,5 +81,13 @@ public abstract class User {
         this.username = username;
     }
 
-    public abstract User changePermission() throws SQLException;
+    public void changePermission() throws SQLException {
+        if (type.equals("normal")) {
+            type = "admin";
+        }
+        else {
+            type = "normal";
+        }
+        DAOFactory.getIUserDAOInstance().update(this);
+    };
 }

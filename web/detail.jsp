@@ -87,10 +87,10 @@
         <div class="col-7 bg-light text-dark" id="picture-container">
             <img src="博物馆图片资源/其他/${painting.imageFileName}.jpg" alt="" id="picture">
             <div id="icons">
-                <button type="button" class="btn btn-light text-left">
-                    <i class="fa fa-heart-o" id="icon-favour"></i>
+                <button type="button" class="btn btn-light text-left btn-favour" id="btn-favour-${painting.paintingID}">
+                    <i class="fa fa-heart-o"></i>
                 </button>
-                <button type="button" class="btn btn-light text-left btn-manage" id="btn-601">
+                <button type="button" class="btn btn-light text-left btn-manage" id="btn-manage-${painting.paintingID}">
                     <i class="fa fa-folder-open"></i>
                 </button>
 
@@ -115,7 +115,7 @@
                 <td>${painting.yearOfWork}</td>
             </tr>
             <tr>
-                <td class="detail-title">Hear:</td>
+                <td class="detail-title">Heat:</td>
                 <td>${painting.msrp}</td>
             </tr>
         </table>
@@ -130,13 +130,14 @@
 <script src="js/session.js"></script>
 <script>
 
-    $("#icon-favour").on("click", function () {
+    $(".btn-favour").on("click", function () {
         //如果已登录，收藏
         var userName = "<%=session.getAttribute("user")%>";
+        var artworkID = $(this).attr("id").substring(11);
         if (userName !== "null") {
             $.post("./favour", {
                 userName: userName,
-                artworkID: 5
+                artworkID: artworkID
             }, function (result) {
                 $.simplyToast(result.msg, 'info');
             });
@@ -147,7 +148,7 @@
     });
 
     $(".btn-manage").on("click", function () {
-        var artworkID = $(this).attr("id").substring(4);
+        var artworkID = $(this).attr("id").substring(11);
         location.href = "./workDisplay?artworkID="+artworkID;
     });
 </script>

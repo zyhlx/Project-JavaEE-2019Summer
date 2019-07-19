@@ -1,6 +1,5 @@
 package Servlet;
 
-import bean.Adimn;
 import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;

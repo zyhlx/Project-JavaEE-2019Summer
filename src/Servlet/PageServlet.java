@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "Servlet.PageServlet",value = "/page")
+
 public class PageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
