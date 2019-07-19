@@ -23,6 +23,7 @@ public class PageServlet extends HttpServlet {
             throws ServletException, IOException {
         //设置响应编码格式
         req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
         //调用servicenew出对象
         PageService service = new PageServiceImpl();
         String[] method = req.getParameter("method").split("&");
