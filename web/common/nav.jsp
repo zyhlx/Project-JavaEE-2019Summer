@@ -20,7 +20,7 @@
         <div class="col-sm-7 row justify-content-end">
             <ul class="nav nav-pills list-inline-item col-sm-10 justify-content-end " id="move">
                 <li class="nav-item list-inline-item">
-                    <a href="#" class="nav-link">首页</a>
+                    <a href="index.jsp" class="nav-link">首页</a>
                 </li>
                 <% if (session.getAttribute("user") != null) {%>
                 <li class="nav-item list-inline-item dropdown">
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link">
+                    <a href="search.jsp" class="nav-link">
                         <svg width="24px" height="24px" viewBox="0 0 48 48">
                             <path
                                     d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"></path>
@@ -84,7 +84,7 @@
     <nav class="navbar nav-pills navbar-light flex-column" id="mobile-menu" aria-hidden="true">
         <ul class="navbar-nav">
             <li class="nav-item p-2">
-                <a href="/" class="nav-link slide-nav-active" data-gacategory="navigation" data-gaaction="clicked"
+                <a href="index.jsp" class="nav-link slide-nav-active" data-gacategory="navigation" data-gaaction="clicked"
                    data-galabel="home">
                     <svg x="0px" y="0px" viewBox="0 0 24 24">
                         <g>
@@ -104,7 +104,7 @@
                     详情</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="#" data-gacategory="navigation" data-gaaction="clicked" data-galabel="search">
+                <a class="nav-link" href="search.jsp" data-gacategory="navigation" data-gaaction="clicked" data-galabel="search">
                     <svg width="24px" height="24px" viewBox="0 0 48 48">
                         <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"></path>
                     </svg>

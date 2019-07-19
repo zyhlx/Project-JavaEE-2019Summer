@@ -15,11 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavourDAOImpl implements IFavourDAO {
-    private Connection conn;
-    private PreparedStatement pstmt;
+
 
     public FavourDAOImpl(){
-        conn = new OpenConnection().getConnection();
+//        conn = new OpenConnection().getConnection();
     }
 
     private static Connection getConnection() throws SQLException {
@@ -28,9 +27,9 @@ public class FavourDAOImpl implements IFavourDAO {
     @Override
     public List<Favour> getFavour(String query) {
         List<Favour> favours = new ArrayList<>();
+        Connection conn = null;
         try {
-            //获取连接
-            Connection conn = this.conn;
+            conn = getConnection();
             PreparedStatement ptmt = conn.prepareStatement(query);
             ResultSet rs = ptmt.executeQuery();
             while (rs.next()) {
@@ -43,6 +42,16 @@ public class FavourDAOImpl implements IFavourDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
         return favours;
 
@@ -51,8 +60,9 @@ public class FavourDAOImpl implements IFavourDAO {
     public int insert(Favour favour) {
         int rs = 1;
         String query = "INSERT INTO favours(userID,artworkID) VALUES (?,?)";
+        Connection conn = null;
         try {
-            Connection conn = this.conn;
+            conn = getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(query);
             ptmt1.setInt(1,favour.getUserID());
             ptmt1.setInt(2,favour.getPaintingID());
@@ -61,6 +71,16 @@ public class FavourDAOImpl implements IFavourDAO {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         return rs;

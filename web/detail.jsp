@@ -65,7 +65,7 @@
         }
     </style>
 
-    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
@@ -150,10 +150,17 @@
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
+<<<<<<< HEAD
 <script src="common/simply-toast.js"></script>
 <%--<script src="js/nav/registe.js"></script>--%>
 <%--<script src="js/nav/login.js"></script>--%>
 <%--<script src="js/nav/moveline.js"></script>--%>
+=======
+<script src="common/simply-toast/simply-toast.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+>>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
 <script src="js/nav/nav.js"></script>
 
 </html>

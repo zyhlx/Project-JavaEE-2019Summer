@@ -15,16 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaintingDAOImpl implements IPaintingDAO {
-    private Connection conn;
-    private PreparedStatement pstmt;
-
     public PaintingDAOImpl() {
-        conn = new OpenConnection().getConnection();
+
     }
 
     //
     public Painting[] getHotPaintings() {
-//        String query = "SELECT * FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
         String query = "SELECT ImageFileName imageFileName,Title title,Description description,PaintingID paintingID FROM paintings ORDER BY MSRP desc LIMIT 0 , 3";
         Painting[] results = new Painting[3];
         List<Painting> temp = DBUtil.get(Painting.class, query);
@@ -39,9 +35,13 @@ public class PaintingDAOImpl implements IPaintingDAO {
     public Painting[] getNewPostPaintings() {
         Painting[] results = new Painting[3];
         String query = "SELECT ImageFileName imageFileName,Title title,Description description,PaintingID paintingID FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
+<<<<<<< HEAD
 
 //        String query = "SELECT * FROM paintings ORDER BY postTime desc LIMIT 0 , 3";
         List<Painting> temp = DBUtil.get(Painting.class, query);
+=======
+        List<Painting> temp = DBUtil.get(Painting.class,query);
+>>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
         results[0] = temp.get(0);
         results[1] = temp.get(1);
         results[2] = temp.get(2);
@@ -50,6 +50,7 @@ public class PaintingDAOImpl implements IPaintingDAO {
     }
 
 
+<<<<<<< HEAD
     public List<Painting> getPaintings(String query) {
         List<Painting> results = new ArrayList<>();
         //获取连接
@@ -81,6 +82,31 @@ public class PaintingDAOImpl implements IPaintingDAO {
         }
         return results;
     }
+=======
+//    public List<Painting> getPaintings(String query) {
+//        List<Painting> results = new ArrayList<>();
+//        //获取连接
+//        Connection conn = this.conn;
+//        try {
+//            //预编译SQL，减少sql执行
+//            PreparedStatement ptmt = conn.prepareStatement(query);
+//            //执行
+//            ResultSet rs = ptmt.executeQuery();
+//            while (rs.next()) {
+//                Painting temp = new Painting();
+//                temp.setImageFileName(rs.getString("ImageFileName"));
+//                temp.setTitle(rs.getString("Title"));
+//                temp.setDescription(rs.getString("Description"));
+//                temp.setPaintingID(rs.getInt("PaintingID"));
+//
+//                results.add(temp);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return results;
+//    }
+>>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
 
     @Override
     public int update(Painting painting) {

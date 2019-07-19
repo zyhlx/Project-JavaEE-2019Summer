@@ -1,5 +1,7 @@
 package bean;
 
+import java.math.BigDecimal;
+
 public class Painting {
     private int paintingID;
     private String imageFileName;
@@ -12,6 +14,7 @@ public class Painting {
     private int width;
     private int height;
     private int cost;
+<<<<<<< HEAD
     private int msrp;
     private int yearOfWork;
     private int postOfTime;
@@ -39,6 +42,9 @@ public class Painting {
     public Gallery getGallery() {
         return gallery;
     }
+=======
+    private BigDecimal msrp;
+>>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
 
     public int getPaintingID() {
         return paintingID;
@@ -96,11 +102,11 @@ public class Painting {
         this.cost = cost;
     }
 
-    public int getMsrp() {
+    public BigDecimal getMsrp() {
         return msrp;
     }
 
-    public void setMsrp(int msrp) {
+    public void setMsrp(BigDecimal msrp) {
         this.msrp = msrp;
     }
 
