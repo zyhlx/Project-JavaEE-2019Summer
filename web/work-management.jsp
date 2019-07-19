@@ -8,13 +8,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String flag = (String) request.getAttribute("flag");
-    if (flag == null) {
+<%--<%--%>
+    <%--String flag = (String) request.getAttribute("flag");--%>
+    <%--if (flag == null) {--%>
 
-        request.getRequestDispatcher("/workDisplay").forward(request, response);
-    }
-%>
+        <%--request.getRequestDispatcher("/workDisplay").forward(request, response);--%>
+    <%--}--%>
+<%--%>--%>
 <html>
 <head>
     <title>Art Museum</title>
@@ -50,7 +50,7 @@
     <div class="form-group">
         <label for="title">作品名:</label>
 
-        <input type="text" name="title" class="form-control" id="title" required="required" value="title">
+        <input type="text" name="title" class="form-control" id="title" required="required" value="${painting.title}">
     </div>
     <div class="form-group">
         <label for="description">简介:</label>
@@ -74,11 +74,13 @@
         <input type="file" name="video" id="video" onchange="" required="required">
         <div id="showVideo"></div>
     </div>
-<button type="submit">submit</button>
+    <input hidden="hidden" value="${painting.paintingID}">
+    <button type="submit" class="btn" id="btn-change">保存修改</button>
 </form>
-<button type="button" class="btn" id="btn-change">提交修改</button>
-    <button type="button" class="btn" id="btn-delete">删除</button>
+<c:if test="${painting.paintingID != 0}">
+    <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
     <button type="button" class="btn" id="btn-add">添加作品</button>
+</c:if>
 </section>
 </body>
 
@@ -97,6 +99,7 @@
 <%--<script src="js/nav/moveline.js"></script>--%>
 <script src="js/nav/nav.js"></script>
 <script src="js/management/work-management.js"></script>
+
 </html>
 
 
