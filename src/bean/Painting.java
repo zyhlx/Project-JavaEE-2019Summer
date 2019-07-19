@@ -14,8 +14,7 @@ public class Painting {
     private int width;
     private int height;
     private int cost;
-<<<<<<< HEAD
-    private int msrp;
+
     private int yearOfWork;
     private int postOfTime;
 
@@ -42,9 +41,9 @@ public class Painting {
     public Gallery getGallery() {
         return gallery;
     }
-=======
+
     private BigDecimal msrp;
->>>>>>> f8e0609aa267e24c6dcfe6468169bb91f503eb02
+
 
     public int getPaintingID() {
         return paintingID;
