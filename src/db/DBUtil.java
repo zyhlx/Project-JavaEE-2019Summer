@@ -50,28 +50,77 @@ public class DBUtil {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return results;
-
     }
 
 
-//    public static void main(String[] args){
-//        String query = "SELECT ImageFileName imageFileName,Title title,Description description,PaintingID paintingID FROM paintings ORDER BY MSRP desc LIMIT 0 , 1";
-//        Painting painting = get(Painting.class,query);
-////        System
-//        painting.getPaintingID();
-//    }
+    //返回影响的数据个数 失败-1
+    public static int insert(String sql, Object... args) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int res = -1;
+        try {
+            connection = new OpenConnection().getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                preparedStatement.setObject(i + 1, args[i]);
+            }
+            res = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        return res;
+    }
 
 
     public static List<Integer> getID(String query, String nameOfID) {
         List<Integer> results = new ArrayList<>();
         //获取连接
         Connection conn = new OpenConnection().getConnection();
+        PreparedStatement ptmt = null;
         try {
             //预编译SQL，减少sql执行
-            PreparedStatement ptmt = conn.prepareStatement(query);
+            ptmt = conn.prepareStatement(query);
 
             //执行
             ResultSet rs = ptmt.executeQuery();
@@ -80,7 +129,26 @@ public class DBUtil {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (ptmt != null) {
+                try {
+                    ptmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
+
         return results;
 
     }
