@@ -20,14 +20,12 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
         return   new OpenConnection().getConnection();
     }
     @Override
-    public int delete(int friendID) {
+    public int delete(String query) {
         int rs = 1;
         Connection conn = null;
         try {
             conn = getConnection();
-            String deleteFriend = "DELETE FROM friends WHERE friendID=?";
-            PreparedStatement ptmt = conn.prepareStatement(deleteFriend);
-            ptmt.setInt(1, friendID);
+            PreparedStatement ptmt = conn.prepareStatement(query);
             rs = ptmt.executeUpdate();
             conn.commit();
 
