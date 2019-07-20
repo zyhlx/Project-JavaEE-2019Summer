@@ -35,10 +35,10 @@
 
         .user-result {
             margin-top: 2em;
-            margin-left: 10%;
-            margin-right: 10%;
-            padding: 1.5em;
-            width: 80%;
+            margin-left: 7%;
+            margin-right: 7%;
+            padding: 1em;
+            width: 86%;
         }
 
         .info-title {
@@ -48,6 +48,9 @@
         .user-name {
             font-size: 20px;
         }
+        section{
+            margin-top: 5em;
+        }
 
     </style>
 
@@ -55,36 +58,29 @@
 <%@ include file="common/nav.jsp" %>
 <body>
 <main>
-    <c:forEach items="${friends}" var="friendItem">
-        <div class="row border user-result">
-            <div class="col-2">
-                <p class="type">${friendItem.type}</p>
-                <img src="images/user/${friendItem.type}.jpg" alt="">
-            </div>
-            <div class="col-8 panel panel-default">
-                <div class="panel-heading user-name">${friendItem.username}</div>
-                <table class="table">
-                    <tr>
-                        <td class="info-title">邮箱</td>
-                        <td>${friendItem.email}</td>
-                    </tr>
-                    <tr>
-                        <td class="info-title">个性签名</td>
-                        <td>${friendItem.signature}</td>
-                    </tr>
-                    <tr>
-                        <td class="info-title">最近收藏</td>
-                        <td>
-                            <c:forEach items="${friendItem.favours}" var="favourItem">
-                                <p>
-                                <a href="detailDisplay?paintingID=${favourItem.paintingID}"> ${favourItem.title} </a></p>
-                            </c:forEach></td>
 
-                    </tr>
-                </table>
-            </div>
+    <section>
+<c:forEach items="${friends}" var="friendItem" >
+    <div class="row border user-result">
+        <div class="col-2">
+            <p class="type">${friendItem.client.type}</p>
+            <img src="images/user/${friendItem.client.type}.jpg" alt="">
         </div>
-    </c:forEach>
+        <div class="col-8 panel panel-default">
+            <div class="panel-heading user-name">${friendItem.client.username}</div>
+            <table class="table">
+                <tr><td class="info-title">邮箱</td><td>${friendItem.client.email}</td></tr>
+                <tr><td class="info-title">个性签名</td><td>${friendItem.client.signature}</td></tr>
+                <tr><td class="info-title">最近收藏</td><td><c:forEach items="${friendItem.client.favours}" var="favourItem">
+                    <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}"> ${favourItem.painting.title} </a>
+                </c:forEach></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</c:forEach>
+        <a href="./friends-search.jsp">  <button class="btn" type="button"> 搜索</button> </a>
+    </section>
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

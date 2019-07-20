@@ -98,7 +98,7 @@ public class UserDAOImpl implements IUserDAO {
                 user.setUsername(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setLoadTime(rs.getTimestamp("loadTime"));
+                user.setLoadTime(rs.getDate("loadTime"));
                 user.setType(rs.getString("type"));
 
                 users.add(user);
@@ -190,34 +190,34 @@ public class UserDAOImpl implements IUserDAO {
         return 1;
     }
 
-    @Override
-    public List<User> getFriends(int userID) {
-        List<User> friends = new ArrayList<>();
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
-            ResultSet rs = ptmt.executeQuery();
-            while (rs.next()) {
-                int clientID = rs.getInt("clientID");
-                String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + clientID + "'";
-                List<User> results = getUser(queryForUser);
-                if (!results.isEmpty()) {
-                    friends.add(results.get(0));
-                }
-                else {
-                    System.out.println("Found no user!");
-                }
-
-            }
-
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return friends;
-    }
+//    @Override
+//    public List<User> getFriends(int userID) {
+//        List<User> friends = new ArrayList<>();
+//        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
+//        Connection conn = null;
+//        try {
+//            conn = getConnection();
+//            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
+//            ResultSet rs = ptmt.executeQuery();
+//            while (rs.next()) {
+//                int clientID = rs.getInt("clientID");
+//                String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + clientID + "'";
+//                List<User> results = getUser(queryForUser);
+//                if (!results.isEmpty()) {
+//                    friends.add(results.get(0));
+//                }
+//                else {
+//                    System.out.println("Found no user!");
+//                }
+//
+//            }
+//
+//        }
+//        catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return friends;
+//    }
 
     @Override
     public boolean isFriend(int patronID, int clientID) {

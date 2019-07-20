@@ -7,7 +7,7 @@ public class Painting {
     private int paintingID;
     private String imageFileName;
     private String title;
-    private String artist;
+    private String artist = "Unknown";
     private String description;
     private String gallery;
     private int shapeID;
@@ -17,7 +17,9 @@ public class Painting {
     private BigDecimal msrp;
     private int yearOfWork;
     private int postOfTime;
-    private String videoPath;
+    private String videoPath = "";
+
+
 
     public String getVideoPath() {
         return videoPath;

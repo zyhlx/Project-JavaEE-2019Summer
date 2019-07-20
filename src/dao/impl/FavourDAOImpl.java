@@ -1,7 +1,9 @@
 package dao.impl;
 
 import bean.Favour;
+import bean.Painting;
 import dao.IFavourDAO;
+import dao.factory.DAOFactory;
 import db.OpenConnection;
 
 import java.sql.Connection;
@@ -30,12 +32,20 @@ public class FavourDAOImpl implements IFavourDAO {
             PreparedStatement ptmt = conn.prepareStatement(query);
             ResultSet rs = ptmt.executeQuery();
             while (rs.next()) {
-                Favour favour = null;
-                // 设置user信息
+                Favour favour = new Favour();
+                // 设置favour信息
                favour.setFavourID(rs.getInt("favourID"));
                favour.setUserID(rs.getInt("userID"));
-               favour.setPaintingID(rs.getInt("paintingID"));
+               favour.setPaintingID(rs.getInt("artworkID"));
                 favour.setOpen(rs.getInt("open"));
+                String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + favour.getPaintingID() + "'";
+                List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);
+                if (!results.isEmpty()) {
+                    favour.setPainting(results.get(0));
+                }
+                else {
+                    System.out.println("found no painting!");
+                }
                favours.add(favour);
             }
         } catch (SQLException e) {
@@ -57,13 +67,14 @@ public class FavourDAOImpl implements IFavourDAO {
 
     public int insert(Favour favour) {
         int rs = 1;
-        String query = "INSERT INTO favours(userID,artworkID) VALUES (?,?)";
+        String query = "INSERT INTO favours(userID,artworkID,open) VALUES (?,?,?)";
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(query);
             ptmt1.setInt(1,favour.getUserID());
             ptmt1.setInt(2,favour.getPaintingID());
+            ptmt1.setInt(3, favour.getOpen());
             rs = ptmt1.executeUpdate();
             conn.commit();
 
@@ -83,4 +94,62 @@ public class FavourDAOImpl implements IFavourDAO {
 
         return rs;
     }
+
+    @Override
+    public int delete(int favourID) {
+        int rs = 1;
+        String query = "DELETE FROM favours WHERE favourID=?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt1 = conn.prepareStatement(query);
+            ptmt1.setInt(1,favourID);
+           ptmt1.execute();
+            conn.commit();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return rs;
+    }
+
+    @Override
+    public int update(Favour favour) {
+        int rs = 1;
+        String query = "UPDATE favours SET open=? WHERE favourID=?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt1 = conn.prepareStatement(query);
+            ptmt1.setInt(1,favour.getOpen());
+            ptmt1.setInt(2,favour.getFavourID());
+            rs = ptmt1.executeUpdate();
+            conn.commit();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return rs;
+    }
+
 }

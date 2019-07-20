@@ -31,7 +31,7 @@
                         <a class="dropdown-item" href="userDetail?userID=<%= session.getAttribute("userID")%>">个人主页</a>
                         <a class="dropdown-item" href="friendsDisplay">好友列表</a>
                         <a class="dropdown-item" href="#">信箱</a>
-                        <a href="favours.jsp" class="dropdown-item"><i
+                        <a href="favourDisplay" class="dropdown-item"><i
                                 class="fa fa-user-plus"></i>收藏夹</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
                     </div>
