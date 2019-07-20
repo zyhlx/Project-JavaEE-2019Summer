@@ -70,6 +70,8 @@ public class PaintingDAOImpl implements IPaintingDAO {
                 temp.setGallery(rs.getString("Gallery"));
                 temp.setMsrp(rs.getBigDecimal("MSRP"));
                 temp.setYearOfWork(rs.getInt("YearOfWork"));
+                temp.setArtist(rs.getString("Artist"));
+                temp.setVideoPath(rs.getString("VideoPath"));
 
 
                 results.add(temp);
@@ -119,10 +121,10 @@ public class PaintingDAOImpl implements IPaintingDAO {
             // 新的painting
             String query = null;
             if (painting.getPaintingID() == 0) {
-                query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork) VALUES (?,?,?,?,?) ";
+                query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork, Artist, VideoPath) VALUES (?,?,?,?,?,?,?) ";
             }
             else {
-                query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=? WHERE PaintingID=?";
+                query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=?, Artist=?, VideoPath=? WHERE PaintingID=?";
             }
             //预编译SQL，减少sql执行
             PreparedStatement ptmt = conn.prepareStatement(query);
@@ -132,9 +134,11 @@ public class PaintingDAOImpl implements IPaintingDAO {
             ptmt.setString(3, painting.getTitle());
             ptmt.setString(4, painting.getDescription());
             ptmt.setInt(5, painting.getYearOfWork());
+            ptmt.setString(6, painting.getArtist());
+            ptmt.setString(7, painting.getVideoPath());
 
             if (painting.getPaintingID()!=0) {
-                ptmt.setInt(6, painting.getPaintingID());
+                ptmt.setInt(8, painting.getPaintingID());
             }
 
             // 执行
@@ -164,34 +168,34 @@ public class PaintingDAOImpl implements IPaintingDAO {
         return 1;
     }
 
-    @Override
-    public List<Painting> getFavourPaintings(int userID) {
-        List<Painting> paintings = new ArrayList<>();
-        String queryForFriends = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
-            ResultSet rs = ptmt.executeQuery();
-            while (rs.next()) {
-                int paintingID = rs.getInt("artworkID");
-                String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + paintingID + "'";
-                List<Painting> results = getPaintings(queryForPainting);
-                if (!results.isEmpty()) {
-                    paintings.add(results.get(0));
-                }
-                else {
-                    System.out.println("Found no painting!");
-                }
-
-            }
-
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return paintings;
-    }
+//    @Override
+//    public List<Painting> getFavourPaintings(int userID) {
+//        List<Painting> paintings = new ArrayList<>();
+//        String queryForFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
+//        Connection conn = null;
+//        try {
+//            conn = getConnection();
+//            PreparedStatement ptmt = conn.prepareStatement(queryForFavours);
+//            ResultSet rs = ptmt.executeQuery();
+//            while (rs.next()) {
+//                int paintingID = rs.getInt("artworkID");
+//                String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + paintingID + "'";
+//                List<Painting> results = getPaintings(queryForPainting);
+//                if (!results.isEmpty()) {
+//                    paintings.add(results.get(0));
+//                }
+//                else {
+//                    System.out.println("Found no painting!");
+//                }
+//
+//            }
+//
+//        }
+//        catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return paintings;
+//    }
 }
 
 

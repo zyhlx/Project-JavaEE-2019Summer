@@ -13,7 +13,7 @@ public class User {
     private String email;
     private Timestamp loadTime;
     private String password;
-    private List<Painting> favours;
+    private List<Favour> favours;
     private String signature;
     private String type;
     private int isFriend;
@@ -42,12 +42,12 @@ public class User {
         this.signature = signature;
     }
 
-    public List<Painting> getFavours() {
-        return favours;
+    public void setFavours(List<Favour> favours) {
+        this.favours = favours;
     }
 
-    public void setFavours(List<Painting> favours) {
-        this.favours = favours;
+    public List<Favour> getFavours() {
+        return favours;
     }
 
     public int getUserID() {

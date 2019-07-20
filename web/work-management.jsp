@@ -73,7 +73,7 @@
     </div>
     <div class="form-group">
         <label for="video">上传视频</label>
-        <input type="file" name="video" id="video" onchange="" required="required">
+        <input type="file" name="video" id="video" onchange="previewVideo()" required="required">
         <div id="showVideo"></div>
     </div>
 

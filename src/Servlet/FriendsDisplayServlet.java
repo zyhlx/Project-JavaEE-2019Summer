@@ -12,18 +12,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "FriendsDisplayServlet", value = "/friendsDisplay")
 public class FriendsDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-int userID = 1;
-// 获取好友列表
-List<User> friends = DAOFactory.getIUserDAOInstance().getFriends(userID);
+        HttpSession session = request.getSession(true);
+        int userID = (Integer)session.getAttribute("userID");
+        // 获取好友列表
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
+List<FriendRelation> friends = DAOFactory.getIFriendRelationDAOInstance().getFriends(queryForFriends);
 // 获得收藏
-        for(User user:friends) {
-            user.setFavours(DAOFactory.getIPaintingDAOInstance().getFavourPaintings(user.getUserID()));
+        for(FriendRelation friendRelation:friends) {
+            String queryForFavours = "SELECT * FROM favours WHERE userID=" + "'" + friendRelation.getClient().getUserID() + "'" +" AND open='1'";
+            friendRelation.getClient().setFavours(DAOFactory.getIFavourDAOInstance().getFavour(queryForFavours));
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);

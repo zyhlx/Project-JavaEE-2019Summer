@@ -12,7 +12,5 @@ public interface IPaintingDAO {
 
     public int delete(int paintingID);
 
-    public List<Painting> getFavourPaintings(int userID);
-
 
 }

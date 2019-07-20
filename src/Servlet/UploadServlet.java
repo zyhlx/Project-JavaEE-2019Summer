@@ -160,6 +160,9 @@ public class UploadServlet extends HttpServlet {
                     if (imageFileName != null) {
                         painting.setImageFileName(imageFileName);
                     }
+                    if (videoPath != null) {
+                        painting.setVideoPath(videoPath);
+                    }
                     DAOFactory.getIPaintingDAOInstance().update(painting);
                 } catch (Exception ex) {
                     request.setAttribute("message",

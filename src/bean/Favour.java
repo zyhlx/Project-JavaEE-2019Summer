@@ -1,10 +1,31 @@
 package bean;
 
+import dao.factory.DAOFactory;
+
 public class Favour {
     private int favourID;
     private int userID;
     private int paintingID;
     private int open;
+    private Painting painting;
+
+    public Painting getPainting() {
+        return painting;
+    }
+
+    public void setPainting(Painting painting) {
+        this.painting = painting;
+    }
+
+    public void changeOpen() {
+        if (open == 0) {
+            open = 1;
+        }
+        else {
+            open = 0;
+        }
+        DAOFactory.getIFavourDAOInstance().update(this);
+    }
 
     public int getOpen() {
         return open;

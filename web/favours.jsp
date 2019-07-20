@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Painting" %>
 <%@ page import="db.DBUtil" %><%--
@@ -27,14 +28,15 @@
         }
         #content{
             margin-top: 5em;
-            margin-left: 15%;
-            margin-right: 15%;
-            width: 70%;
+            margin-left: 7%;
+            margin-right: 7%;
+            width: 86%;
         }
         td{
             width: 20%;
         }
         .favour-result{
+            padding: 1em;
             margin-top: 1.5em;
         }
 
@@ -44,50 +46,51 @@
 <%@ include file="common/nav.jsp"%>
 
 <section id="content">
-    <%
-        session.setAttribute("user","master");
-        String userName = (String)session.getAttribute("user");
-        int userID = 0;
-        // 查找userID
-        if (userName != null) {
-            userID = dao.factory.DAOFactory.getIUserDAOInstance().getUserID(userName);
-        }
-        System.out.println(userID);
-        // 查找 artworkID
-        List<Integer> artworkIDs = null;
-        if (userID != 0) {
-            String searchForArtworkID = "SELECT * FROM  favours where userID=" + "'" + userID + "'";
-            artworkIDs = db.DBUtil.getID(searchForArtworkID,"artworkID");
-        }
-        // 打印图片
-        for (int id: artworkIDs) {
-            String searchForPainting =  "SELECT * FROM  paintings where paintingID=" + "'" + id + "'";
-            Painting temp = dao.factory.DAOFactory.getIPaintingDAOInstance().getPaintings(searchForPainting).get(0);
-            out.print("<div class=\"row border favour-result\">\n" +
-                    "        <div class=\"col-4\">\n" +
-                    "            <p class=\"type text-muted\">Artwork</p>\n" +
-            "<img src=\"博物馆图片资源/其他/" + temp.getImageFileName()  + "\"" + " alt=\"\">" +
-            "</div>\n" +
-                    "        <div class=\"col-8\">\n" +
-                    "            <p class=\"title\">" + temp.getTitle() + "</p>" +
-            "<p>heat</p>\n" +
-                    "            <table>\n" +
-                    "                <tr>\n" +
-                    "                    <td>Favoured date</td>\n" +
-                    "                    <td>Medium</td>\n" +
-                    "                    <td>On view</td>\n" +
-                    "                </tr>\n" +
-                    "                <tr>\n" +
-                    "                    <td>1888</td>\n" +
-                    "                    <td>Oil on canvas</td>\n" +
-                    "                </tr>\n" +
-                    "            </table>\n" +
-                    "\n" +
-                    "        </div>\n" +
-                    "    </div>");
-        }
+    <c:forEach items="${favours}" var="favourItem">
+        <div class="row border favour-result">
+            <div class="col-2">
+                <p class="type text-muted">Artwork</p>
+                <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
+                </a>
+            </div>
+            <div class="col-8">
+                <p class="title">${favourItem.painting.title}</p>
+                <%--<p>heat:${favourItem.msrp}</p>--%>
+                <table>
+                     <tr>
+                         <td>permission</td>
+                        <td>Favoured date</td>
+                        <td>On view</td>
+                     </tr>
+                    <tr>
+                        <td>
+                            <c:if test="${favourItem.open == 0}">
+                            private
+                            </c:if>
+                            <c:if test="${favourItem.open != 0}">
+                                public
+                            </c:if>
+                        </td>
 
-    %>
+                        <td>还没做！</td>
+                        <td>${favourItem.painting.gallery}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-2">
+                <p><button type="button" class="btn btn-delete" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
+                <p><button type="button" class=" btn btn-change" id="btn-change-${favourItem.favourID}">
+                <c:if test="${favourItem.open == 0}">
+                    设为公开
+                </c:if>
+                    <c:if test="${favourItem.open != 0}">
+                        设为私密
+                    </c:if>
+                </button></p>
+            </div>
+        </div>
+            </c:forEach>
 
 </section>
 
@@ -100,22 +103,27 @@
 <script src="js/session.js"></script>
 <script>
 
-    $("#icon-favour").on("click",function () {
-        //如果已登录，收藏
-        //$.session.set('user','master');
-        var userName = "<%=session.getAttribute("user")%>";
-        if(userName!=null) {
-            $.post("./favour",{
-                userName: userName,
-                artworkID: 5
-            }, function (result) {
-                $.simplyToast(result, 'info');
-            });
-        }
-        else {
-            $("#info").text( "please log in first!");
-        }
-    });
+   $(".btn-change").on("click",function () {
+       var favourID = $(this).attr("id").substring(11);
+       $.post("./favourManage",{
+           function: "1",
+           favourID: favourID
+       },function (result) {
+           window.location.reload();
+           $.simplyToast(result.msg, 'info');
+       });
+   });
+
+   $(".btn-delete").on("click",function () {
+       var favourID = $(this).attr("id").substring(11);
+       $.post("./favourManage",{
+           function: "0",
+           favourID: favourID
+       },function (result) {
+           window.location.reload();
+           $.simplyToast(result.msg, 'info');
+       });
+   })
 </script>
 
 

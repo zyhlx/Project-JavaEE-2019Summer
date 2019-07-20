@@ -1,9 +1,11 @@
 package dao.factory;
 
 import dao.IFavourDAO;
+import dao.IFriendRelationDAO;
 import dao.IPaintingDAO;
 import dao.IUserDAO;
 import dao.impl.FavourDAOImpl;
+import dao.impl.FriendRelationDAOImpl;
 import dao.impl.PaintingDAOImpl;
 import dao.impl.UserDAOImpl;
 
@@ -21,6 +23,10 @@ public class DAOFactory {
 
     public static IFavourDAO getIFavourDAOInstance() {
         return new FavourDAOImpl();
+    }
+
+    public static IFriendRelationDAO getIFriendRelationDAOInstance() {
+        return new FriendRelationDAOImpl();
     }
 
 
