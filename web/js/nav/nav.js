@@ -1,6 +1,3 @@
-document.write("<script type='text/javascript' src='moveline.js'></script>");
-document.write("<script type='text/javascript' src='login.js'></script>");
-document.write("<script type='text/javascript' src='registe.js'></script>");
 function downShadow() {
     //获取#middle的位置
     var startPos = $("main").offset().top

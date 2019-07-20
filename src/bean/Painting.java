@@ -5,13 +5,17 @@ import java.math.BigDecimal;
 
 public class Painting {
     private int paintingID;
+
+
     private String imageFileName;
     private String title;
-    private int artistID;
+    private String artist;
     private String description;
-    private int galleryID;
-    private Gallery gallery;
+//    private int galleryID;
+    private String gallery;
     private int shapeID;
+
+
     private int width;
     private int height;
     private int cost;
@@ -34,15 +38,21 @@ public class Painting {
     public void setYearOfWork(int yearOfWork) {
         this.yearOfWork = yearOfWork;
     }
-
-    public void setGallery(Gallery gallery) {
-        this.gallery = gallery;
-    }
-
-    public Gallery getGallery() {
+    public String getGallery() {
         return gallery;
     }
 
+    public void setGallery(String gallery) {
+        this.gallery = gallery;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
 
     public int getPaintingID() {
@@ -61,13 +71,6 @@ public class Painting {
         this.description = description;
     }
 
-    public int getGalleryID() {
-        return galleryID;
-    }
-
-    public void setGalleryID(int galleryID) {
-        this.galleryID = galleryID;
-    }
 
     public int getShapeID() {
         return shapeID;
@@ -109,9 +112,6 @@ public class Painting {
         this.msrp = msrp;
     }
 
-    public int getArtistID() {
-        return artistID;
-    }
 
     public String getImageFileName() {
         return imageFileName;
@@ -121,9 +121,6 @@ public class Painting {
         return title;
     }
 
-    public void setArtistID(int artistID) {
-        this.artistID = artistID;
-    }
 
     public void setImageFileName(String imageFileName) {
         this.imageFileName = imageFileName;
