@@ -5,17 +5,12 @@ import java.math.BigDecimal;
 
 public class Painting {
     private int paintingID;
-
-
     private String imageFileName;
     private String title;
     private String artist;
     private String description;
-//    private int galleryID;
     private String gallery;
     private int shapeID;
-
-
     private int width;
     private int height;
     private int cost;

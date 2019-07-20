@@ -17,4 +17,6 @@ public interface IUserDAO {
     public List<User> getFriends(int userID);
 
     public boolean isFriend(int patronID, int clientID);
+
+    public User getUserInformation(int userID);
 }

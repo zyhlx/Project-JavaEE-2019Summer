@@ -19,54 +19,73 @@
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
     <style>
-        img{
+        main {
+            padding-top: 50px!important;
+        }
+
+        img {
             height: 120px;
             width: 120px;
         }
-        .btn-add{
+
+        .btn-add {
             margin-top: 1em;
             margin-left: 10%;
         }
-        .user-result{
+
+        .user-result {
             margin-top: 2em;
             margin-left: 10%;
             margin-right: 10%;
             padding: 1.5em;
             width: 80%;
         }
-        .info-title{
+
+        .info-title {
             font-weight: bold;
         }
-        .user-name{
+
+        .user-name {
             font-size: 20px;
         }
 
     </style>
 
 </head>
-<%@ include file="common/nav.jsp"%>
+<%@ include file="common/nav.jsp" %>
 <body>
-<c:forEach items="${friends}" var="friendItem" >
-    <div class="row border user-result">
-        <div class="col-2">
-            <p class="type">${friendItem.type}</p>
-            <img src="images/user/${friendItem.type}.jpg" alt="">
-        </div>
-        <div class="col-8 panel panel-default">
-            <div class="panel-heading user-name">${friendItem.username}</div>
-            <table class="table">
-                <tr><td class="info-title">邮箱</td><td>${friendItem.email}</td></tr>
-                <tr><td class="info-title">个性签名</td><td>${friendItem.signature}</td></tr>
-                <tr><td class="info-title">最近收藏</td><td></td>
-                <c:forEach items="${friendItem.favours}" var="favourItem">
-                    <a href="./detailDisplay?paintingID=${favourItem.paintingID}"> ${favourItem.title} </a>
-                </c:forEach>
-                </tr>
-            </table>
-        </div>
-    </div>
-</c:forEach>
+<main>
+    <c:forEach items="${friends}" var="friendItem">
+        <div class="row border user-result">
+            <div class="col-2">
+                <p class="type">${friendItem.type}</p>
+                <img src="images/user/${friendItem.type}.jpg" alt="">
+            </div>
+            <div class="col-8 panel panel-default">
+                <div class="panel-heading user-name">${friendItem.username}</div>
+                <table class="table">
+                    <tr>
+                        <td class="info-title">邮箱</td>
+                        <td>${friendItem.email}</td>
+                    </tr>
+                    <tr>
+                        <td class="info-title">个性签名</td>
+                        <td>${friendItem.signature}</td>
+                    </tr>
+                    <tr>
+                        <td class="info-title">最近收藏</td>
+                        <td>
+                            <c:forEach items="${friendItem.favours}" var="favourItem">
+                                <p>
+                                <a href="detailDisplay?paintingID=${favourItem.paintingID}"> ${favourItem.title} </a></p>
+                            </c:forEach></td>
 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </c:forEach>
+</main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -82,10 +101,10 @@
 <script>
     $(".btn-delete").on("click", function () {
         var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement",{
+        $.post("./userManagement", {
             function: "0",
             userID: userID
-        },function (result) {
+        }, function (result) {
             window.location.reload();
             $.simplyToast(result.msg, 'info');
         });
@@ -93,41 +112,14 @@
 
     $(".btn-change").on("click", function () {
         var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement",{
+        $.post("./userManagement", {
             function: "1",
             userID: userID
-        },function (result) {
+        }, function (result) {
             window.location.reload();
             $.simplyToast(result.msg, 'info');
         });
     });
 
 </script>
-
-
-<%--<script>--%>
-    <%--$('#move').moveline({--%>
-        <%--color: '#1a73e8',--%>
-        <%--position: 'inner',--%>
-        <%--click: function (ret) {--%>
-            <%--ret.ele.addClass('active').siblings().removeClass('active');--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
-<%--<script>--%>
-    <%--$(".mobile-nav-taggle").click(function () {--%>
-        <%--var mobileMenu = $("#mobile-menu");--%>
-        <%--if (mobileMenu.hasClass("show-nav")) {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("hide-nav").removeClass("show-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-        <%--else {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("show-nav").removeClass("hide-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
-
 </html>

@@ -18,8 +18,8 @@
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <%--<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>--%>
-    <script src="common/pagination/common/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <%--<script src="common/pagination/common/jquery.min.js"></script>--%>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
@@ -30,9 +30,6 @@
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 
     <link rel="stylesheet" href="css/search/search.css">
-
-    <%--<link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">--%>
-    <%--<link href="http://cdn.staticfile.org/highlight.js/7.3/styles/github.min.css" rel="stylesheet" type="text/css" media="all">--%>
 
     <style type="text/css">
 

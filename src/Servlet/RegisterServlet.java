@@ -1,5 +1,6 @@
 package Servlet;
 
+import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "Servlet.RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -36,12 +38,10 @@ public class RegisterServlet extends HttpServlet {
         }else {
             HttpSession session = request.getSession(true);
             if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
+                List<User> users = userDAO.login(name, pwd);
                 session.setAttribute("user", name);
-
-                //TODO 获得id
-                userID = userDAO.getUserID(name);
-                session.setAttribute("userID", userID);
-                //session.setAttribute("id", "very good!");
+                session.setAttribute("userID", users.get(0).getUserID());
+                session.setAttribute("userType", users.get(0).getType());
                 String temp = "{\"type\":\"true\",\"msg\":\"注册成功！自动登陆\"}";
                 PrintWriter out = response.getWriter();
                 out.println(temp);

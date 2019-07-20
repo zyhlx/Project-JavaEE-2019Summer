@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.IUserDAO;
+import db.DBUtil;
 import db.OpenConnection;
 import bean.User;
 
@@ -79,6 +80,11 @@ public class UserDAOImpl implements IUserDAO {
         return userID;
     }
 
+    public User getUserInformation(int userID){
+        String sql = "select userID userID,name userName,email email,loadTime loadTime,type type from  users where userID=?";
+        return DBUtil.getT(User.class,sql,userID);
+    }
+
     public List<User> getUser(String query) {
         List<User> users = new ArrayList<>();
         Connection conn = null;
@@ -129,7 +135,7 @@ public class UserDAOImpl implements IUserDAO {
             ptmt.setString(1, user.getUsername());
             ptmt.setString(2, user.getEmail());
             ptmt.setString(3, user.getPassword());
-            ptmt.setTimestamp(4, user.getLoadTime());
+            ptmt.setDate(4, user.getLoadTime());
             ptmt.setString(5, user.getType());
             ptmt.setInt(6, user.getUserID());
             ptmt.executeUpdate();

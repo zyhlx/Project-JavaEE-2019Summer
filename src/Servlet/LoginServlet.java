@@ -28,11 +28,6 @@ public class LoginServlet extends HttpServlet {
         if (users.size()>0) {
             session.setAttribute("user", name);
             session.setAttribute("userID", users.get(0).getUserID());
-            if (users.get(0).getType().equals("admin")){
-                session.setAttribute("userType","admin");
-            }else {
-                session.setAttribute("userType", "normal");
-            }
             session.setAttribute("userType", users.get(0).getType());
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
             PrintWriter out = response.getWriter();
