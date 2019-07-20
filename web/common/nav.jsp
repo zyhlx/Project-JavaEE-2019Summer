@@ -28,7 +28,7 @@
                         <i class="fa fa-user-circle"></i> <%= session.getAttribute("user")%>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">好友列表</a>
+                        <a class="dropdown-item" href="friendsDisplay">好友列表</a>
                         <a class="dropdown-item" href="#">信箱</a>
                         <a href="favours.jsp" class="dropdown-item"><i
                                 class="fa fa-user-plus"></i>收藏夹</a>
@@ -75,8 +75,6 @@
             <button class="btn" type="button">
                 <img src="images/nav/user.PNG">
             </button>
-            <a href="./friendsDisplay">好友</a>
-
         </div>
 
 

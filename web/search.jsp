@@ -36,10 +36,6 @@
 
     <style type="text/css">
 
-        main {
-            padding-top: 50px;
-        }
-
 
     </style>
 
