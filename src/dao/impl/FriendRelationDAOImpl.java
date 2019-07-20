@@ -53,10 +53,11 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
         Connection conn = null;
         try {
             conn = getConnection();
-            String insertFriend = "INSERT INTO friends ( patronID,clientID ) VALUES (?,?)";
+            String insertFriend = "INSERT INTO friends ( patronID,clientID,accepted ) VALUES (?,?,?)";
             PreparedStatement ptmt = conn.prepareStatement(insertFriend);
             ptmt.setInt(1,friendRelation.getPatronID());
             ptmt.setInt(2,friendRelation.getClientID());
+            ptmt.setInt(3,friendRelation.getAccepted());
             rs = ptmt.executeUpdate();
             conn.commit();
 

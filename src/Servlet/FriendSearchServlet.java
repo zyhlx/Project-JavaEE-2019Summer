@@ -27,7 +27,7 @@ public class FriendSearchServlet extends HttpServlet {
         String input = request.getParameter("input_text");
         HttpSession session = request.getSession(true);
         int userID = (Integer)session.getAttribute("userID");
-        String query = "SELECT * FROM users WHERE name LIKE '%" + input + "%'";
+        String query = "SELECT * FROM users WHERE name LIKE '%" + input + "%' AND userID <>" + "'" + userID + "'" ;
         List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
         // 判断是否好友
         for (User user:users) {
@@ -35,10 +35,10 @@ public class FriendSearchServlet extends HttpServlet {
             String queryForFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
             user.setFavours(DAOFactory.getIFavourDAOInstance().getFavour(queryForFavours));
             if (DAOFactory.getIUserDAOInstance().isFriend(userID, user.getUserID())){
-                user.setIsFriend(0);
+                user.setIsFriend(1);
             }
             else {
-                user.setIsFriend(1);
+                user.setIsFriend(0);
             }
         }
 

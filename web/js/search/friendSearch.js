@@ -62,27 +62,25 @@ function load_friend() {
     });
 }
 
-$(".btn-addFriend").addEventListener("click",function (ev) {
+$("body").on('click',".btn-addFriend",function (ev) {
     alert("add");
     var clientID = $(this).attr("id").substring(8);
     $.post("./friendManage", {
         function: "1",
         clientID: clientID
     }, function (result) {
-        window.location.reload();
         $.simplyToast(result.msg, 'info');
     });
 });
 
 
 
-$(body).on('click','.btn-delete',function() {
+$("body").on('click','.btn-delete',function() {
     var clientID = $(this).attr("id").substring(11);
     $.post("./friendManage",{
         function: "0",
         clientID:clientID
     },function (result) {
-        window.location.reload();
         $.simplyToast(result.msg, 'info');
     });
 });

@@ -40,6 +40,7 @@ public class FriendManageServlet extends HttpServlet {
                 FriendRelation friendRelation = new FriendRelation();
                 friendRelation.setClientID(Integer.parseInt(clientID));
                 friendRelation.setPatronID(userID);
+                friendRelation.setAccepted(0);
                 DAOFactory.getIFriendRelationDAOInstance().insert(friendRelation);
                 String temp1 = "{\"type\":\"true\",\"msg\":\"添加成功\"}";
                 PrintWriter out1 = response.getWriter();

@@ -216,7 +216,7 @@ public class UserDAOImpl implements IUserDAO {
     @Override
     public boolean isFriend(int patronID, int clientID) {
         boolean check = false;
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=? AND clientID=?";
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=? AND clientID=? AND accepted='1'";
         Connection conn = null;
         try {
             conn = getConnection();
