@@ -61,7 +61,7 @@
     </div>
     <div class="form-group">
         <label for="place">馆藏地点:</label>
-        <input type="text" name="place" class="form-control" id="place" required="required" value="${painting.gallery.galleryName}">
+        <input type="text" name="place" class="form-control" id="place" required="required" value="${painting.gallery}">
     </div>
     <div class="form-group">
         <label for="year">出土/完成年份:</label>
@@ -70,7 +70,7 @@
     <div class="form-group">
         <label for="file">上传图片</label>
         <input type="file" name="file" id="file" onchange="previewPic()" required="required" >
-        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}.jpg"></div>
+        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}"></div>
     </div>
     <div class="form-group">
         <label for="video">上传视频</label>

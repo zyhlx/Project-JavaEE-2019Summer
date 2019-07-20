@@ -1,11 +1,11 @@
 ﻿charset="utf-8";
 
 function clear() {
-
+alert("clear")
 }
 
 
-load(1);
+ load(1);
 
 function load(pageNum) {
     if (pageNum === "") {
@@ -39,7 +39,7 @@ function load(pageNum) {
                     "                                                <h2 class=\"result-card__category alt ng-binding ng-scope\">\n" +
                     "                                                    MuseumCollects</h2>\n" +
                     "                                                <img class=\"result-card__image\"\n" +
-                    "                                                     src=\"/博物馆图片资源/其他/" + news.imageFileName + ".jpg\"\n" +
+                    "                                                     src=\"/博物馆图片资源/其他/" + news.imageFileName + "\"\n" +
                     "\n" +
                     "                                                     onerror=\"this.src='/images/assert/icon/ico-no-image.svg'\">\n" +
                     "                                            </div>\n" +
@@ -94,7 +94,7 @@ function load(pageNum) {
                                     "                                                <h2 class=\"result-card__category alt ng-binding ng-scope\">\n" +
                                     "                                                    MuseumCollects</h2>\n" +
                                     "                                                <img class=\"result-card__image\"\n" +
-                                    "                                                     src=\"/博物馆图片资源/其他/" + news.imageFileName + ".jpg\"\n" +
+                                    "                                                     src=\"/博物馆图片资源/其他/" + news.imageFileName + "\"\n" +
                                     "\n" +
                                     "                                                     onerror=\"this.src='/images/assert/icon/ico-no-image.svg'\">\n" +
                                     "                                            </div>\n" +
