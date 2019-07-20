@@ -48,6 +48,7 @@
 </head>
 <%@ include file="common/nav.jsp"%>
 <body>
+<main>
 <%
     // 从数据库获得所有用户对象
     String queryForAll = "SELECT * FROM users";
@@ -104,6 +105,7 @@
         <%--<p><button type="button" class="btn btn-delete">删除</button></p>--%>
     <%--</div>--%>
 <%--</div>--%>
+</main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -114,6 +116,7 @@
 <script src="js/nav/registe.js"></script>
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
+<script src="js/nav/nav.js"></script>
 
 <%--页面相应逻辑--%>
 <script>
@@ -142,29 +145,29 @@
 </script>
 
 
-<script>
-    $('#move').moveline({
-        color: '#1a73e8',
-        position: 'inner',
-        click: function (ret) {
-            ret.ele.addClass('active').siblings().removeClass('active');
-        }
-    });
-</script>
-<script>
-    $(".mobile-nav-taggle").click(function () {
-        var mobileMenu = $("#mobile-menu");
-        if (mobileMenu.hasClass("show-nav")) {
-            setTimeout(function () {
-                mobileMenu.addClass("hide-nav").removeClass("show-nav");
-            }, 100)
-        }
-        else {
-            setTimeout(function () {
-                mobileMenu.addClass("show-nav").removeClass("hide-nav");
-            }, 100)
-        }
-    });
-</script>
+<%--<script>--%>
+    <%--$('#move').moveline({--%>
+        <%--color: '#1a73e8',--%>
+        <%--position: 'inner',--%>
+        <%--click: function (ret) {--%>
+            <%--ret.ele.addClass('active').siblings().removeClass('active');--%>
+        <%--}--%>
+    <%--});--%>
+<%--</script>--%>
+<%--<script>--%>
+    <%--$(".mobile-nav-taggle").click(function () {--%>
+        <%--var mobileMenu = $("#mobile-menu");--%>
+        <%--if (mobileMenu.hasClass("show-nav")) {--%>
+            <%--setTimeout(function () {--%>
+                <%--mobileMenu.addClass("hide-nav").removeClass("show-nav");--%>
+            <%--}, 100)--%>
+        <%--}--%>
+        <%--else {--%>
+            <%--setTimeout(function () {--%>
+                <%--mobileMenu.addClass("show-nav").removeClass("hide-nav");--%>
+            <%--}, 100)--%>
+        <%--}--%>
+    <%--});--%>
+<%--</script>--%>
 
 </html>

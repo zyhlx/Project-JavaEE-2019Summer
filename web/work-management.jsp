@@ -47,6 +47,7 @@
 </head>
 <body>
 <%@ include file="common/nav.jsp" %>
+<main>
 <section id="info">
 <form action="./upload" method="post" name="changeForm" role="form" id="changeForm" enctype="multipart/form-data" >
     <div class="form-group">
@@ -76,23 +77,17 @@
         <input type="file" name="video" id="video" onchange="" required="required">
         <div id="showVideo"></div>
     </div>
-<<<<<<< HEAD
+
     <input hidden="hidden" value="${painting.paintingID}">
     <button type="submit" class="btn" id="btn-change">保存修改</button>
 </form>
 <c:if test="${painting.paintingID != 0}">
     <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
-=======
 
-    <button type="submit" class="btn" id="btn-change">保存修改</button>
-</form>
-
-
-    <button type="button" class="btn" id="btn-delete">删除</button>
->>>>>>> 1b35c43a8b023d51ca2c644ba1ffd573fa42762f
     <button type="button" class="btn" id="btn-add">添加作品</button>
 </c:if>
 </section>
+</main>
 </body>
 
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
