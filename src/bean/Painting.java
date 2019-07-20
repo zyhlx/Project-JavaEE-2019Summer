@@ -22,6 +22,15 @@ public class Painting {
     private BigDecimal msrp;
     private int yearOfWork;
     private int postOfTime;
+    private String videoPath;
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath;
+    }
 
     public int getPostOfTime() {
         return postOfTime;

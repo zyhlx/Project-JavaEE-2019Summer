@@ -59,7 +59,7 @@
                     <c:forEach items="${hotPaintings}" var="paintingItem" begin="0" end="0">
                         <%-- media border p-1--%>
                         <div class="carousel-item media p-1 active">
-                            <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>.jpg"
+                            <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>"
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
@@ -74,7 +74,7 @@
                     <c:forEach items="${hotPaintings}" var="paintingItem" begin="1" end="2" step="1"
                                varStatus="paintingStatus">
                         <div class="carousel-item media p-1">
-                            <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>.jpg"
+                            <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>"
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
@@ -104,7 +104,7 @@
             <c:forEach items="${lastPublish}" var="paintingItem" varStatus="paintingStatus">
                 <div class="p-3 col-sm-4 d-flex flex-column">
                     <div class="d-flex justify-content-center">
-                        <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>.jpg"
+                        <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>"
                              class="rounded-circle border-3" height='250px'>
                     </div>
                     <div class="text-center mt-3">

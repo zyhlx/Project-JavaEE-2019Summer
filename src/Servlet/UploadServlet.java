@@ -24,6 +24,7 @@ public class UploadServlet extends HttpServlet {
 
     // 上传文件存储目录
     private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源";
+    private static final String UPLOAD_VIDEO_DIC = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\videos";
 
     // 上传配置
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -84,8 +85,9 @@ public class UploadServlet extends HttpServlet {
                     String gallery = null;
                     String year = null;
                     String artworkID = null;
-                    String changed = null;
+                    String videoPath = null;
                     String imageFileName = null;
+                    String filePath = null;
 
 
 
@@ -117,10 +119,16 @@ public class UploadServlet extends HttpServlet {
                             }
                             else {
                                 String fileName = new File(item.getName()).getName();
-                                imageFileName = fileName.substring(0,fileName.length()-4);
-                                System.out.println("imageFileName:" + imageFileName);
+                                String type = fileName.substring(fileName.length()-4);
+                                if (type.equals(".mp4") || type.equals(".ogg") || type.equals(".swf") || fileName.substring(fileName.length()-5).equals("webm")) {
+                                    videoPath = fileName;
+                                    filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
+                                }
+                                else {
+                                    imageFileName = fileName.substring(0, fileName.length() - 4);
+                                    filePath = UPLOAD_DIRECTORY + File.separator + fileName;
+                                }
 
-                                String filePath = uploadPath + File.separator + fileName;
                                 File storeFile = new File(filePath);
                                 // 在控制台输出文件的上传路径
                                 System.out.println(filePath);

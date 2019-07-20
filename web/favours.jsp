@@ -66,7 +66,7 @@
             out.print("<div class=\"row border favour-result\">\n" +
                     "        <div class=\"col-4\">\n" +
                     "            <p class=\"type text-muted\">Artwork</p>\n" +
-            "<img src=\"博物馆图片资源/其他/" + temp.getImageFileName() + ".jpg" + "\"" + " alt=\"\">" +
+            "<img src=\"博物馆图片资源/其他/" + temp.getImageFileName()  + "\"" + " alt=\"\">" +
             "</div>\n" +
                     "        <div class=\"col-8\">\n" +
                     "            <p class=\"title\">" + temp.getTitle() + "</p>" +

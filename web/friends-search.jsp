@@ -131,7 +131,6 @@
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
-<script rel="script" type="text/javascript" src="js/search/search.js"></script>
 <script type="text/javascript" src="common/dist/jq-paginator.js"></script>
 
 <script>
@@ -166,9 +165,11 @@
                         );
                     } else {
                         var favourString = "";
-                        $.each(users.favours, function (i, favour) {
-                            favourString.append(" <a href=\"./detailDisplay?paintingID=" + favour.paintingID + "\">" + favour.title + "</a>");
-                        });
+                         var myFavour = users.favours;
+                         $.each(myFavour, function (i,favours) {
+                             favourString = favourString + " <a href=\"./detailDisplay?paintingID=" + favours.paintingID + "\">" + favours.title + "</a>";
+                         });
+
 
                         $("#list-content").append(" <div class=\"row border user-result\">\n" +
                             "        <div class=\"col-2\">\n" +
@@ -176,7 +177,7 @@
                             "            <img src=\"images/user/" + users.type + ".jpg\" alt=\"\">\n" +
                             "        </div>\n" +
                             "        <div class=\"col-8 panel panel-default\">\n" +
-                            "            <div class=\"panel-heading user-name\">" + "wcn" + "</div>\n" +
+                            "            <div class=\"panel-heading user-name\">" + users.username + "</div>\n" +
                             "            <table class=\"table\">\n" +
                             "                <tr><td class=\"info-title\">邮箱</td><td>" + users.email + "</td></tr>\n" +
                             "                <tr><td class=\"info-title\">个性签名</td><td>" + users.signature + "</td></tr>\n" +

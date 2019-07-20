@@ -1,11 +1,9 @@
 package dao.factory;
 
 import dao.IFavourDAO;
-import dao.IGalleryDAO;
 import dao.IPaintingDAO;
 import dao.IUserDAO;
 import dao.impl.FavourDAOImpl;
-import dao.impl.GalleryDAOImpl;
 import dao.impl.PaintingDAOImpl;
 import dao.impl.UserDAOImpl;
 
@@ -25,8 +23,6 @@ public class DAOFactory {
         return new FavourDAOImpl();
     }
 
-    public static IGalleryDAO getIGalleryDAOInstance() {
-        return new GalleryDAOImpl();
-    }
+
 
 }

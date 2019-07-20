@@ -60,7 +60,7 @@
     </div>
     <div class="form-group">
         <label for="place">馆藏地点:</label>
-        <input type="text" name="place" class="form-control" id="place" required="required" value="${painting.gallery.galleryName}">
+        <input type="text" name="place" class="form-control" id="place" required="required" value="${painting.gallery}">
     </div>
     <div class="form-group">
         <label for="year">出土/完成年份:</label>
@@ -69,27 +69,20 @@
     <div class="form-group">
         <label for="file">上传图片</label>
         <input type="file" name="file" id="file" onchange="previewPic()" required="required" >
-        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}.jpg"></div>
+        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}"></div>
     </div>
     <div class="form-group">
         <label for="video">上传视频</label>
         <input type="file" name="video" id="video" onchange="" required="required">
         <div id="showVideo"></div>
     </div>
-<<<<<<< HEAD
+
     <input hidden="hidden" value="${painting.paintingID}">
     <button type="submit" class="btn" id="btn-change">保存修改</button>
 </form>
 <c:if test="${painting.paintingID != 0}">
     <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
-=======
 
-    <button type="submit" class="btn" id="btn-change">保存修改</button>
-</form>
-
-
-    <button type="button" class="btn" id="btn-delete">删除</button>
->>>>>>> 1b35c43a8b023d51ca2c644ba1ffd573fa42762f
     <button type="button" class="btn" id="btn-add">添加作品</button>
 </c:if>
 </section>

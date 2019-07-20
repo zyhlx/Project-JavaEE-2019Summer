@@ -85,7 +85,7 @@
 
         </div>
         <div class="col-7 bg-light text-dark" id="picture-container">
-            <img src="博物馆图片资源/其他/${painting.imageFileName}.jpg" alt="" id="picture">
+            <img src="博物馆图片资源/其他/${painting.imageFileName}" alt="" id="picture">
             <div id="icons">
                 <button type="button" class="btn btn-light text-left btn-favour" id="btn-favour-${painting.paintingID}">
                     <i class="fa fa-heart-o"></i>
@@ -107,7 +107,7 @@
         <table class="table">
             <tr>
                 <td class="detail-title">On view:</td>
-                <td>${painting.gallery.galleryName}
+                <td>${painting.gallery}
                 </td>
             </tr>
             <tr>
