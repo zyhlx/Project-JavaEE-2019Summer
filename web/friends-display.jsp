@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 <head>
@@ -45,26 +46,27 @@
 </head>
 <%@ include file="common/nav.jsp"%>
 <body>
+<c:forEach items="${friends}" var="friendItem" >
+    <div class="row border user-result">
+        <div class="col-2">
+            <p class="type">${friendItem.type}</p>
+            <img src="images/user/${friendItem.type}.jpg" alt="">
+        </div>
+        <div class="col-8 panel panel-default">
+            <div class="panel-heading user-name">${friendItem.username}</div>
+            <table class="table">
+                <tr><td class="info-title">邮箱</td><td>${friendItem.email}</td></tr>
+                <tr><td class="info-title">个性签名</td><td>${friendItem.signature}</td></tr>
+                <tr><td class="info-title">最近收藏</td><td></td>
+                <c:forEach items="${friendItem.favours}" var="favourItem">
+                    <a href="./detailDisplay?paintingID=${favourItem.paintingID}"> ${favourItem.title} </a>
+                </c:forEach>
+                </tr>
+            </table>
+        </div>
+    </div>
+</c:forEach>
 
-<div class="row border user-result">
-<div class="col-2">
-<p class="type">Normal User</p>
-<img src="images/user/normal.jpg" alt="">
-</div>
-<div class="col-8 panel panel-default">
-<div class="panel-heading user-name">Admin</div>
-<table class="table">
-<tr><td class="info-title">用户名</td><td>123</td></tr>
-<tr><td class="info-title">邮箱</td><td>ning823095469@126.com</td></tr>
-<tr><td class="info-title">个性签名</td><td>2019.7.12</td></tr>
-    <tr><td class="info-title">最近收藏</td><td></td> </tr>
-</table>
-</div>
-<div class="col-2">
-<p><button type="button" class="btn">提升为管理员</button></p>
-<p><button type="button" class="btn btn-delete">删除</button></p>
-</div>
-</div>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>

@@ -16,6 +16,15 @@ public class User {
     private List<Painting> favours;
     private String signature;
     private String type;
+    private int isFriend;
+
+    public int getIsFriend() {
+        return isFriend;
+    }
+
+    public void setIsFriend(int isFriend) {
+        this.isFriend = isFriend;
+    }
 
     public String getType() {
         return type;

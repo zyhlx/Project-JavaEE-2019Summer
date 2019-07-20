@@ -196,6 +196,13 @@ public class UserDAOImpl implements IUserDAO {
             while (rs.next()) {
                 int clientID = rs.getInt("clientID");
                 String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + clientID + "'";
+                List<User> results = getUser(queryForUser);
+                if (!results.isEmpty()) {
+                    friends.add(results.get(0));
+                }
+                else {
+                    System.out.println("Found no user!");
+                }
 
             }
 
@@ -203,6 +210,29 @@ public class UserDAOImpl implements IUserDAO {
         catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        return friends;
+    }
+
+    @Override
+    public boolean isFriend(int patronID, int clientID) {
+        boolean check = false;
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=? AND clientID=?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
+            ptmt.setInt(1, patronID);
+            ptmt.setInt(2, clientID);
+            ResultSet rs = ptmt.executeQuery();
+            if (rs.next()) {
+                check = true;
+            } else {
+                check = false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return check;
     }
 }

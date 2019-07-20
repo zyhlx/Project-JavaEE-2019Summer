@@ -15,4 +15,6 @@ public interface IUserDAO {
     public void update(User user) throws SQLException;
 
     public List<User> getFriends(int userID);
+
+    public boolean isFriend(int patronID, int clientID);
 }

@@ -161,6 +161,35 @@ public class PaintingDAOImpl implements IPaintingDAO {
         }
         return 1;
     }
+
+    @Override
+    public List<Painting> getFavourPaintings(int userID) {
+        List<Painting> paintings = new ArrayList<>();
+        String queryForFriends = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
+            ResultSet rs = ptmt.executeQuery();
+            while (rs.next()) {
+                int paintingID = rs.getInt("artworkID");
+                String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + paintingID + "'";
+                List<Painting> results = getPaintings(queryForPainting);
+                if (!results.isEmpty()) {
+                    paintings.add(results.get(0));
+                }
+                else {
+                    System.out.println("Found no painting!");
+                }
+
+            }
+
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return paintings;
+    }
 }
 
 

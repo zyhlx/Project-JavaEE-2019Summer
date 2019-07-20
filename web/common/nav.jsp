@@ -75,6 +75,7 @@
             <button class="btn" type="button">
                 <img src="images/nav/user.PNG">
             </button>
+            <a href="./friendsDisplay">好友</a>
 
         </div>
 

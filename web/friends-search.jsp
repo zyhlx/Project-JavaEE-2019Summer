@@ -40,9 +40,29 @@
             padding-top: 50px;
         }
 
+         img{
+             height: 120px;
+             width: 120px;
+         }
+        .btn-add{
+            margin-top: 1em;
+            margin-left: 10%;
+        }
+        .user-result{
+            margin-top: 2em;
+            margin-left: 7%;
+            margin-right: 7%;
+            padding: 1.5em;
+            width: 80%;
+        }
+        .info-title{
+            font-weight: bold;
+        }
+        .user-name{
+            font-size: 20px;
+        }
 
     </style>
-
 
 </head>
 <body>
@@ -71,7 +91,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <button class="filter__submit" type="button" onclick="load(1,'','')" id="search">
+                            <button class="filter__submit" type="button" onclick="load()" id="search">
                                 <svg class="icon" viewBox="0 0 14 14">
                                     <path d="M13.992 7.505l-6.487 6.487-1.497-1.498L10.502 8H0V6h10.503L6.008 1.505 7.505.008l6.487 6.487-.505.505.505.505z"
                                           id="path-1" class="cls-2" fill-rule="evenodd"></path>
@@ -87,70 +107,13 @@
     <section class="main-wrapper wrapper">
         <div class="main-row">
             <div class="content-full">
-                <div class="filter__container z-container">
-                    <div>
-                        <div class="filter__group">
-                            <div class="filter">
-                                <input type="checkbox"
-                                       class="visuallyhidden filter__checkbox " name="facets" value="All Results">
-                                <label ng-click="facetFilter.handleLabelClick(filter)"
-                                       class="filter__label filter__checkedbox">
-                                    All Results<span class="filter__count ng-binding ng-scope">&nbsp;(510803)</span>
-                                </label>
-                                <%--<span class="filter--radio-facet-count ng-binding ng-scope">510803</span>--%>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="mx-auto">
-                    <ul class="pagination M-box3"></ul>
-                </div>
                 <div class="search-results__results-container rich-text z-container">
+
                     <div class="z-container" id="list-content">
 
-                        <%--<c:forEach items="${search_results}" var="painting" begin="0" end="0"> <c:out value="${painting.imageFileName}"/> <c:out value="${painting.title}"/> <c:out
-                                                        value="${painting.decription}"/>--%>
-                        <%--<div class="result-card__container">--%>
-                        <%--<a href="#" class="result-card__link ng-scope">--%>
-                        <%--<div class="result-card z-container__cssgrid">--%>
-                        <%--<div class="result-card__left-container">--%>
-                        <%--<div class="result-card__image-wrapper">--%>
-                        <%--<h2 class="result-card__category alt ng-binding ng-scope">--%>
-                        <%--MuseumCollects</h2>--%>
-                        <%--<img class="result-card__image"--%>
-                        <%--src="/博物馆图片资源/其他/001020.jpg"--%>
 
-                        <%--onerror="this.src='/images/assert/icon/ico-no-image.svg'">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="result-card__main-content">--%>
-                        <%--<div class="result-card__content-wrapper">--%>
-                        <%--<h2 class="alt ng-binding">Portrait of Gertrude Stein</h2>--%>
-                        <%--<div class="result-card__body text-leave">--%>
-                        <%--The terracotta shades and heavy monumentality of the figures in <em>Two Nudes</em> derive from Picasso's interest at the time in the ancient Iberian sculpture of his native Spain. Like many artists in the first decades of the twentieth century, Picasso found ancient and non-western art to be fruitful alternatives both to the prescribed forms of academic painting and the visual culture of industrial modernity. These two women are nearly mirror images, but the face of the figure on the left bears a strong resemblance to that of the figure on the far left in <em>Les Demoiselles d'Avignon</em>. Like the woman in Demoiselles, with whom she shares her chiseled nose and dark, hollow eyes, this woman holds open what appears to be a curtain and gazes outward, as though beckoning viewers in.--%>
-                        <%--</div><!-- end ngIf: searchResult.teaser -->--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</a>--%>
-                        <%--</div>--%>
-                        <%--</c:forEach>--%>
                     </div>
-                </div>
-
-                <%--<div id="list-content">--%>
-                <%--</div>--%>
-
-                <div class="mx-auto">
-                    <ul class="pagination M-box3"></ul>
-
-
-                </div>
-                <div class="mx-auto row">
-                    <input type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" oninput="if(value>64)value=64"
-                           class="jump-ipt" id="jump-ipt">
-                    <a href="javascript:" class="jump-btn" onclick="load(parseInt(document.getElementById('jump-ipt').value),'','')">跳转</a>
                 </div>
 
 
@@ -171,4 +134,63 @@
 <script rel="script" type="text/javascript" src="js/search/search.js"></script>
 <script type="text/javascript" src="common/dist/jq-paginator.js"></script>
 
+<script>
+    function load() {
+        var input_text = $("#search_ipt").val();
+        $.ajax({
+            //需要提交的服务器地址
+            url: "./friendSearch",
+            //请求的方式
+            type: "post",
+            //传递给服务器的参数
+            data: {"input_text": input_text},
+            //回调函数
+            success: function (data) {
+                var myData = $.parseJSON(data).users;
+                alert(myData);
+                //每次清空数据,防止每次点击都叠加
+                $("#list-content").html('');
+                //追加数据  data.list表示需要遍历的对象  list必须是实体类pageInfo中的list属性名
+                $.each(myData, function (i, users) {
+                    //一个dom就是一个用户对象
+                    // 不是好友
+                    if (users.isFriend == 0) {
+                        $("#list-content").append("<div class=\"row border user-result\">\n" +
+                            "                    <div class=\"col-8\">\n" +
+                            "                    <p class=\"userName\">" + users.username + "</p>\n" +
+                            "</div>" +
+                            "                    <div class=\"col-2\">\n" +
+                            "                    <p><button type=\"button\" class=\"btn btn-addFriend\">添加为好友</button></p>\n" +
+                            "                    </div>\n" +
+                            "                    </div>"
+                        );
+                    } else {
+                        var favourString = "";
+                        $.each(users.favours, function (i, favour) {
+                            favourString.append(" <a href=\"./detailDisplay?paintingID=" + favour.paintingID + "\">" + favour.title + "</a>");
+                        });
+
+                        $("#list-content").append(" <div class=\"row border user-result\">\n" +
+                            "        <div class=\"col-2\">\n" +
+                            "            <p class=\"type\">" + users.type + "</p>\n" +
+                            "            <img src=\"images/user/" + users.type + ".jpg\" alt=\"\">\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-8 panel panel-default\">\n" +
+                            "            <div class=\"panel-heading user-name\">" + "wcn" + "</div>\n" +
+                            "            <table class=\"table\">\n" +
+                            "                <tr><td class=\"info-title\">邮箱</td><td>" + users.email + "</td></tr>\n" +
+                            "                <tr><td class=\"info-title\">个性签名</td><td>" + users.signature + "</td></tr>\n" +
+                            "                <tr><td class=\"info-title\">最近收藏</td><td>" + favourString + "</td>\n" +
+                            "                </tr>\n" +
+                            "            </table>\n" +
+                            "        </div>\n" +
+                            "    </div>");
+                    }
+
+
+                });
+            }
+        });
+    }
+</script>
 </html>
