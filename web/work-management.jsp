@@ -47,6 +47,7 @@
 </head>
 <body>
 <%@ include file="common/nav.jsp" %>
+<main>
 <section id="info">
 <form action="./upload" method="post" name="changeForm" role="form" id="changeForm" enctype="multipart/form-data" >
     <div class="form-group">
@@ -86,6 +87,7 @@
     <button type="button" class="btn" id="btn-add">添加作品</button>
 </c:if>
 </section>
+</main>
 </body>
 
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
