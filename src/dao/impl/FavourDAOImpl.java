@@ -35,6 +35,7 @@ public class FavourDAOImpl implements IFavourDAO {
                favour.setFavourID(rs.getInt("favourID"));
                favour.setUserID(rs.getInt("userID"));
                favour.setPaintingID(rs.getInt("paintingID"));
+                favour.setOpen(rs.getInt("open"));
                favours.add(favour);
             }
         } catch (SQLException e) {

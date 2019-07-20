@@ -63,7 +63,7 @@
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
-                                <a href="detail.jsp?PaintingID=<c:out value="${paintingItem.paintingID}"/>">
+                                <a href="detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>">
                                     <h3><c:out value="${paintingItem.title}"/></h3>
                                 </a>
                                 <p><c:out value="${paintingItem.description}"/></p>
@@ -78,7 +78,7 @@
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
-                                <a href="detail.jsp?PaintingID=<c:out value="${paintingItem.paintingID}"/>">
+                                <a href="detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>">
                                     <h3><c:out value="${paintingItem.title}"/></h3>
                                 </a>
                                 <p><c:out value="${paintingItem.description}"/></p>
@@ -110,7 +110,7 @@
                     <div class="text-center mt-3">
                         <h4 class="card-title"><c:out value="${paintingItem.title}"/></h4>
                         <p class="card-text text-leave"><c:out value="${paintingItem.description}"/></p>
-                        <a href='detail.jsp?paintingID=<c:out value="${paintingItem.paintingID}"/>'
+                        <a href='detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>'
                            class="btn btn-primary">See Profile</a>
                     </div>
                 </div>

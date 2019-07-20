@@ -32,7 +32,7 @@ function load(pageNum) {
             $.each(data.list, function (i, news) {
                 //一个dom就是一个用户对象
                 $("#list-content").append("  <div class=\"result-card__container\">\n" +
-                    "                                <a href=\"detail.jsp?paintingID=" + news.paintingID + "\" class=\"result-card__link ng-scope\">\n" +
+                    "                                <a href=\"detailDisplay?paintingID=" + news.paintingID + "\" class=\"result-card__link ng-scope\">\n" +
                     "                                    <div class=\"result-card z-container__cssgrid\">\n" +
                     "                                        <div class=\"result-card__left-container\">\n" +
                     "                                            <div class=\"result-card__image-wrapper\">\n" +
@@ -87,7 +87,7 @@ function load(pageNum) {
                             $.each(data.list, function (i, news) {
                                 //一个dom就是一个用户对象
                                 $("#list-content").append("  <div class=\"result-card__container\">\n" +
-                                    "                                <a href=\"./detailDisplay?paintingID=" + news.paintingID + "\" class=\"result-card__link ng-scope\">\n" +
+                                    "                                <a href=\"detailDisplay?paintingID=" + news.paintingID + "\" class=\"result-card__link ng-scope\">\n" +
                                     "                                    <div class=\"result-card z-container__cssgrid\">\n" +
                                     "                                        <div class=\"result-card__left-container\">\n" +
                                     "                                            <div class=\"result-card__image-wrapper\">\n" +

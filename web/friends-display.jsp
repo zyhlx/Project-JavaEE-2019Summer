@@ -77,7 +77,7 @@
 <script src="js/nav/registe.js"></script>
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
-
+<script src="js/nav/nav.js"></script>
 <%--页面相应逻辑--%>
 <script>
     $(".btn-delete").on("click", function () {
@@ -105,29 +105,29 @@
 </script>
 
 
-<script>
-    $('#move').moveline({
-        color: '#1a73e8',
-        position: 'inner',
-        click: function (ret) {
-            ret.ele.addClass('active').siblings().removeClass('active');
-        }
-    });
-</script>
-<script>
-    $(".mobile-nav-taggle").click(function () {
-        var mobileMenu = $("#mobile-menu");
-        if (mobileMenu.hasClass("show-nav")) {
-            setTimeout(function () {
-                mobileMenu.addClass("hide-nav").removeClass("show-nav");
-            }, 100)
-        }
-        else {
-            setTimeout(function () {
-                mobileMenu.addClass("show-nav").removeClass("hide-nav");
-            }, 100)
-        }
-    });
-</script>
+<%--<script>--%>
+    <%--$('#move').moveline({--%>
+        <%--color: '#1a73e8',--%>
+        <%--position: 'inner',--%>
+        <%--click: function (ret) {--%>
+            <%--ret.ele.addClass('active').siblings().removeClass('active');--%>
+        <%--}--%>
+    <%--});--%>
+<%--</script>--%>
+<%--<script>--%>
+    <%--$(".mobile-nav-taggle").click(function () {--%>
+        <%--var mobileMenu = $("#mobile-menu");--%>
+        <%--if (mobileMenu.hasClass("show-nav")) {--%>
+            <%--setTimeout(function () {--%>
+                <%--mobileMenu.addClass("hide-nav").removeClass("show-nav");--%>
+            <%--}, 100)--%>
+        <%--}--%>
+        <%--else {--%>
+            <%--setTimeout(function () {--%>
+                <%--mobileMenu.addClass("show-nav").removeClass("hide-nav");--%>
+            <%--}, 100)--%>
+        <%--}--%>
+    <%--});--%>
+<%--</script>--%>
 
 </html>
