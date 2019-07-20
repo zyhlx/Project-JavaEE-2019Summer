@@ -131,7 +131,7 @@
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
-<script rel="script" type="text/javascript" src="js/search/search.js"></script>
+<%--<script rel="script" type="text/javascript" src="js/search/search.js"></script>--%>
 <script type="text/javascript" src="common/dist/jq-paginator.js"></script>
 
 <script>
