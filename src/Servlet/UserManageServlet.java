@@ -10,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "UserManageServlet", value = "/userManagement")
 public class UserManageServlet extends HttpServlet {
@@ -28,6 +31,11 @@ public class UserManageServlet extends HttpServlet {
             case "0":
                 String temp = null;
                 int deleteResult = userDAO.delete(userID);
+                // 删干净
+                String deleteFromFavour = "DELETE FROM favours WHERE userID=" + "'" + userID + "'";
+                DAOFactory.getIFavourDAOInstance().delete(deleteFromFavour);
+                String deleteFromFriends = "DELETE FROM friends WHERE patronID=" + "'" + userID + "' OR clientID=" + "'" + userID + "'";
+                DAOFactory.getIFriendRelationDAOInstance().delete(deleteFromFriends);
                 if (deleteResult == 1) {
                     temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
                 }
@@ -59,8 +67,52 @@ public class UserManageServlet extends HttpServlet {
                 out1.flush();
                 out1.close();
                 break;
+                // 返回所有用户列表
+            case "2":
+                String query = "SELECT * FROM users";
+                List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("./user-management.jsp").forward(request,response);
+                break;
+                // 添加用户
+            case "3":
 
-                default:break;
+                String name = request.getParameter("username-add");
+                String pwd = request.getParameter("password-add");
+                String email = request.getParameter("email-add");
+                String tel = request.getParameter("tel-add");
+                String address = request.getParameter("address-add");
+
+
+                int addUserID = userDAO.getUserID(name);
+                response.setContentType("text/json;charset=UTF-8");
+                response.setCharacterEncoding("UTF-8");
+                String temp2 = null;
+                // 写入收藏表
+                if (addUserID!=0) {
+                    temp2 = "{\"type\":\"false\",\"msg\":\"用户名已注册过\"}";
+                }else {
+
+                    if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
+                        temp2 = "{\"type\":\"true\",\"msg\":\"添加成功！\"}";
+
+                    }else {
+                        temp2 = "{\"type\":\"false\",\"msg\":\"未知错误请重试\"}";
+
+                    }
+
+                }
+                PrintWriter out2 = response.getWriter();
+                out2.println(temp2);
+                out2.flush();
+                out2.close();
+                break;
+
+
+
+
+
+            default:break;
 
         }
 

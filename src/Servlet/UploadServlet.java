@@ -23,7 +23,7 @@ public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
-    private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源";
+    private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\其他";
     private static final String UPLOAD_VIDEO_DIC = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\videos";
 
     // 上传配置
@@ -32,7 +32,7 @@ public class UploadServlet extends HttpServlet {
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String temp = null;
             /**
              * 上传数据及保存文件
              */
@@ -125,7 +125,7 @@ public class UploadServlet extends HttpServlet {
                                     filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
                                 }
                                 else {
-                                    imageFileName = fileName.substring(0, fileName.length() - 4);
+                                    imageFileName = fileName;
                                     filePath = UPLOAD_DIRECTORY + File.separator + fileName;
                                 }
 
@@ -134,8 +134,8 @@ public class UploadServlet extends HttpServlet {
                                 System.out.println(filePath);
                                 // 保存文件到硬盘
                                 item.write(storeFile);
-                                request.setAttribute("message",
-                                        "文件上传成功!");
+//                                request.setAttribute("message",
+//                                        "文件上传成功!");
                                 //成功，更改数据库
 
                             }
@@ -164,14 +164,21 @@ public class UploadServlet extends HttpServlet {
                         painting.setVideoPath(videoPath);
                     }
                     DAOFactory.getIPaintingDAOInstance().update(painting);
-                } catch (Exception ex) {
-                    request.setAttribute("message",
-                            "错误信息: " + ex.getMessage());
+                    temp = "{\"type\":\"true\",\"msg\":\"添加成功!\"}";
                 }
 
-                // 跳转到 message.jsp
-                request.getServletContext().getRequestDispatcher("/message.jsp").forward(
-                        request, response);
+                catch (Exception ex) {
+                    temp = "{\"type\":\"false\",\"msg\":\"" + ex.getMessage() + "\"}";
+//                    request.setAttribute("message",
+//                            "错误信息: " + ex.getMessage());
+                }
+
+        PrintWriter out = response.getWriter();
+        out.println(temp);
+        out.flush();
+        out.close();
+
+
             }
 
 

@@ -2,12 +2,34 @@ package bean;
 
 import dao.factory.DAOFactory;
 
+import java.sql.Timestamp;
+
 public class Favour {
     private int favourID;
     private int userID;
     private int paintingID;
     private int open;
     private Painting painting;
+    private Timestamp favouredTime;
+    private String displayTime;
+
+    public String getDisplayTime() {
+        return displayTime;
+    }
+
+    public void setDisplayTime(String displayTime) {
+        this.displayTime = displayTime;
+    }
+
+    public void setFavouredTime(Timestamp favouredTime) {
+
+        this.favouredTime = favouredTime;
+        setDisplayTime(favouredTime.toString());
+    }
+
+    public Timestamp getFavouredTime() {
+        return favouredTime;
+    }
 
     public Painting getPainting() {
         return painting;

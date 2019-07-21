@@ -195,10 +195,7 @@ function submitTheForm() {
 }
 
 $("#btn-change").on("click", function() {
-    var form = new FormData($("#changeForm")[0]);
-    var artworkID = "601";
-    form.append("artworkID", artworkID);
-
+    var form = new FormData($("#changeForm"));
     $.ajax({
         url: "./upload",
         type: "POST",
@@ -206,7 +203,7 @@ $("#btn-change").on("click", function() {
         processData: false,
         contentType: false,
         success: function (data) {
-            alert("成功")
+            $.simplyToast(data.msg,'info');
             //window.location.href='localhost/pj2/upload.html';
         },
         error: function (e) {

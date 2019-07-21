@@ -79,8 +79,9 @@
     </div>
 
     <input hidden="hidden" value="${painting.paintingID}">
-    <button type="submit" class="btn" id="btn-change">保存修改</button>
+
 </form>
+    <button type="submit" class="btn" id="btn-change">保存修改</button>
 <c:if test="${painting.paintingID != 0}">
     <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
 
@@ -88,6 +89,7 @@
 </c:if>
 </section>
 </main>
+
 </body>
 
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
 <%@ page import="dao.impl.UserDAOImpl" %>
@@ -12,13 +14,19 @@
 <html>
 
 <head>
-    <title>Title</title>
+    <title>Museum</title>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="common/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
-    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index/index.css">
 
     <style>
         img{
@@ -42,6 +50,9 @@
         .user-name{
             font-size: 20px;
         }
+        main{
+            margin-top: 5em;
+        }
 
     </style>
 
@@ -49,125 +60,123 @@
 <%@ include file="common/nav.jsp"%>
 <body>
 <main>
-<%
-    // 从数据库获得所有用户对象
-    String queryForAll = "SELECT * FROM users";
-    IUserDAO userDAO = dao.factory.DAOFactory.getIUserDAOInstance();
-    List<User> users = userDAO.getUser(queryForAll);
 
-    // 显示
-    for (User user: users) {
-        String type = "Normal User";
-        String srcOfImg = "images/user/normal.jpg";
-        String changePermission = "提升为管理员";
-        if (user.getType().equals("admin")) {
-            type = "Admin";
-            srcOfImg = "images/user/admin.jpg";
-            changePermission = "降为普通用户";
-        }
-        out.print("<div class=\"row border user-result\">\n" +
-                "    <div class=\"col-2\">\n" +
-                "        <p class=\"type\">" + type + "</p>" +
-        "<img src=\"" + srcOfImg + "\"" + " alt=\"\">" +
-        "</div>\n" +
-                "    <div class=\"col-8 panel panel-default\">\n" +
-                "        <div class=\"panel-heading user-name\">" + user.getUsername() + "</div>" +
-        "<table class=\"table\">\n" +
-                "            <tr><td class=\"info-title\">ID</td><td>" + user.getUserID() + "</td></tr>\n" +
-                "            <tr><td class=\"info-title\">邮箱</td><td>" + user.getEmail() + "</td></tr>\n" +
-                "            <tr><td class=\"info-title\">最近登录</td><td>" + user.getLoadTime().toString() +"</td></tr>\n" +
-                "        </table>" +
-        "    </div>\n" +
-                "<div class=\"col-2\">\n" +
-                        "        <p><button type=\"button\" class=\"btn btn-change\" id=\"change-" + user.getUserID() + "\"" +">" + changePermission +"</button></p>\n" +
-                        "        <p><button type=\"button\" class=\"btn btn-delete\" id=\"delete-" + user.getUserID() + "\"" + ">删除</button></p>\n" +
-                        "        \n" +
-                        "    </div>" +
-                "</div>");
-    }
-%>
-
-<%--<div class="row border user-result">--%>
-    <%--<div class="col-2">--%>
-        <%--<p class="type">Normal User</p>--%>
-        <%--<img src="images/user/normal.jpg" alt="">--%>
-    <%--</div>--%>
-    <%--<div class="col-8 panel panel-default">--%>
-        <%--<div class="panel-heading user-name">Admin</div>--%>
-        <%--<table class="table">--%>
-            <%--<tr><td class="info-title">ID</td><td>123</td></tr>--%>
-            <%--<tr><td class="info-title">邮箱</td><td>ning823095469@126.com</td></tr>--%>
-            <%--<tr><td class="info-title">最近登录</td><td>2019.7.12</td></tr>--%>
-        <%--</table>--%>
-    <%--</div>--%>
-    <%--<div class="col-2">--%>
-        <%--<p><button type="button" class="btn">提升为管理员</button></p>--%>
-        <%--<p><button type="button" class="btn btn-delete">删除</button></p>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<c:forEach items="${users}" var="userItem">
+<div class="row border user-result">
+    <div class="col-2">
+        <p class="type">${userItem.type}</p>
+        <img src="images/user/${userItem.type}.jpg" alt="">
+    </div>
+    <div class="col-8 panel panel-default">
+        <div class="panel-heading user-name">${userItem.username}</div>
+        <table class="table">
+            <tr><td class="info-title">ID</td><td>${userItem.userID}</td></tr>
+            <tr><td class="info-title">邮箱</td><td>${userItem.email}</td></tr>
+            <tr><td class="info-title">最近登录</td><td>
+                ${userItem.displayTime}
+            </td></tr>
+        </table>
+    </div>
+    <div class="col-2">
+        <p><button type="button" class="btn btn-change" id="change-${userItem.userID}">
+            <c:if test="${userItem.type.equals(\"normal\")}">
+                提升为管理员
+            </c:if>
+            <c:if test="${userItem.type.equals(\"admin\")}">
+                降为普通用户
+            </c:if>
+        </button></p>
+        <p><button type="button" class="btn btn-delete" id="delete-${userItem.userID}">删除</button></p>
+    </div>
+</div>
+</c:forEach>
+    <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
+    <button type="button" class="btn">添加用户</button>
+    </a>
 </main>
+
+<!-- 模态框 -->
+<div class="modal fade" id="AddUser">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">注册</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <form action="register" method="post" name="form_add" id="form-add">
+                    <div class="form-group">
+                        <label for="username-add" id="username-add-label">用户名:</label>
+                        <input type="text" class="form-control" id="username-add" name="username-add"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="password-add" id="password-add-label">密码:</label>
+                        <input type="password" class="form-control" name="password-add" id="password-add"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd-confirm-add" id="pwd-confirm-add-label">确认密码：</label>
+                        <input type="password" class="form-control" name="pwd-confirm-add" id="pwd-confirm-add"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="email-add" id="email-add-label">邮箱:</label>
+                        <input type="email" class="form-control" id="email-add" name="email-add" placeholder="Enter email"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="address-add" id="address-add-label">地址:</label>
+                        <input type="text" class="form-control" id="address-add" name="address-add" placeholder="Enter address"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="tel-add" id="tel-add-label">电话:</label>
+                        <input type="tel" class="form-control" id="tel-add" name="tel-add" placeholder="Enter tel"
+                        >
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary btn-add-user">Submit</button>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="function" name="function" value="3" hidden="hidden"
+                        >
+                    </div>
+                </form>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast/simply-toast.js"></script>
-<script src="js/nav/registe.js"></script>
-<script src="js/nav/login.js"></script>
-<script src="js/nav/moveline.js"></script>
+
+<%--<script src="js/nav/registe.js"></script>--%>
+<%--<script src="js/nav/login.js"></script>--%>
+<%--<script src="js/nav/moveline.js"></script>--%>
 <script src="js/nav/nav.js"></script>
 
-<%--页面相应逻辑--%>
-<script>
-    $(".btn-delete").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-          $.post("./userManagement",{
-             function: "0",
-              userID: userID
-          },function (result) {
-              window.location.reload();
-              $.simplyToast(result.msg, 'info');
-          });
-    });
-
-    $(".btn-change").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement",{
-            function: "1",
-            userID: userID
-        },function (result) {
-            window.location.reload();
-            $.simplyToast(result.msg, 'info');
-        });
-    });
-
-</script>
-
-
-<%--<script>--%>
-    <%--$('#move').moveline({--%>
-        <%--color: '#1a73e8',--%>
-        <%--position: 'inner',--%>
-        <%--click: function (ret) {--%>
-            <%--ret.ele.addClass('active').siblings().removeClass('active');--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
-<%--<script>--%>
-    <%--$(".mobile-nav-taggle").click(function () {--%>
-        <%--var mobileMenu = $("#mobile-menu");--%>
-        <%--if (mobileMenu.hasClass("show-nav")) {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("hide-nav").removeClass("show-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-        <%--else {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("show-nav").removeClass("hide-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
+<script src="js/management/user-management.js"></script>
 
 </html>

@@ -40,9 +40,11 @@ public class RegisterServlet extends HttpServlet {
             if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
                 User user = userDAO.login(name, pwd);
                 session.setAttribute("user", name);
+
                 session.setAttribute("userID", user.getUserID());
                 session.setAttribute("userType", user.getType());
-                String temp = "{\"type\":\"true\",\"msg\":\"注册成功！自动登陆\"}";
+                String temp = "{\"type\":\"true\",\"msg\":\"注册成功！\"}";
+
                 PrintWriter out = response.getWriter();
                 out.println(temp);
                 out.flush();
