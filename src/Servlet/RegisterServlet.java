@@ -41,8 +41,8 @@ public class RegisterServlet extends HttpServlet {
                 User user = userDAO.login(name, pwd);
                 session.setAttribute("user", name);
 
-//                session.setAttribute("userID", user.getUserID());
-//                session.setAttribute("userType", user.getType());
+                session.setAttribute("userID", user.getUserID());
+                session.setAttribute("userType", user.getType());
                 String temp = "{\"type\":\"true\",\"msg\":\"注册成功！\"}";
 
                 PrintWriter out = response.getWriter();
