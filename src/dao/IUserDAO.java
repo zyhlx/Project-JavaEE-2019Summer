@@ -16,4 +16,6 @@ public interface IUserDAO {
     public void updateLoadTime(int userID);
     public void updateInformation(int userID,String newName,String email,String signature);
     public User getUserInformation(int userID);
+    public List<User> searchFriends(String name,int userID);
+    public List<User> getUserAll();
 }

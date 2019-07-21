@@ -10,6 +10,7 @@ public interface IPaintingDAO {
     public int update(Painting painting);
     public List<Painting> getPaintings(String query);
     public int delete(int paintingID);
+    public Painting getOnePaintingByArtworkID(int artworkID);
 
 
 }

@@ -84,12 +84,22 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
 //        String sql = "SELECT * FROM friends WHERE userID=" +  userID;
 //    }
 
-    public List<FriendRelation> searchFriends(int userID){
+    public List<FriendRelation> getFriends(int userID){
         String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "' AND accepted='1'";
         return getFriends(queryForFriends);
     }
 
+    @Override
+    public void deleteAll(int userID) {
+        String deleteFromFriends = "DELETE FROM friends WHERE patronID=" + "'" + userID + "' OR clientID=" + "'" + userID + "'";
+        delete(deleteFromFriends);
+    }
 
+    @Override
+    public int delete(int userID, int clientID) {
+        String deleteFriend = "DELETE FROM friends WHERE patronID=" + "'" + userID + "'" + "AND clientID=" + "'" + clientID + "'";
+        return delete(deleteFriend);
+    }
 
     @Override
     public List<FriendRelation> getFriends(String query) {

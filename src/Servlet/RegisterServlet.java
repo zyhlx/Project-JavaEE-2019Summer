@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.LoginService;
+import Services.ServicesImpl.LoginServiceImpl;
 import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
@@ -23,9 +25,9 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
         String address = request.getParameter("address");
+        LoginService loginService = new LoginServiceImpl();
 
-        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
-        int userID = userDAO.getUserID(name);
+        int userID = loginService.getUserID(name);
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         // 写入收藏表
@@ -37,8 +39,8 @@ public class RegisterServlet extends HttpServlet {
             out.close();
         }else {
             HttpSession session = request.getSession(true);
-            if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
-                User user = userDAO.login(name, pwd);
+            if (loginService.insertUser(name,pwd,email,tel,address)!=0){
+                User user = loginService.login(name, pwd);
                 session.setAttribute("user", name);
 
                 session.setAttribute("userID", user.getUserID());

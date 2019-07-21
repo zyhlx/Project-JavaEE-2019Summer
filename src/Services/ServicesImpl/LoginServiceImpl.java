@@ -21,4 +21,14 @@ public class LoginServiceImpl implements LoginService {
     public void updateLoadTime(int userID) {
         userDAO.updateLoadTime(userID);
     }
+
+    @Override
+    public int insertUser(String name, String pwd, String email, String tel, String address) {
+        return userDAO.insertUser(name,pwd,email,tel,address);
+    }
+
+    @Override
+    public int getUserID(String userName) {
+        return userDAO.getUserID(userName);
+    }
 }

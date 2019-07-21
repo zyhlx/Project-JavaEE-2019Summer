@@ -1,5 +1,13 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.FriendService;
+import Services.LoginService;
+import Services.ServicesImpl.FavoursServiceImpl;
+import Services.ServicesImpl.FriendServiceImpl;
+import Services.ServicesImpl.LoginServiceImpl;
+import Services.ServicesImpl.UserDetailServiceImpl;
+import Services.UserDetailService;
 import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
@@ -20,22 +28,23 @@ import java.util.List;
 @WebServlet(name = "UserManageServlet", value = "/userManagement")
 public class UserManageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
         String function = request.getParameter("function");
         String userID = request.getParameter("userID");
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-
+        UserDetailService userDetailService = new UserDetailServiceImpl();
+        LoginService loginService = new LoginServiceImpl();
         switch (function){
             // 0. 删除用户
             case "0":
                 String temp = null;
-                int deleteResult = userDAO.delete(userID);
+                int deleteResult = userDetailService.delete(userID);
                 // 删干净
-                String deleteFromFavour = "DELETE FROM favours WHERE userID=" + "'" + userID + "'";
-                DAOFactory.getIFavourDAOInstance().delete(deleteFromFavour);
-                String deleteFromFriends = "DELETE FROM friends WHERE patronID=" + "'" + userID + "' OR clientID=" + "'" + userID + "'";
-                DAOFactory.getIFriendRelationDAOInstance().delete(deleteFromFriends);
+                FavoursService favoursService = new FavoursServiceImpl();
+                favoursService.delete(userID);
+                FriendService friendService = new FriendServiceImpl();
+
+                friendService.deleteAll(Integer.parseInt(userID));
                 if (deleteResult == 1) {
                     temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
                 }
@@ -50,8 +59,7 @@ public class UserManageServlet extends HttpServlet {
                 // 1. 修改用户权限
             case "1":
                 // 获得用户对象
-                String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + userID + "'";
-                User tempUser = userDAO.getUser(queryForUser).get(0);
+                User tempUser = userDetailService.getUser(Integer.parseInt(userID));
                 String temp1 = null;
                 // 修改用户权限
                 try {
@@ -69,8 +77,8 @@ public class UserManageServlet extends HttpServlet {
                 break;
                 // 返回所有用户列表
             case "2":
-                String query = "SELECT * FROM users";
-                List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
+
+                List<User> users = userDetailService.getUserAll();
                 request.setAttribute("users", users);
                 request.getRequestDispatcher("./user-management.jsp").forward(request,response);
                 break;
@@ -84,7 +92,7 @@ public class UserManageServlet extends HttpServlet {
                 String address = request.getParameter("address-add");
 
 
-                int addUserID = userDAO.getUserID(name);
+                int addUserID = userDetailService.getUserID(name);
                 response.setContentType("text/json;charset=UTF-8");
                 response.setCharacterEncoding("UTF-8");
                 String temp2 = null;
@@ -93,7 +101,7 @@ public class UserManageServlet extends HttpServlet {
                     temp2 = "{\"type\":\"false\",\"msg\":\"用户名已注册过\"}";
                 }else {
 
-                    if (userDAO.insertUser(name,pwd,email,tel,address)!=0){
+                    if (loginService.insertUser(name,pwd,email,tel,address)!=0){
                         temp2 = "{\"type\":\"true\",\"msg\":\"添加成功！\"}";
 
                     }else {

@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
 import bean.Painting;
 import dao.factory.DAOFactory;
 
@@ -49,10 +51,9 @@ public class WorkManageServlet extends HttpServlet {
         String year = request.getParameter("year");
         String artworkID = request.getParameter("artworkID");
         String changed = request.getParameter("chenged");
-        String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
-
+        PaintingService paintingService = new PaintingServiceImpl();
 // 创建painting对象
-        Painting painting = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting).get(0);
+        Painting painting = paintingService.getOnePainting(Integer.parseInt(artworkID));
 
         painting.setTitle(title);
         painting.setDescription(description);

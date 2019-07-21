@@ -82,7 +82,10 @@ public class UserDAOImpl implements IUserDAO {
         }
 
     }
-
+    public List<User> searchFriends(String name,int userID){
+        String query = "SELECT * FROM users WHERE name LIKE '%" + name + "%' AND userID <>" + "'" + userID + "'" ;
+        return getUser(query);
+    }
 
 
     public int getUserID(String userName) {
@@ -112,6 +115,12 @@ public class UserDAOImpl implements IUserDAO {
         }
 
         return userID;
+    }
+
+    @Override
+    public List<User> getUserAll() {
+        String query = "SELECT * FROM users";
+        return getUser(query);
     }
 
     public User getUserInformation(int userID){

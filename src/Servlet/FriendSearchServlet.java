@@ -1,8 +1,10 @@
 package Servlet;
 
 import Services.FavoursService;
+import Services.FriendService;
 import Services.PageService;
 import Services.ServicesImpl.FavoursServiceImpl;
+import Services.ServicesImpl.FriendServiceImpl;
 import Services.ServicesImpl.PageServiceImpl;
 import Services.UserDetailService;
 import bean.Favour;
@@ -32,9 +34,9 @@ public class FriendSearchServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         int userID = (Integer)session.getAttribute("userID");
         FavoursService favoursService = new FavoursServiceImpl();
+        FriendService friendService = new FriendServiceImpl();
 
-        String query = "SELECT * FROM users WHERE name LIKE '%" + input + "%' AND userID <>" + "'" + userID + "'" ;
-        List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
+        List<User> users = friendService.searchFriends(input,userID);
         // 判断是否好友
         for (User user:users) {
             // 获得收藏

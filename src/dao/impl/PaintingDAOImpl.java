@@ -18,6 +18,17 @@ public class PaintingDAOImpl implements IPaintingDAO {
     public PaintingDAOImpl() {
 
     }
+
+    @Override
+    public Painting getOnePaintingByArtworkID(int artworkID) {
+        String query = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
+        List<Painting> paintings = getPaintings(query);
+        if (paintings.isEmpty()){
+            return null;
+        }
+        return paintings.get(0);
+    }
+
     private static Connection getConnection() throws SQLException {
         return   new OpenConnection().getConnection();
     }

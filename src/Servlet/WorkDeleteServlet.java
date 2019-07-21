@@ -1,5 +1,8 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
+import bean.Painting;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
 
@@ -16,10 +19,10 @@ import java.io.PrintWriter;
 public class WorkDeleteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int paintingID = Integer.parseInt(request.getParameter("artworkID"));
-
+        PaintingService paintingService = new PaintingServiceImpl();
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        if (DAOFactory.getIPaintingDAOInstance().delete(paintingID) == 1) {
+        if (paintingService.delete(paintingID) == 1) {
 
             String temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
             PrintWriter out = response.getWriter();

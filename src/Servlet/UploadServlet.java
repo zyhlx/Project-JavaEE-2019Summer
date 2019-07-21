@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
 import bean.Painting;
 import dao.factory.DAOFactory;
 import org.apache.commons.fileupload.FileItem;
@@ -144,12 +146,9 @@ public class UploadServlet extends HttpServlet {
 
                     // 更新数据库
 
-                    String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
-                    List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);
-                    if (!results.isEmpty()) {
-                        painting = results.get(0);
-                    }
-                    else {
+                    PaintingService paintingService = new PaintingServiceImpl();
+                    Painting results =paintingService.getOnePainting(Integer.parseInt(artworkID));
+                    if (results==null)  {
                         painting = new Painting();
                         painting.setPaintingID(0);
                     }
@@ -163,7 +162,7 @@ public class UploadServlet extends HttpServlet {
                     if (videoPath != null) {
                         painting.setVideoPath(videoPath);
                     }
-                    DAOFactory.getIPaintingDAOInstance().update(painting);
+                    paintingService.update(painting);
                     temp = "{\"type\":\"true\",\"msg\":\"添加成功!\"}";
                 }
 

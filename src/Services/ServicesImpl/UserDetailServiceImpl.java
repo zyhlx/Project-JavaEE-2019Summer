@@ -39,7 +39,22 @@ public class UserDetailServiceImpl implements UserDetailService {
         return 1;
 
     };
-//
+
+    @Override
+    public List<User> getUserAll() {
+        return dao_user.getUserAll();
+    }
+
+    @Override
+    public int delete(String userID) {
+        return dao_user.delete(userID);
+    }
+
+    @Override
+    public int getUserID(String name) {
+        return dao_user.getUserID(name);
+    }
+    //
 //    public List<Favour> getFavourPaintings(int userID){
 //
 //        return dao_favour.getFavour();

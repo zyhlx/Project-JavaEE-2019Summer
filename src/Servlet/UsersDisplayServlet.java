@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.ServicesImpl.UserDetailServiceImpl;
+import Services.UserDetailService;
 import bean.User;
 import dao.factory.DAOFactory;
 
@@ -14,8 +16,8 @@ import java.util.List;
 @WebServlet(name = "UsersDisplayServlet", value = "/userDisplay")
 public class UsersDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String query = "SELECT * FROM users";
-        List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
+        UserDetailService userDetailService = new UserDetailServiceImpl();
+        List<User> users = userDetailService.getUserAll();
         request.setAttribute("users", users);
         request.getRequestDispatcher("./user-management.jsp").forward(request,response);
     }

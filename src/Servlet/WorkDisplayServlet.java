@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
 import bean.Painting;
 import dao.factory.DAOFactory;
 
@@ -16,6 +18,7 @@ public class WorkDisplayServlet extends HttpServlet {
 
         int artworkID = Integer.parseInt(request.getParameter("artworkID"));
 
+        PaintingService paintingService = new PaintingServiceImpl();
         Painting painting = null;
         // 新增作品
         if (artworkID == 0) {
@@ -25,8 +28,7 @@ public class WorkDisplayServlet extends HttpServlet {
         // 修改作品
         else {
             // 获得对应artworkID的painting对象
-            String query = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
-            painting = DAOFactory.getIPaintingDAOInstance().getPaintings(query).get(0);
+            painting = paintingService.getOnePainting(artworkID);
         }
 
 

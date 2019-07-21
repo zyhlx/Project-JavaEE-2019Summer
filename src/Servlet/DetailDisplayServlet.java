@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
 import bean.Painting;
 import dao.factory.DAOFactory;
 
@@ -15,13 +17,13 @@ public class DetailDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int artworkID = Integer.parseInt(request.getParameter("paintingID"));
 
+        PaintingService paintingService = new PaintingServiceImpl();
+
+
         Painting painting = null;
 
             // 获得对应artworkID的painting对象
-            String query = "SELECT * FROM paintings WHERE PaintingID=" + "'" + artworkID + "'";
-            painting = DAOFactory.getIPaintingDAOInstance().getPaintings(query).get(0);
-
-
+painting = paintingService.getOnePainting(artworkID);
 
         // 返回painting给jsp
         request.setAttribute("painting", painting);

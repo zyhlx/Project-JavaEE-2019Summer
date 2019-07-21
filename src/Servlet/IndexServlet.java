@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.PaintingService;
+import Services.ServicesImpl.PaintingServiceImpl;
 import bean.Painting;
 import dao.factory.DAOFactory;
 
@@ -18,9 +20,10 @@ public class IndexServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PaintingService paintingService = new PaintingServiceImpl();
 
-        Painting[] hotPaintings = DAOFactory.getIPaintingDAOInstance().getHotPaintings();
-        Painting[] newPaintings = DAOFactory.getIPaintingDAOInstance().getNewPostPaintings();
+        Painting[] hotPaintings =paintingService.getHotPaintings();
+        Painting[] newPaintings = paintingService.getNewPostPaintings();
 
         request.setAttribute("hotPaintings", hotPaintings);
         request.setAttribute("lastPublish",newPaintings);

@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.FriendService;
+import Services.ServicesImpl.FriendServiceImpl;
 import bean.Favour;
 import bean.FriendRelation;
 import dao.factory.DAOFactory;
@@ -21,14 +23,15 @@ public class FriendManageServlet extends HttpServlet {
         String clientID = request.getParameter("clientID");
         HttpSession session = request.getSession(true);
         int userID = (Integer)session.getAttribute("userID");
+        FriendService friendService = new FriendServiceImpl();
 
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         switch (function){
             // 删除好友
             case "0":
-                String deleteFriend = "DELETE FROM friends WHERE patronID=" + "'" + userID + "'" + "AND clientID=" + "'" + clientID + "'";
-                DAOFactory.getIFriendRelationDAOInstance().delete(deleteFriend);
+
+               friendService.delete(userID,Integer.parseInt(clientID));
                 String temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
                 PrintWriter out = response.getWriter();
                 out.println(temp);
@@ -41,7 +44,7 @@ public class FriendManageServlet extends HttpServlet {
                 friendRelation.setClientID(Integer.parseInt(clientID));
                 friendRelation.setPatronID(userID);
                 friendRelation.setAccepted(0);
-                DAOFactory.getIFriendRelationDAOInstance().insert(friendRelation);
+                friendService.insert(friendRelation);
                 String temp1 = "{\"type\":\"true\",\"msg\":\"添加成功\"}";
                 PrintWriter out1 = response.getWriter();
                 out1.println(temp1);
