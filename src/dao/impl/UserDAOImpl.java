@@ -7,10 +7,13 @@ import bean.User;
 
 
 import java.sql.*;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
+
 
 public class UserDAOImpl implements IUserDAO {
     public UserDAOImpl() {
@@ -53,9 +56,10 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     public void updateLoadTime(int userID) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String query = "UPDATE users SET loadTime=" + df.format(new Date())+
-                "WHERE userID=?";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(new Date());
+        String query = "UPDATE users SET loadTime = '" + date+
+                "' WHERE userID=?";
         Connection conn = null;
         try {
             conn = getConnection();

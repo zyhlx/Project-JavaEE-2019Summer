@@ -6,10 +6,28 @@ import java.sql.Timestamp;
 public class Letter {
     private int letterID;
     private int senderID;
+    private String senderName;
     private int receiverID;
+    private String receiveName;
     private Timestamp timeReleased;
     private String contents;
     private int status;
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getReceiveName() {
+        return receiveName;
+    }
+
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
+    }
 
     public int getLetterID() {
         return letterID;

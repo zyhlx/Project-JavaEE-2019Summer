@@ -5,6 +5,9 @@ import bean.Letter;
 import java.util.List;
 
 public interface ILetterDAO {
-    public List<Letter> getList(String query,Object... args);
-    public Letter get(String query,Object... args);
+    public List<Letter> getReceiveList(int userID);
+    public List<Letter> getSendLetter(int userID);
+    public Letter get(int letterID);
+    public void updateRead(int letterID);
+    public void insert(int senderID,int receiverID,String contents);
 }

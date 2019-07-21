@@ -135,7 +135,7 @@ public class DBUtil {
     }
 
     //返回一个具体的值
-    public static <E> E getForValue(E attribute, String sql, Object... args){
+    public static <E> E getForValue(String sql,Object... args){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
