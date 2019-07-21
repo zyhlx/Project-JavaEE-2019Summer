@@ -23,7 +23,7 @@ public class FavourDisplayServlet extends HttpServlet {
         int userID = (Integer) session.getAttribute("userID");
 
         FavoursService favoursService = new FavoursServiceImpl();
-        List<Favour> favours =favoursService.getFavour(userID);
+        List<Favour> favours =favoursService.getFavourByUserID(userID);
 // 返回painting给jsp
         request.setAttribute("favours", favours);
         request.getRequestDispatcher("./favours.jsp").forward(request, response);

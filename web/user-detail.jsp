@@ -86,24 +86,24 @@
 </div>
 <div id="menu1" class="container tab-pane fade"><br>
 <h3>艺术品展示</h3>
-<c:when test="${favours.size()==0}">
+<c:when test="${favoursShow.size()==0}">
     <div class="row border favour-result">
         <span>没有收藏~</span>
     </div>
 </c:when>
 <c:otherwise>
     <c:forEach items="${favoursShow}" var="favourItem">
-        <div class="row border favour-result">
+        <div class="row border favour-result card">
             <div class="col-2">
                 <p class="type text-muted">Artwork</p>
                 <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
                     <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                 </a>
             </div>
-            <div class="col-8">
+            <div class="col-8 card-body table-responsive">
                 <p class="title">${favourItem.painting.title}</p>
                     <%--<p>heat:${favourItem.msrp}</p>--%>
-                <table>
+                <table class="table table-hover">
                     <tr>
                         <td>permission</td>
                         <td>Favoured time</td>

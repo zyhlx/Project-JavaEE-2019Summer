@@ -38,7 +38,7 @@ public class FriendSearchServlet extends HttpServlet {
         // 判断是否好友
         for (User user:users) {
             // 获得收藏
-            user.setFavours(favoursService.getFavour(userID));
+            user.setFavours(favoursService.getFavourByUserID(userID));
             if (DAOFactory.getIUserDAOInstance().isFriend(userID, user.getUserID())){
                 user.setIsFriend(1);
             }

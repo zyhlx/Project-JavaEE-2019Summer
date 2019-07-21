@@ -1,11 +1,14 @@
 package Servlet;
 
 import Services.FavoursService;
+import Services.FriendService;
 import Services.ServicesImpl.FavoursServiceImpl;
+import Services.ServicesImpl.FriendServiceImpl;
 import bean.Favour;
 import bean.FriendRelation;
 import bean.Painting;
 import bean.User;
+import dao.IFriendRelationDAO;
 import dao.factory.DAOFactory;
 import db.DBUtil;
 
@@ -22,14 +25,15 @@ import java.util.List;
 public class FriendsDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        int userID = (Integer)session.getAttribute("userID");
+        int userID = (Integer) session.getAttribute("userID");
+        FriendService friendService = new FriendServiceImpl();
         // 获取好友列表
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "' AND accepted='1'";
-List<FriendRelation> friends = DAOFactory.getIFriendRelationDAOInstance().getFriends(queryForFriends);
+
+        List<FriendRelation> friends = friendService.searchFriends(userID);
 // 获得收藏
-        for(FriendRelation friendRelation:friends) {
+        for (FriendRelation friendRelation : friends) {
             FavoursService favoursService = new FavoursServiceImpl();
-            friendRelation.getClient().setFavours(favoursService.getFavour(userID));
+            friendRelation.getClient().setFavours(favoursService.getFavourByUserID(userID));
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);
