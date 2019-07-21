@@ -22,7 +22,7 @@ public class FriendsDisplayServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         int userID = (Integer)session.getAttribute("userID");
         // 获取好友列表
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "' AND accepted='1'";
 List<FriendRelation> friends = DAOFactory.getIFriendRelationDAOInstance().getFriends(queryForFriends);
 // 获得收藏
         for(FriendRelation friendRelation:friends) {

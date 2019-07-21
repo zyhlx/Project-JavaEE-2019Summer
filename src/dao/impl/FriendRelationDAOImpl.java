@@ -20,14 +20,12 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
         return   new OpenConnection().getConnection();
     }
     @Override
-    public int delete(int friendID) {
+    public int delete(String query) {
         int rs = 1;
         Connection conn = null;
         try {
             conn = getConnection();
-            String deleteFriend = "DELETE FROM friends WHERE friendID=?";
-            PreparedStatement ptmt = conn.prepareStatement(deleteFriend);
-            ptmt.setInt(1, friendID);
+            PreparedStatement ptmt = conn.prepareStatement(query);
             rs = ptmt.executeUpdate();
             conn.commit();
 
@@ -55,10 +53,11 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
         Connection conn = null;
         try {
             conn = getConnection();
-            String insertFriend = "INSERT INTO friends ( patronID,clientID ) VALUES (?,?)";
+            String insertFriend = "INSERT INTO friends ( patronID,clientID,accepted ) VALUES (?,?,?)";
             PreparedStatement ptmt = conn.prepareStatement(insertFriend);
             ptmt.setInt(1,friendRelation.getPatronID());
             ptmt.setInt(2,friendRelation.getClientID());
+            ptmt.setInt(3,friendRelation.getAccepted());
             rs = ptmt.executeUpdate();
             conn.commit();
 
@@ -80,6 +79,10 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
 
 
     }
+//
+//    public List<FriendRelation> getFriendsByUserID(int userID){
+//        String sql = "SELECT * FROM friends WHERE userID=" +  userID;
+//    }
 
     @Override
     public List<FriendRelation> getFriends(String query) {

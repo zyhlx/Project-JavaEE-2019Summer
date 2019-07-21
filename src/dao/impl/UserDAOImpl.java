@@ -7,7 +7,9 @@ import bean.User;
 
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDAOImpl implements IUserDAO {
@@ -50,6 +52,34 @@ public class UserDAOImpl implements IUserDAO {
         return rs;
     }
 
+    public void updateLoadTime(int userID) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String query = "UPDATE users SET loadTime=" + df.format(new Date())+
+                "WHERE userID=?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, userID);
+            ptmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+    }
+
+
 
     public int getUserID(String userName) {
         int userID = 0;
@@ -81,7 +111,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     public User getUserInformation(int userID){
-        String sql = "select userID userID,name userName,email email,loadTime loadTime,type type from  users where userID=?";
+        String sql = "select userID userID,name username,email email,loadTime loadTime,type type,signature from  users where userID=?";
         return DBUtil.getT(User.class,sql,userID);
     }
 
@@ -98,7 +128,7 @@ public class UserDAOImpl implements IUserDAO {
                 user.setUsername(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setLoadTime(rs.getDate("loadTime"));
+                user.setLoadTime(rs.getTimestamp("loadTime"));
                 user.setType(rs.getString("type"));
 
                 users.add(user);
@@ -126,7 +156,7 @@ public class UserDAOImpl implements IUserDAO {
      * @param user
      */
     public void update(User user) {
-        String query = "UPDATE users SET name=?, email=?, password=?, loadTime=?, type=?" +
+        String query = "UPDATE users SET name=?, email=?, password=?, loadTime=?, type=?, signature=?" +
                 "WHERE userID=?";
         Connection conn = null;
         try {
@@ -135,7 +165,7 @@ public class UserDAOImpl implements IUserDAO {
             ptmt.setString(1, user.getUsername());
             ptmt.setString(2, user.getEmail());
             ptmt.setString(3, user.getPassword());
-            ptmt.setDate(4, user.getLoadTime());
+            ptmt.setTimestamp(4, user.getLoadTime());
             ptmt.setString(5, user.getType());
             ptmt.setInt(6, user.getUserID());
             ptmt.executeUpdate();
@@ -153,14 +183,49 @@ public class UserDAOImpl implements IUserDAO {
             }
 
         }
-
-
-
     }
 
-    public List<User> login(String userName, String pwd) {
+    public void updateInformation(int userID,String newName,String email,String signature){
+        String query = "UPDATE users SET name=?, email=?, signature=?" +
+                "WHERE userID=?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(query);
+            ptmt.setString(1, newName);
+            ptmt.setString(2, email);
+            ptmt.setString(3, signature);
+            ptmt.setInt(4, userID);
+            ptmt.executeUpdate();
+            conn.commit();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
+    private User getOneUser(String query){
+        List<User> users = getUser(query);
+        if (users.size()>0){
+            return users.get(0);
+        }
+        return null;
+    }
+
+
+    public User login(String userName, String pwd) {
         String searchForUserID = "select * from  users where name='"+userName+"' and password ='"+pwd+"'";
-        return getUser(searchForUserID);
+        return getOneUser(searchForUserID);
     }
 
     public int delete(String userID) {
@@ -190,39 +255,11 @@ public class UserDAOImpl implements IUserDAO {
         return 1;
     }
 
-//    @Override
-//    public List<User> getFriends(int userID) {
-//        List<User> friends = new ArrayList<>();
-//        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
-//        Connection conn = null;
-//        try {
-//            conn = getConnection();
-//            PreparedStatement ptmt = conn.prepareStatement(queryForFriends);
-//            ResultSet rs = ptmt.executeQuery();
-//            while (rs.next()) {
-//                int clientID = rs.getInt("clientID");
-//                String queryForUser = "SELECT * FROM users WHERE userID=" + "'" + clientID + "'";
-//                List<User> results = getUser(queryForUser);
-//                if (!results.isEmpty()) {
-//                    friends.add(results.get(0));
-//                }
-//                else {
-//                    System.out.println("Found no user!");
-//                }
-//
-//            }
-//
-//        }
-//        catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return friends;
-//    }
 
     @Override
     public boolean isFriend(int patronID, int clientID) {
         boolean check = false;
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=? AND clientID=?";
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=? AND clientID=? AND accepted='1'";
         Connection conn = null;
         try {
             conn = getConnection();

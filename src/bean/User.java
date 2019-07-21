@@ -2,14 +2,14 @@ package bean;
 
 import dao.factory.DAOFactory;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class User {
     private int userID;
     private String username;
     private String email;
-    private Date loadTime;
+    private Timestamp loadTime;
     private String password;
     private List<Favour> favours;
     private String signature;
@@ -69,14 +69,16 @@ public class User {
         return username;
     }
 
-    public Date getLoadTime() {
-        return loadTime;
-    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setLoadTime(Date loadTime) {
+    public Timestamp getLoadTime() {
+        return loadTime;
+    }
+
+    public void setLoadTime(Timestamp loadTime) {
         this.loadTime = loadTime;
     }
 

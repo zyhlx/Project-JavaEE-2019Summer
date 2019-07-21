@@ -99,3 +99,8 @@ main {
     position: absolute;
     will-change: left,width
 }
+.filter-input{
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    opacity:0.5;
+}

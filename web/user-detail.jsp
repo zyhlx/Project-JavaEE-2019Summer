@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: DELL
@@ -70,8 +71,18 @@
         <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
                 <h3>个人信息</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item">用户：<c:out value="${requestScope.user.username} "/> </li>
+                        <li class="list-group-item">邮箱：<c:out value="${requestScope.user.email}"/></li>
+                        <li class="list-group-item">个性签名：<c:out value="${requestScope.user.signature}"/></li>
+                    </ul>
+                    <br>
+                    <c:if test="${requestScope.user.userID == sessionScope.userID}">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change">修改</button>
+                    </c:if>
+                </div>
+
             </div>
             <div id="menu1" class="container tab-pane fade"><br>
                 <h3>艺术品展示</h3>
@@ -85,6 +96,57 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="modal fade" id="change">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">修改个人信息</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <div class="border card">
+                    <section class="card-body">
+                        <form class="form-group" id="form_changeInformation">
+                            <input hidden name="userID" value="<c:out value="${requestScope.user.userID}"/>"/>
+                            <input hidden name="oldName" value="<c:out value="${requestScope.user.username}"/>"/>
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><label for="username">用户名：</label><input id="username" type="text" name="username" placeholder="<c:out value="${requestScope.user.username}"/>" value="<c:out value="${requestScope.user.username}"/>"></li>
+                                    <li class="list-group-item"><label for="email">邮箱：</label><input id="email" type="email" name="email" placeholder="<c:out value="${requestScope.user.email}"/>" value="<c:out value="${requestScope.user.email}"/>"></li>
+                                    <li class="list-group-item"><label for="signature">个性签名：</label><input id="signature" type="text" name="signature" placeholder="<c:out value="${requestScope.user.signature}"/>" value="<c:out value="${requestScope.user.signature}"/>"></li>
+                                    <li class="list-group-item"><label for="password">输入密码：</label><input type="password" name="password" id="password"></li>
+                                </ul>
+                            </div>
+                            <br>
+                            <div class="d-flex justify-content-end">
+
+                                <p class="btn-group">
+                                    <button class="btn btn-secondary" type="button" onclick="rechange()">Submit
+                                    </button>
+                                    <button class="btn btn-secondary" type="reset">Clear</button>
+                                </p>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
 
 </main>
 </body>
@@ -104,5 +166,35 @@
             ret.ele.addClass('active').siblings().removeClass('active');
         }
     });
+</script>
+<script>
+    function rechange() {
+        var form1= document.getElementById('form_changeInformation');
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "./userDetail" ,//url
+            data: $(form1).serialize(),
+            success: function (result) {
+                console.log(JSON.stringify(result));//打印服务端返回的数据(调试用)
+                if (result.type==="true") {
+                    $.simplyToast(result.msg,'success');
+                    setTimeout('history.go(0)',2000);
+                }else {
+                    $.simplyToast(result.msg,'info');
+                    // setTimeout('history.go(0)',2000);
+                }
+            },
+            error : function() {
+                $.simplyToast("未知错误",'warning');
+                // alert("异常！");
+            }
+        });
+
+    }
+
+
+
 </script>
 </html>

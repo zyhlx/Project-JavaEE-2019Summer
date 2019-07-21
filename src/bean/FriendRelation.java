@@ -2,9 +2,18 @@ package bean;
 
 public class FriendRelation {
     private int friendID;
-    public int patronID;
-    public int clientID;
-    public User client;
+    private int patronID;
+    private int clientID;
+    private User client;
+    private int accepted;
+
+    public int getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(int accepted) {
+        this.accepted = accepted;
+    }
 
     public int getClientID() {
         return clientID;
