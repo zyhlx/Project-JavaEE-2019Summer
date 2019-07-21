@@ -1,7 +1,10 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.ServicesImpl.FavoursServiceImpl;
 import Services.ServicesImpl.UserDetailServiceImpl;
 import Services.UserDetailService;
+import bean.Favour;
 import bean.User;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "UserDetailServlet",value = "/userDetail")
 public class UserDetailServlet extends HttpServlet {
@@ -47,13 +51,16 @@ public class UserDetailServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         int userID = Integer.parseInt(request.getParameter("userID"));
         UserDetailService userDetailService = new UserDetailServiceImpl();
+        FavoursService favoursService = new FavoursServiceImpl();
 
         //主页显示这些内容
         User user = userDetailService.getUser(userID);
+        List<Favour> favoursShow = favoursService.getShowFavours(userID);
 //        user.setFavours(userDetailService.getFavourPaintings(userID));
 //        user.setFriends(userDetailService.getFriend(userID));
 
         request.setAttribute("user", user);
+        request.setAttribute("favoursShow", favoursService);
         request.getRequestDispatcher("./user-detail.jsp").forward(request, response);
 
     }

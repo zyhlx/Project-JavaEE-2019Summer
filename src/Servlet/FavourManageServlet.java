@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.ServicesImpl.FavoursServiceImpl;
 import bean.Favour;
 import dao.factory.DAOFactory;
 
@@ -17,13 +19,14 @@ public class FavourManageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 String function = request.getParameter("function");
 String favourID = request.getParameter("favourID");
+        FavoursService favoursService = new FavoursServiceImpl();
 
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 switch (function){
     // 删除用户
     case "0":
-        DAOFactory.getIFavourDAOInstance().delete(Integer.parseInt(favourID));
+        favoursService.delete(Integer.parseInt(favourID));
         String temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
         PrintWriter out = response.getWriter();
         out.println(temp);
@@ -32,13 +35,13 @@ switch (function){
         break;
         // 修改权限
     case "1":
-        String queryForFavour = "SELECT * FROM favours WHERE favourID=" + "'" + favourID + "'";
-        List<Favour> results = DAOFactory.getIFavourDAOInstance().getFavour(queryForFavour);
+
+        Favour result = favoursService.getFavourByFavourID(Integer.parseInt(favourID));
         String temp1 = "{\"type\":\"true\",\"msg\":\"修改访问权限成功\"}";
         PrintWriter out1 = response.getWriter();
-        if (!results.isEmpty()) {
-            Favour favour = results.get(0);
-            favour.changeOpen();
+        if (result !=null) {
+
+            favoursService.changeOpen(result);
         }
         else {
             temp1 = "{\"type\":\"false\",\"msg\":\"修改访问权限失败\"}";

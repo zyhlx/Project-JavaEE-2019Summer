@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.ServicesImpl.FavoursServiceImpl;
 import bean.Favour;
 import bean.Painting;
 import bean.User;
@@ -18,16 +20,17 @@ import java.util.List;
 public class FavourDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        int userID = (Integer)session.getAttribute("userID");
-        String queryForFavour = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
-        List<Favour> favours = DAOFactory.getIFavourDAOInstance().getFavour(queryForFavour);
+        int userID = (Integer) session.getAttribute("userID");
+
+        FavoursService favoursService = new FavoursServiceImpl();
+        List<Favour> favours =favoursService.getFavour(userID);
 // 返回painting给jsp
         request.setAttribute("favours", favours);
-        request.getRequestDispatcher("./favours.jsp").forward(request,response);
+        request.getRequestDispatcher("./favours.jsp").forward(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request,response);
+        doPost(request, response);
     }
 }

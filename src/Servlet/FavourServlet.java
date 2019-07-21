@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.ServicesImpl.FavoursServiceImpl;
 import bean.Favour;
 import dao.factory.DAOFactory;
 
@@ -12,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Servlet.FavourServlet",value = "/favour")
+@WebServlet(name = "Servlet.FavourServlet", value = "/favour")
 public class FavourServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
@@ -21,12 +23,12 @@ public class FavourServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         // 查找用户ID
-        int userID =DAOFactory.getIUserDAOInstance().getUserID(userName);
+        int userID = DAOFactory.getIUserDAOInstance().getUserID(userName);
 
 
         // 避免重复收藏
-        String queryForExistedFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'" + " AND" + " artworkID=" + "'" + artworkID + "'";
-        if (!DAOFactory.getIFavourDAOInstance().getFavour(queryForExistedFavours).isEmpty()) {
+        FavoursService favoursService = new FavoursServiceImpl();
+        if (favoursService.isFavoured(userID, Integer.parseInt(artworkID)) != null) {
             String temp = "{\"type\":\"false\",\"msg\":\"您已经收藏过了哦\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
@@ -39,21 +41,17 @@ public class FavourServlet extends HttpServlet {
         Favour tempFavour = new Favour();
         tempFavour.setUserID(userID);
         tempFavour.setPaintingID(Integer.parseInt(artworkID));
-        DAOFactory.getIFavourDAOInstance().insert(tempFavour);
-                String temp = "{\"type\":\"true\",\"msg\":\"收藏成功\"}";
-                PrintWriter out = response.getWriter();
-                out.println(temp);
-                out.flush();
-                out.close();
+        favoursService.insert(tempFavour);
+        String temp = "{\"type\":\"true\",\"msg\":\"收藏成功\"}";
+        PrintWriter out = response.getWriter();
+        out.println(temp);
+        out.flush();
+        out.close();
 
-
-
-
-        }
-
+    }
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request,response);
+        doPost(request, response);
     }
 }

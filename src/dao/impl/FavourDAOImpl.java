@@ -16,27 +16,59 @@ import java.util.List;
 public class FavourDAOImpl implements IFavourDAO {
 
 
-    public FavourDAOImpl(){
+    public FavourDAOImpl() {
 //        conn = new OpenConnection().getConnection();
     }
 
     private static Connection getConnection() throws SQLException {
-        return   new OpenConnection().getConnection();
+        return new OpenConnection().getConnection();
     }
+
     @Override
-    public List<Favour> getFavour(String query) {
+    public List<Favour> getShowFavour(int userID) {
+        String queryForFavour = "SELECT * FROM favours WHERE userID=" + "'" + userID + "' and `open` = `1`";
+        return getFavourList(queryForFavour);
+    }
+
+    @Override
+    public Favour getFavourByFavourID(int favourID) {
+        String queryForFavour = "SELECT * FROM favours WHERE favourID=" + "'" + favourID + "'";
+        List<Favour> favours = getFavourList(queryForFavour);
+        if (favours.isEmpty()){
+            return null;
+        }
+        return favours.get(0);
+    }
+
+
+
+    @Override
+    public List<Favour> getFavourByUserID(int userID) {
+        String queryForFavour = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'";
+        return getFavourList(queryForFavour);
+    }
+    public Favour getOneFavour(int userID,int artworkID){
+        String queryForExistedFavours = "SELECT * FROM favours WHERE userID=" + "'" + userID + "'" + " AND" + " artworkID=" + "'" + artworkID + "'";
+        List<Favour> favours = getFavourList(queryForExistedFavours);
+        if (favours.isEmpty()){
+            return null;
+        }
+        return favours.get(0);
+    }
+
+    private List<Favour> getFavourList(String queryForFavour) {
         List<Favour> favours = new ArrayList<>();
         Connection conn = null;
         try {
             conn = getConnection();
-            PreparedStatement ptmt = conn.prepareStatement(query);
+            PreparedStatement ptmt = conn.prepareStatement(queryForFavour);
             ResultSet rs = ptmt.executeQuery();
             while (rs.next()) {
                 Favour favour = new Favour();
                 // 设置favour信息
-               favour.setFavourID(rs.getInt("favourID"));
-               favour.setUserID(rs.getInt("userID"));
-               favour.setPaintingID(rs.getInt("artworkID"));
+                favour.setFavourID(rs.getInt("favourID"));
+                favour.setUserID(rs.getInt("userID"));
+                favour.setPaintingID(rs.getInt("artworkID"));
                 favour.setOpen(rs.getInt("open"));
                 favour.setFavouredTime(rs.getTimestamp("favouredTime"));
                 favour.setDisplayTime(favour.getFavouredTime().toString());
@@ -44,17 +76,16 @@ public class FavourDAOImpl implements IFavourDAO {
                 List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);
                 if (!results.isEmpty()) {
                     favour.setPainting(results.get(0));
-                }
-                else {
+                } else {
                     System.out.println("found no painting!");
                 }
-               favours.add(favour);
+                favours.add(favour);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
 
-            if (conn != null){
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
@@ -74,17 +105,17 @@ public class FavourDAOImpl implements IFavourDAO {
         try {
             conn = getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(query);
-            ptmt1.setInt(1,favour.getUserID());
-            ptmt1.setInt(2,favour.getPaintingID());
+            ptmt1.setInt(1, favour.getUserID());
+            ptmt1.setInt(2, favour.getPaintingID());
             ptmt1.setInt(3, favour.getOpen());
             rs = ptmt1.executeUpdate();
             conn.commit();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
 
-            if (conn != null){
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
@@ -115,9 +146,9 @@ public class FavourDAOImpl implements IFavourDAO {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
 
-            if (conn != null){
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
@@ -137,16 +168,16 @@ public class FavourDAOImpl implements IFavourDAO {
         try {
             conn = getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(query);
-            ptmt1.setInt(1,favour.getOpen());
-            ptmt1.setInt(2,favour.getFavourID());
+            ptmt1.setInt(1, favour.getOpen());
+            ptmt1.setInt(2, favour.getFavourID());
             rs = ptmt1.executeUpdate();
             conn.commit();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
 
-            if (conn != null){
+            if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {

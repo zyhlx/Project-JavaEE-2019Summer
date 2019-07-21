@@ -46,53 +46,62 @@
 <%@ include file="common/nav.jsp"%>
 
 <section id="content">
-    <c:forEach items="${favours}" var="favourItem">
+    <c:when test="${favours.size()==0}">
         <div class="row border favour-result">
-            <div class="col-2">
-                <p class="type text-muted">Artwork</p>
-                <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
-                <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
-                </a>
-            </div>
-            <div class="col-8">
-                <p class="title">${favourItem.painting.title}</p>
-                <%--<p>heat:${favourItem.msrp}</p>--%>
-                <table>
-                     <tr>
-                         <td>permission</td>
-                        <td>Favoured time</td>
-                        <td>On view</td>
-                     </tr>
-                    <tr>
-                        <td>
-                            <c:if test="${favourItem.open == 0}">
-                            private
-                            </c:if>
-                            <c:if test="${favourItem.open != 0}">
-                                public
-                            </c:if>
-                        </td>
-
-                        <td>
-                            ${favourItem.displayTime};
-                        </td>
-                        <td>${favourItem.painting.gallery}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-2">
-                <p><button type="button" class="btn btn-delete" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
-                <p><button type="button" class=" btn btn-change" id="btn-change-${favourItem.favourID}">
-                <c:if test="${favourItem.open == 0}">
-                    设为公开
-                </c:if>
-                    <c:if test="${favourItem.open != 0}">
-                        设为私密
-                    </c:if>
-                </button></p>
-            </div>
+            <span>没有收藏~</span>
         </div>
-            </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <c:forEach items="${favours}" var="favourItem">
+            <div class="row border favour-result">
+                <div class="col-2">
+                    <p class="type text-muted">Artwork</p>
+                    <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                        <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
+                    </a>
+                </div>
+                <div class="col-8">
+                    <p class="title">${favourItem.painting.title}</p>
+                        <%--<p>heat:${favourItem.msrp}</p>--%>
+                    <table>
+                        <tr>
+                            <td>permission</td>
+                            <td>Favoured time</td>
+                            <td>On view</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <c:if test="${favourItem.open == 0}">
+                                    private
+                                </c:if>
+                                <c:if test="${favourItem.open != 0}">
+                                    public
+                                </c:if>
+                            </td>
+
+                            <td>
+                                    ${favourItem.displayTime};
+                            </td>
+                            <td>${favourItem.painting.gallery}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-2">
+                    <p><button type="button" class="btn btn-delete" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
+                    <p><button type="button" class=" btn btn-change" id="btn-change-${favourItem.favourID}">
+                        <c:if test="${favourItem.open == 0}">
+                            设为公开
+                        </c:if>
+                        <c:if test="${favourItem.open != 0}">
+                            设为私密
+                        </c:if>
+                    </button></p>
+                </div>
+            </div>
+        </c:forEach>
+
+    </c:otherwise>
+
 
 </section>
 

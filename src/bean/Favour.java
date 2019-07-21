@@ -39,15 +39,7 @@ public class Favour {
         this.painting = painting;
     }
 
-    public void changeOpen() {
-        if (open == 0) {
-            open = 1;
-        }
-        else {
-            open = 0;
-        }
-        DAOFactory.getIFavourDAOInstance().update(this);
-    }
+
 
     public int getOpen() {
         return open;

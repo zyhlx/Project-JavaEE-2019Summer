@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.FavoursService;
+import Services.ServicesImpl.FavoursServiceImpl;
 import bean.Favour;
 import bean.FriendRelation;
 import bean.Painting;
@@ -26,8 +28,8 @@ public class FriendsDisplayServlet extends HttpServlet {
 List<FriendRelation> friends = DAOFactory.getIFriendRelationDAOInstance().getFriends(queryForFriends);
 // 获得收藏
         for(FriendRelation friendRelation:friends) {
-            String queryForFavours = "SELECT * FROM favours WHERE userID=" + "'" + friendRelation.getClient().getUserID() + "'" +" AND open='1'";
-            friendRelation.getClient().setFavours(DAOFactory.getIFavourDAOInstance().getFavour(queryForFavours));
+            FavoursService favoursService = new FavoursServiceImpl();
+            friendRelation.getClient().setFavours(favoursService.getFavour(userID));
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);
