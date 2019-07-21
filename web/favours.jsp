@@ -60,7 +60,7 @@
                 <table>
                      <tr>
                          <td>permission</td>
-                        <td>Favoured date</td>
+                        <td>Favoured time</td>
                         <td>On view</td>
                      </tr>
                     <tr>
@@ -73,7 +73,9 @@
                             </c:if>
                         </td>
 
-                        <td>还没做！</td>
+                        <td>
+                            ${favourItem.displayTime};
+                        </td>
                         <td>${favourItem.painting.gallery}</td>
                     </tr>
                 </table>

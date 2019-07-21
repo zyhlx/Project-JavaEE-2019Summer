@@ -38,6 +38,8 @@ public class FavourDAOImpl implements IFavourDAO {
                favour.setUserID(rs.getInt("userID"));
                favour.setPaintingID(rs.getInt("artworkID"));
                 favour.setOpen(rs.getInt("open"));
+                favour.setFavouredTime(rs.getTimestamp("favouredTime"));
+                favour.setDisplayTime(favour.getFavouredTime().toString());
                 String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + favour.getPaintingID() + "'";
                 List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);
                 if (!results.isEmpty()) {
@@ -97,14 +99,18 @@ public class FavourDAOImpl implements IFavourDAO {
 
     @Override
     public int delete(int favourID) {
+        String query = "DELETE FROM favours WHERE favourID=" + "'" + favourID + "'";
+        return delete(query);
+    }
+
+    @Override
+    public int delete(String query) {
         int rs = 1;
-        String query = "DELETE FROM favours WHERE favourID=?";
         Connection conn = null;
         try {
             conn = getConnection();
             PreparedStatement ptmt1 = conn.prepareStatement(query);
-            ptmt1.setInt(1,favourID);
-           ptmt1.execute();
+            ptmt1.execute();
             conn.commit();
 
         } catch (SQLException e) {

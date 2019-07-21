@@ -23,7 +23,7 @@ public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
-    private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源";
+    private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\其他";
     private static final String UPLOAD_VIDEO_DIC = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\videos";
 
     // 上传配置
@@ -125,7 +125,7 @@ public class UploadServlet extends HttpServlet {
                                     filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
                                 }
                                 else {
-                                    imageFileName = fileName.substring(0, fileName.length() - 4);
+                                    imageFileName = fileName;
                                     filePath = UPLOAD_DIRECTORY + File.separator + fileName;
                                 }
 

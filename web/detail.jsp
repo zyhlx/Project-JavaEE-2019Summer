@@ -121,6 +121,17 @@
         </table>
     </div>
 
+    <div>
+        <video width="320" height="240" controls="controls">" +
+            <source src="${painting.videoPath}" type="video/mp4" />
+            <source src="${painting.videoPath}" type="video/ogg" />
+            <source src="${painting.videoPath}" type="video/webm" />
+            <object data="${painting.videoPath}"   width="320" height="240">
+            <embed src="${painting.videoPath}" width="320" height="240" />
+            </object>
+            </video>
+    </div>
+
 </section>
 </main>
 </body>

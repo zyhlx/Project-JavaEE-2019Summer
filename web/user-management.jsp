@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.User" %>
 <%@ page import="dao.impl.UserDAOImpl" %>
@@ -42,6 +44,9 @@
         .user-name{
             font-size: 20px;
         }
+        main{
+            margin-top: 5em;
+        }
 
     </style>
 
@@ -49,62 +54,39 @@
 <%@ include file="common/nav.jsp"%>
 <body>
 <main>
-<%
-    // 从数据库获得所有用户对象
-    String queryForAll = "SELECT * FROM users";
-    IUserDAO userDAO = dao.factory.DAOFactory.getIUserDAOInstance();
-    List<User> users = userDAO.getUser(queryForAll);
 
-    // 显示
-    for (User user: users) {
-        String type = "Normal User";
-        String srcOfImg = "images/user/normal.jpg";
-        String changePermission = "提升为管理员";
-        if (user.getType().equals("admin")) {
-            type = "Admin";
-            srcOfImg = "images/user/admin.jpg";
-            changePermission = "降为普通用户";
-        }
-        out.print("<div class=\"row border user-result\">\n" +
-                "    <div class=\"col-2\">\n" +
-                "        <p class=\"type\">" + type + "</p>" +
-        "<img src=\"" + srcOfImg + "\"" + " alt=\"\">" +
-        "</div>\n" +
-                "    <div class=\"col-8 panel panel-default\">\n" +
-                "        <div class=\"panel-heading user-name\">" + user.getUsername() + "</div>" +
-        "<table class=\"table\">\n" +
-                "            <tr><td class=\"info-title\">ID</td><td>" + user.getUserID() + "</td></tr>\n" +
-                "            <tr><td class=\"info-title\">邮箱</td><td>" + user.getEmail() + "</td></tr>\n" +
-                "            <tr><td class=\"info-title\">最近登录</td><td>" + user.getLoadTime().toString() +"</td></tr>\n" +
-                "        </table>" +
-        "    </div>\n" +
-                "<div class=\"col-2\">\n" +
-                        "        <p><button type=\"button\" class=\"btn btn-change\" id=\"change-" + user.getUserID() + "\"" +">" + changePermission +"</button></p>\n" +
-                        "        <p><button type=\"button\" class=\"btn btn-delete\" id=\"delete-" + user.getUserID() + "\"" + ">删除</button></p>\n" +
-                        "        \n" +
-                        "    </div>" +
-                "</div>");
-    }
-%>
-
-<%--<div class="row border user-result">--%>
-    <%--<div class="col-2">--%>
-        <%--<p class="type">Normal User</p>--%>
-        <%--<img src="images/user/normal.jpg" alt="">--%>
-    <%--</div>--%>
-    <%--<div class="col-8 panel panel-default">--%>
-        <%--<div class="panel-heading user-name">Admin</div>--%>
-        <%--<table class="table">--%>
-            <%--<tr><td class="info-title">ID</td><td>123</td></tr>--%>
-            <%--<tr><td class="info-title">邮箱</td><td>ning823095469@126.com</td></tr>--%>
-            <%--<tr><td class="info-title">最近登录</td><td>2019.7.12</td></tr>--%>
-        <%--</table>--%>
-    <%--</div>--%>
-    <%--<div class="col-2">--%>
-        <%--<p><button type="button" class="btn">提升为管理员</button></p>--%>
-        <%--<p><button type="button" class="btn btn-delete">删除</button></p>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<c:forEach items="${users}" var="userItem">
+<div class="row border user-result">
+    <div class="col-2">
+        <p class="type">${userItem.type}</p>
+        <img src="images/user/${userItem.type}.jpg" alt="">
+    </div>
+    <div class="col-8 panel panel-default">
+        <div class="panel-heading user-name">${userItem.username}</div>
+        <table class="table">
+            <tr><td class="info-title">ID</td><td>${userItem.userID}</td></tr>
+            <tr><td class="info-title">邮箱</td><td>${userItem.email}</td></tr>
+            <tr><td class="info-title">最近登录</td><td>
+                ${userItem.displayTime}
+            </td></tr>
+        </table>
+    </div>
+    <div class="col-2">
+        <p><button type="button" class="btn btn-change" id="change-${userItem.userID}">
+            <c:if test="${userItem.type.equals(\"normal\")}">
+                提升为管理员
+            </c:if>
+            <c:if test="${userItem.type.equals(\"admin\")}">
+                将为普通用户
+            </c:if>
+        </button></p>
+        <p><button type="button" class="btn btn-delete" id="delete-${userItem.userID}">删除</button></p>
+    </div>
+</div>
+</c:forEach>
+    <a href="#" class="nav-link" data-toggle="modal" data-target="#Register">
+    <button type="button" class="btn btn-add">添加用户</button>
+    </a>
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

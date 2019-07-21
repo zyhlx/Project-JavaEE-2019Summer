@@ -40,9 +40,9 @@ public class RegisterServlet extends HttpServlet {
 
                 //TODO 获得id
                 userID = userDAO.getUserID(name);
-                session.setAttribute("userID", userID);
+                //session.setAttribute("userID", userID);
                 //session.setAttribute("id", "very good!");
-                String temp = "{\"type\":\"true\",\"msg\":\"注册成功！自动登陆\"}";
+                String temp = "{\"type\":\"true\",\"msg\":\"注册成功！\"}";
                 PrintWriter out = response.getWriter();
                 out.println(temp);
                 out.flush();

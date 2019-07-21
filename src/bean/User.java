@@ -12,11 +12,20 @@ public class User {
     private String username;
     private String email;
     private Timestamp loadTime;
+    private String displayTime;
     private String password;
     private List<Favour> favours;
     private String signature;
     private String type;
     private int isFriend;
+
+    public void setDisplayTime(String displayTime) {
+        this.displayTime = displayTime;
+    }
+
+    public String getDisplayTime() {
+        return displayTime;
+    }
 
     public int getIsFriend() {
         return isFriend;
@@ -80,6 +89,7 @@ public class User {
 
     public void setLoadTime(Timestamp loadTime) {
         this.loadTime = loadTime;
+        setDisplayTime(loadTime.toString());
     }
 
     public void setUserID(int userID) {

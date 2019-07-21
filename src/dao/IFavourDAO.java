@@ -9,6 +9,7 @@ public interface IFavourDAO {
     public List<Favour> getFavour(String query);
     public int insert(Favour favour);
     public int delete(int favourID);
+    public int delete(String query);
     public int update(Favour favour);
 
 }

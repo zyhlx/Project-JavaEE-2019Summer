@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "UserManageServlet", value = "/userManagement")
 public class UserManageServlet extends HttpServlet {
@@ -28,6 +30,11 @@ public class UserManageServlet extends HttpServlet {
             case "0":
                 String temp = null;
                 int deleteResult = userDAO.delete(userID);
+                // 删干净
+                String deleteFromFavour = "DELETE FROM favours WHERE userID=" + "'" + userID + "'";
+                DAOFactory.getIFavourDAOInstance().delete(deleteFromFavour);
+                String deleteFromFriends = "DELETE FROM friends WHERE patronID=" + "'" + userID + "' OR clientID=" + "'" + userID + "'";
+                DAOFactory.getIFriendRelationDAOInstance().delete(deleteFromFriends);
                 if (deleteResult == 1) {
                     temp = "{\"type\":\"true\",\"msg\":\"删除成功\"}";
                 }
@@ -59,8 +66,15 @@ public class UserManageServlet extends HttpServlet {
                 out1.flush();
                 out1.close();
                 break;
+                // 返回所有用户列表
+            case "2":
+                String query = "SELECT * FROM users";
+                List<User> users = DAOFactory.getIUserDAOInstance().getUser(query);
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("./user-management.jsp").forward(request,response);
 
-                default:break;
+
+            default:break;
 
         }
 
