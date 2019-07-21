@@ -19,25 +19,33 @@
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
     <style>
-        img{
+        main {
+            padding-top: 50px!important;
+        }
+
+        img {
             height: 120px;
             width: 120px;
         }
-        .btn-add{
+
+        .btn-add {
             margin-top: 1em;
             margin-left: 10%;
         }
-        .user-result{
+
+        .user-result {
             margin-top: 2em;
             margin-left: 7%;
             margin-right: 7%;
             padding: 1em;
             width: 86%;
         }
-        .info-title{
+
+        .info-title {
             font-weight: bold;
         }
-        .user-name{
+
+        .user-name {
             font-size: 20px;
         }
         section{
@@ -47,9 +55,10 @@
     </style>
 
 </head>
-<%@ include file="common/nav.jsp"%>
+<%@ include file="common/nav.jsp" %>
 <body>
 <main>
+
     <section>
 <c:forEach items="${friends}" var="friendItem" >
     <div class="row border user-result">
@@ -73,7 +82,6 @@
         <a href="./friends-search.jsp">  <button class="btn" type="button"> 搜索</button> </a>
     </section>
 </main>
-
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
@@ -89,10 +97,10 @@
 <script>
     $(".btn-delete").on("click", function () {
         var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement",{
+        $.post("./userManagement", {
             function: "0",
             userID: userID
-        },function (result) {
+        }, function (result) {
             window.location.reload();
             $.simplyToast(result.msg, 'info');
         });
@@ -100,41 +108,14 @@
 
     $(".btn-change").on("click", function () {
         var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement",{
+        $.post("./userManagement", {
             function: "1",
             userID: userID
-        },function (result) {
+        }, function (result) {
             window.location.reload();
             $.simplyToast(result.msg, 'info');
         });
     });
 
 </script>
-
-
-<%--<script>--%>
-    <%--$('#move').moveline({--%>
-        <%--color: '#1a73e8',--%>
-        <%--position: 'inner',--%>
-        <%--click: function (ret) {--%>
-            <%--ret.ele.addClass('active').siblings().removeClass('active');--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
-<%--<script>--%>
-    <%--$(".mobile-nav-taggle").click(function () {--%>
-        <%--var mobileMenu = $("#mobile-menu");--%>
-        <%--if (mobileMenu.hasClass("show-nav")) {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("hide-nav").removeClass("show-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-        <%--else {--%>
-            <%--setTimeout(function () {--%>
-                <%--mobileMenu.addClass("show-nav").removeClass("hide-nav");--%>
-            <%--}, 100)--%>
-        <%--}--%>
-    <%--});--%>
-<%--</script>--%>
-
 </html>

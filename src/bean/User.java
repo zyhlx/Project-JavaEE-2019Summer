@@ -1,10 +1,8 @@
 package bean;
 
 import dao.factory.DAOFactory;
-
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -18,6 +16,7 @@ public class User {
     private String signature;
     private String type;
     private int isFriend;
+    private List<User> friends;
 
     public void setDisplayTime(String displayTime) {
         this.displayTime = displayTime;
@@ -79,12 +78,13 @@ public class User {
         return username;
     }
 
-    public Timestamp getLoadTime() {
-        return loadTime;
-    }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Timestamp getLoadTime() {
+        return loadTime;
     }
 
     public void setLoadTime(Timestamp loadTime) {
@@ -98,6 +98,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 
     public void changePermission() throws SQLException {

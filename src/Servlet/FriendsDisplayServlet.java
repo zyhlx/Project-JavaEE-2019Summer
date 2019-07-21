@@ -31,12 +31,12 @@ List<FriendRelation> friends = DAOFactory.getIFriendRelationDAOInstance().getFri
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);
-        request.getRequestDispatcher("./friends-display.jsp").forward(request,response);
+        request.getRequestDispatcher("./friends-display.jsp").forward(request, response);
 
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request, response);
+        doPost(request, response);
     }
 }

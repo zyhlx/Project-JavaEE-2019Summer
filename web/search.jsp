@@ -19,23 +19,16 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
-    <%--<script src="common/pagination/common/jquery.min.js"></script>--%>
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
     <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-
-
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+
 
     <link rel="stylesheet" href="css/search/search.css">
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 
-    <style type="text/css">
-
-
-    </style>
 
 
 </head>

@@ -3,12 +3,13 @@ package Services.ServicesImpl;
 import Services.PageService;
 import bean.PageInfo;
 import dao.IPageDAO;
+import dao.factory.DAOFactory;
 import dao.impl.PageDAOImpl;
 
 public class PageServiceImpl implements PageService {
     private IPageDAO dao;
     public PageServiceImpl(){
-        dao = new PageDAOImpl();
+        dao = DAOFactory.getIPageDAOInstance();
     }
     /**
      * 查询所有的新闻信息

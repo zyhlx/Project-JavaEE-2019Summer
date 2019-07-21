@@ -1,5 +1,7 @@
 package Servlet;
 
+import Services.LoginService;
+import Services.ServicesImpl.LoginServiceImpl;
 import bean.User;
 import dao.IUserDAO;
 import dao.factory.DAOFactory;
@@ -23,17 +25,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        IUserDAO userDAO = DAOFactory.getIUserDAOInstance();
-        List<User> users = userDAO.login(name, pwd);
-        if (users.size()>0) {
+        LoginService loginService = new LoginServiceImpl();
+        User user = loginService.login(name,pwd);
+        if (user!=null) {
             session.setAttribute("user", name);
-            session.setAttribute("userID", users.get(0).getUserID());
-            if (users.get(0).getType().equals("admin")){
-                session.setAttribute("userType","admin");
-            }else {
-                session.setAttribute("userType", "normal");
-            }
-            session.setAttribute("userType", users.get(0).getType());
+            session.setAttribute("userID", user.getUserID());
+            session.setAttribute("userType", user.getType());
+            loginService.updateLoadTime( user.getUserID());
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);

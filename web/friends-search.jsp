@@ -32,11 +32,6 @@
     <link rel="stylesheet" href="css/search/search.css">
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 
-
-
-<%--<link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">--%>
-    <%--<link href="http://cdn.staticfile.org/highlight.js/7.3/styles/github.min.css" rel="stylesheet" type="text/css" media="all">--%>
-
     <style type="text/css">
 
         main {

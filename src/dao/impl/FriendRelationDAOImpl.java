@@ -79,6 +79,10 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
 
 
     }
+//
+//    public List<FriendRelation> getFriendsByUserID(int userID){
+//        String sql = "SELECT * FROM friends WHERE userID=" +  userID;
+//    }
 
     @Override
     public List<FriendRelation> getFriends(String query) {
