@@ -64,6 +64,10 @@
             text-align: left;
             padding-bottom: 1em;
         }
+        video{
+            margin-left: 30%;
+            margin-right: 30%;
+        }
     </style>
 
     <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
@@ -78,7 +82,7 @@
     <div class="row" id="upper-part">
 
         <div class="col-4" id="description-container">
-            <h3><b>${painting.title}</b>,1888
+            <h3><b>${painting.title}</b>,${painting.yearOfWork}
             </h3>
 
             <p>${painting.description}</p>
@@ -120,17 +124,18 @@
             </tr>
         </table>
     </div>
-
+<c:if test="${!painting.videoPath.equals(\"\")}">
     <div>
-        <video width="320" height="240" controls="controls">" +
-            <source src="${painting.videoPath}" type="video/mp4" />
-            <source src="${painting.videoPath}" type="video/ogg" />
-            <source src="${painting.videoPath}" type="video/webm" />
-            <object data="${painting.videoPath}"   width="320" height="240">
-            <embed src="${painting.videoPath}" width="320" height="240" />
+        <video width="40%" height="30%" controls="controls">" +
+            <source src="博物馆图片资源/videos/${painting.videoPath}" type="video/mp4" />
+            <source src="博物馆图片资源/videos/${painting.videoPath}" type="video/ogg" />
+            <source src="博物馆图片资源/videos/${painting.videoPath}" type="video/webm" />
+            <object data="博物馆图片资源/videos/${painting.videoPath}"   width="40%" height="30%">
+            <embed src="博物馆图片资源/videos/${painting.videoPath}" width="40%" height="30%" />
             </object>
             </video>
     </div>
+</c:if>
 
 </section>
 </main>
