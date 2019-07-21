@@ -268,11 +268,12 @@
             type: "get",
 
             success: function (data) {
-                var data = $.parseJSON(data).letter;
-                document.getElementById('sender').value = data.sendName;
-                document.getElementById('rece').value = data.receiveName;
-                document.getElementById('cont').value = data.contents;
-                document.getElementById('tim').value = data.timeReleased;
+                var data1 = $.parseJSON(data).letter;
+                var time = $.parseJSON(data).sendTime;
+                document.getElementById('sender').value = data1.senderName;
+                document.getElementById('rece').value = data1.receiveName;
+                document.getElementById('cont').value = data1.contents;
+                document.getElementById('tim').value =time;
             },
             error: function (e) {
                 $.simplyToast('未知错误', 'danger')
@@ -290,11 +291,12 @@
             type: "get",
             // data: $('#receive-form').serialize(),
             success: function (data) {
-                var data = $.parseJSON(data).letter;
-                    document.getElementById('sender').value = data.sendName;
-                    document.getElementById('rece').value = data.receiveName;
-                    document.getElementById('cont').value = data.contents;
-                    document.getElementById('tim').value = data.timeReleased;
+                var data1 = $.parseJSON(data).letter;
+                var time = $.parseJSON(data).sendTime;
+                    document.getElementById('sender').value = data1.senderName;
+                    document.getElementById('rece').value = data1.receiveName;
+                    document.getElementById('cont').value = data1.contents;
+                    document.getElementById('tim').value = time;
                     var letterstatus = "status"+a;
                     document.getElementById(letterstatus).innerText='接收状态：已阅;';
             },

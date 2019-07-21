@@ -53,6 +53,7 @@ public class LetterServlet extends HttpServlet {
             Letter letter = letterService.getLetter(letterID);
             JSONObject gson = new JSONObject();
             gson.put("letter",letter);
+            gson.put("sendTime",letter.getTimeReleased().toString());
             String json = gson.toString();
             // 获取输出流对象
             PrintWriter writer = response.getWriter();
