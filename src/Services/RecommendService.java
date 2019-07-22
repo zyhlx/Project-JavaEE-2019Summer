@@ -5,7 +5,7 @@ import bean.User;
 
 import java.util.List;
 
-public interface recommendService {
+public interface RecommendService {
     public List<User> friendRecommend(int userID);
     public List<Painting> paintingRecommend(int userID);
 }

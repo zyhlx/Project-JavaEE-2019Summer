@@ -49,4 +49,12 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    private void logout(HttpServletRequest request,HttpServletResponse response){
+        HttpSession httpSession = request.getSession(true);
+        httpSession.removeAttribute("user");
+        httpSession.removeAttribute("userID");
+        httpSession.removeAttribute("userType");
+
+    }
 }

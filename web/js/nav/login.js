@@ -42,18 +42,17 @@ function login() {
 }
 
 //
-// function logout() {
-//     var xmlhttp;
-//     if (window.XMLHttpRequest) {
-//         //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-//         xmlhttp = new XMLHttpRequest();
-//     }
-//     else {
-//         // IE6, IE5 浏览器执行代码
-//         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//     }
-//     xmlhttp.open("GET", "logout.php?action=logout", true);
-//     xmlhttp.send();
-//
-//
-// }
+function logout() {
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        // IE6, IE5 浏览器执行代码
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.open("GET", "logout.php?action=logout", true);
+    xmlhttp.send();
+
+}

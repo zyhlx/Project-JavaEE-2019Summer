@@ -83,8 +83,10 @@
                         </button>
                     </c:if>
                 </div>
-
             </div>
+
+
+
             <div id="menu1" class="container tab-pane fade"><br>
             <h3>艺术品展示</h3>
             <c:choose>
@@ -130,73 +132,68 @@
                     </div>
                 </div>
             </c:forEach>
+            </c:otherwise>
+            </c:choose>
         </div>
-        <div id="menu2" class="container tab-pane fade"><br>
-            <h3>好友列表</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                totam rem aperiam.</p>
-        </div>
+
     </div>
-    </c:otherwise>
-    </c:choose>
 
 
-    <div class="modal fade" id="change">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- 模态框头部 -->
-                <div class="modal-header">
-                    <h4 class="modal-title">修改个人信息</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- 模态框主体 -->
-                <div class="modal-body">
-                    <div class="border card">
-                        <section class="card-body">
-                            <form class="form-group" id="form_changeInformation">
-                                <input hidden name="userID" value="<c:out value="${requestScope.user.userID}"/>"/>
-                                <input hidden name="oldName" value="<c:out value="${requestScope.user.username}"/>"/>
-                                <div>
-                                    <ul class="list-group">
-                                        <li class="list-group-item"><label for="username">用户名：</label><input
-                                                id="username" type="text" name="username" placeholder="<c:out
-        value="${requestScope.user.username}"/>" value="<c:out value="${requestScope.user.username}"/>"></li>
-                                        <li class="list-group-item"><label for="email">邮箱：</label><input id="email"
-                                                                                                         type="email"
-                                                                                                         name="email"
-                                                                                                         placeholder="<c:out
-        value="${requestScope.user.email}"/>" value="<c:out value="${requestScope.user.email}"/>"></li>
-                                        <li class="list-group-item"><label for="signature">个性签名：</label><input
-                                                id="signature" type="text" name="signature" placeholder="<c:out
-        value="${requestScope.user.signature}"/>" value="<c:out value="${requestScope.user.signature}"/>"></li>
-                                        <li class="list-group-item"><label for="password">输入密码：</label><input
-                                                type="password" name="password" id="password"></li>
-                                    </ul>
-                                </div>
-                                <br>
-                                <div class="d-flex justify-content-end">
-
-                                    <p class="btn-group">
-                                        <button class="btn btn-secondary" type="button" onclick="rechange()">Submit
-                                        </button>
-                                        <button class="btn btn-secondary" type="reset">Clear</button>
-                                    </p>
-                                </div>
-                            </form>
-                        </section>
+        <div class="modal fade" id="change">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">修改个人信息</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                </div>
 
-                <!-- 模态框底部 -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                </div>
+                    <!-- 模态框主体 -->
+                    <div class="modal-body">
+                        <div class="border card">
+                            <section class="card-body">
+                                <form class="form-group" id="form_changeInformation">
+                                    <input hidden name="userID" value="<c:out value="${requestScope.user.userID}"/>"/>
+                                    <input hidden name="oldName" value="<c:out value="${requestScope.user.username}"/>"/>
+                                    <div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><label for="username">用户名：</label><input
+                                                    id="username" type="text" name="username" placeholder="<c:out
+        value="${requestScope.user.username}"/>" value="<c:out value="${requestScope.user.username}"/>"></li>
+                                            <li class="list-group-item"><label for="email">邮箱：</label><input id="email"
+                                                                                                             type="email"
+                                                                                                             name="email"
+                                                                                                             placeholder="<c:out
+        value="${requestScope.user.email}"/>" value="<c:out value="${requestScope.user.email}"/>"></li>
+                                            <li class="list-group-item"><label for="signature">个性签名：</label><input
+                                                    id="signature" type="text" name="signature" placeholder="<c:out
+        value="${requestScope.user.signature}"/>" value="<c:out value="${requestScope.user.signature}"/>"></li>
+                                            <li class="list-group-item"><label for="password">输入密码：</label><input
+                                                    type="password" name="password" id="password"></li>
+                                        </ul>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-end">
 
+                                        <p class="btn-group">
+                                            <button class="btn btn-secondary" type="button" onclick="rechange()">Submit
+                                            </button>
+                                            <button class="btn btn-secondary" type="reset">Clear</button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
 
 
 </main>

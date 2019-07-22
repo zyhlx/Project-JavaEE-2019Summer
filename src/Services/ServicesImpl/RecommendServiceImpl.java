@@ -1,6 +1,6 @@
 package Services.ServicesImpl;
 
-import Services.recommendService;
+import Services.RecommendService;
 import bean.Favour;
 import bean.FriendRelation;
 import bean.Painting;
@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class recommendServiceImpl implements recommendService {
+public class RecommendServiceImpl implements RecommendService {
     private IFriendRelationDAO iFriendRelationDAO;
     private IPaintingDAO iPaintingDAO;
     private IFavourDAO iFavourDAO;
 
-    public recommendServiceImpl() {
+    public RecommendServiceImpl() {
         iFriendRelationDAO = DAOFactory.getIFriendRelationDAOInstance();
         iPaintingDAO = DAOFactory.getIPaintingDAOInstance();
         iFavourDAO = DAOFactory.getIFavourDAOInstance();

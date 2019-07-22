@@ -1,10 +1,7 @@
 package dao.impl;
 
-import bean.Gallery;
 import bean.Painting;
-import com.sun.deploy.net.HttpRequest;
 import dao.IPaintingDAO;
-import dao.factory.DAOFactory;
 import db.DBUtil;
 import db.OpenConnection;
 
