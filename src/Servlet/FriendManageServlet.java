@@ -45,7 +45,7 @@ public class FriendManageServlet extends HttpServlet {
                 friendRelation.setPatronID(userID);
                 friendRelation.setAccepted(0);
                 friendService.insert(friendRelation);
-                String temp1 = "{\"type\":\"true\",\"msg\":\"添加成功\"}";
+                String temp1 = "{\"type\":\"true\",\"msg\":\"发送请求成功\"}";
                 PrintWriter out1 = response.getWriter();
                 out1.println(temp1);
                 out1.flush();

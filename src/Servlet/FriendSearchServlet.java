@@ -6,6 +6,7 @@ import Services.PageService;
 import Services.ServicesImpl.FavoursServiceImpl;
 import Services.ServicesImpl.FriendServiceImpl;
 import Services.ServicesImpl.PageServiceImpl;
+import Services.ServicesImpl.UserDetailServiceImpl;
 import Services.UserDetailService;
 import bean.Favour;
 import bean.PageInfo;
@@ -35,14 +36,16 @@ public class FriendSearchServlet extends HttpServlet {
         int userID = (Integer)session.getAttribute("userID");
         FavoursService favoursService = new FavoursServiceImpl();
         FriendService friendService = new FriendServiceImpl();
+        UserDetailService userDetailService = new UserDetailServiceImpl();
 
-        List<User> users = friendService.searchFriends(input,userID);
+
+        List<User> users = userDetailService.searchUsers(input);
         // 判断是否好友
         for (User user:users) {
             // 获得收藏
-            user.setFavours(favoursService.getFavourByUserID(userID));
-            if (DAOFactory.getIUserDAOInstance().isFriend(userID, user.getUserID())){
+            if (friendService.isFriends(userID, user.getUserID())){
                 user.setIsFriend(1);
+                user.setFavours(favoursService.getFavourByUserID(user.getUserID()));
             }
             else {
                 user.setIsFriend(0);

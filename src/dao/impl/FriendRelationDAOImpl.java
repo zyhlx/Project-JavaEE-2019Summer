@@ -84,8 +84,8 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
 //        String sql = "SELECT * FROM friends WHERE userID=" +  userID;
 //    }
 
-    public List<FriendRelation> getFriends(int userID){
-        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "' AND accepted='1'";
+    public List<FriendRelation> getFriends(int userID, int accepted){
+        String queryForFriends = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "' AND accepted='" + accepted + "'";
         return getFriends(queryForFriends);
     }
 

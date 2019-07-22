@@ -28,6 +28,10 @@ public class UserDetailServiceImpl implements UserDetailService {
     public User getUser(int userID){
         return dao_user.getUserInformation(userID);
     };
+    public List<User> searchUsers(String name) {
+        String query = "SELECT * FROM users WHERE name LIKE '%" + name + "%'";
+        return dao_user.getUser(query);
+    }
     public int updateUserInformation(int userID,String newName,String oldName,String pwd,String email,String signature){
         if (dao_user.login(oldName,pwd)==null){
             return 0;

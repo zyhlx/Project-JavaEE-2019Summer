@@ -63,8 +63,8 @@ function load_friend() {
 }
 
 $("body").on('click',".btn-addFriend",function (ev) {
-    alert("add");
     var clientID = $(this).attr("id").substring(8);
+    alert(clientID);
     $.post("./friendManage", {
         function: "1",
         clientID: clientID

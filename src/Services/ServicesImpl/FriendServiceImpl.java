@@ -14,7 +14,9 @@ public class FriendServiceImpl implements FriendService {
     private IUserDAO iUserDAO;
 
     public FriendServiceImpl(){
+
         iFriendRelationDAO = DAOFactory.getIFriendRelationDAOInstance();
+        iUserDAO = DAOFactory.getIUserDAOInstance();
     }
 
     @Override
@@ -43,8 +45,12 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public List<FriendRelation> getFriends(int userID) {
-        return iFriendRelationDAO.getFriends(userID);
+    public List<FriendRelation> getFriends(int userID, int accepted) {
+        return iFriendRelationDAO.getFriends(userID, accepted);
     }
 
+    @Override
+    public boolean isFriends(int patronID, int clientID) {
+        return iUserDAO.isFriend(patronID, clientID);
+    }
 }

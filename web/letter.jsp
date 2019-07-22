@@ -65,7 +65,7 @@
                 <div>
                     <ul class="list-group">
                         <c:choose>
-                        <c:when test="${requestScope.receiveLetters.size()==0}">
+                        <c:when test="${requestScope.receiveLetters.size()==0 && requestScope.friendRequests.size == 0}">
                         <li class="list-group-item"><span>您还没有收到信息呦~</span>
                             </c:when>
                             <c:otherwise>
@@ -88,6 +88,10 @@
     </span>
                         </li>
                     </ul>
+                    </c:forEach>
+
+                    <c:forEach items="${requestScope.friendRequests}" var="friendRequestItem">
+                        
                     </c:forEach>
                     </c:otherwise>
                     </c:choose>

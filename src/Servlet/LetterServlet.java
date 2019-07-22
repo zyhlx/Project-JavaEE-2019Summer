@@ -1,7 +1,10 @@
 package Servlet;
 
+import Services.FriendService;
 import Services.LetterService;
+import Services.ServicesImpl.FriendServiceImpl;
 import Services.ServicesImpl.LetterServiceImpl;
+import bean.FriendRelation;
 import bean.Letter;
 import dao.factory.DAOFactory;
 import net.sf.json.JSONObject;
@@ -45,6 +48,7 @@ public class LetterServlet extends HttpServlet {
 
         String isOne = request.getParameter("isOne");
         LetterService letterService = new LetterServiceImpl();
+        FriendService friendService = new FriendServiceImpl();
         if(isOne!=null){
             int letterID = Integer.parseInt(request.getParameter("letterID"));
             if (request.getParameter("isW")==null){
@@ -63,8 +67,10 @@ public class LetterServlet extends HttpServlet {
             int userID = Integer.parseInt(request.getParameter("userID"));
             List<Letter> receiveLetters = letterService.getReceiveLetter(userID);
             List<Letter> sendLetters = letterService.getSendLetters(userID);
+            List<FriendRelation> friendRequests = friendService.getFriends(userID, 0);
             request.setAttribute("sendLetters", sendLetters);
             request.setAttribute("receiveLetters",receiveLetters);
+            request.setAttribute("friendRequests", friendRequests);
             request.getRequestDispatcher("./letter.jsp").forward(request, response);
         }
 
