@@ -58,8 +58,10 @@ function load(pageNum) {
             $("#current_page").html(pageNum);
             $("#total_page").html(Math.ceil(data.total/data.pageSize));
 
+            var total_data ;
+            (data.total===0)?total_data=1:total_data=data.total;
             $('.M-box3').jqPaginator({
-                totalCounts: data.total+1,
+                totalCounts: total_data,
                 visiblePages: 10,
                 pageSize: data.pageSize,
                 currentPage: pageNum,
