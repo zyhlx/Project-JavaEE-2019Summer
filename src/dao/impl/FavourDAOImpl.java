@@ -26,7 +26,7 @@ public class FavourDAOImpl implements IFavourDAO {
 
     @Override
     public List<Favour> getShowFavour(int userID) {
-        String queryForFavour = "SELECT * FROM favours WHERE userID=" + "'" + userID + "' and `open` = `1`";
+        String queryForFavour = "SELECT * FROM favours WHERE userID=" + "'" + userID + "' and `open` = '1'";
         return getFavourList(queryForFavour);
     }
 

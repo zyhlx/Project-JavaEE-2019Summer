@@ -60,7 +60,7 @@ public class UserDetailServlet extends HttpServlet {
 //        user.setFriends(userDetailService.getFriend(userID));
 
         request.setAttribute("user", user);
-        request.setAttribute("favoursShow", favoursService);
+        request.setAttribute("favoursShow", favoursShow);
         request.getRequestDispatcher("./user-detail.jsp").forward(request, response);
 
     }

@@ -195,6 +195,7 @@ function submitTheForm() {
 }
 
 $("#btn-change").on("click", function() {
+    $("#changeForm");
     var form = new FormData($("#changeForm"));
     $.ajax({
         url: "./upload",
