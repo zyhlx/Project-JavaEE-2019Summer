@@ -65,7 +65,7 @@
                 <div>
                     <ul class="list-group">
                         <c:choose>
-                        <c:when test="${requestScope.receiveLetters.size()==0 && requestScope.friendRequests.size == 0}">
+                        <c:when test="${requestScope.receiveLetters.size()==0 && requestScope.friendRequests.size() == 0}">
                         <li class="list-group-item"><span>您还没有收到信息呦~</span>
                             </c:when>
                             <c:otherwise>
@@ -87,14 +87,23 @@
                 onclick="receiveLetter(<c:out value="${receiveLetter.letterID}"/>)">点击阅读</button>
     </span>
                         </li>
-                    </ul>
-                    </c:forEach>
 
-                    <c:forEach items="${requestScope.friendRequests}" var="friendRequestItem">
-                        
+                    </c:forEach>
+                                <c:forEach items="${requestScope.friendRequests}" var="friendRequestItem">
+                                <li class="list-group-item row">
+                                    <span class='col-sm-1'>${friendRequestItem.patron.username}请求添加您为好友</span>
+
+                                    <span class='col-sm-1'>
+        <button type="button" class="btn btn-primary"
+                onclick="acceptRequest(${friendRequestItem.patronID}, ${friendRequestItem.clientID})">接受</button>
+    </span>
+                                </li>
+
+
                     </c:forEach>
                     </c:otherwise>
                     </c:choose>
+                    </ul>
                 </div>
             </div>
 
@@ -303,6 +312,22 @@
                     document.getElementById('tim').value = time;
                     var letterstatus = "status"+a;
                     document.getElementById(letterstatus).innerText='接收状态：已阅;';
+            },
+            error: function (e) {
+                $.simplyToast('未知错误', 'danger')
+            }
+        });
+    }
+</script>
+
+<script>
+    function acceptRequest(patronID, clientID) {
+        $.ajax({
+            url:  "./friendManage?function=2&patronID="+patronID+"&clientID="+clientID,
+            type: "post",
+            // data: $('#receive-form').serialize(),
+            success: function (data) {
+               $.simplyToast(data.msg,'info')
             },
             error: function (e) {
                 $.simplyToast('未知错误', 'danger')

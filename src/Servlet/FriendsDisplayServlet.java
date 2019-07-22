@@ -29,7 +29,7 @@ public class FriendsDisplayServlet extends HttpServlet {
         FriendService friendService = new FriendServiceImpl();
         // 获取好友列表
 
-        List<FriendRelation> friends = friendService.getFriends(userID);
+        List<FriendRelation> friends = friendService.getFriends(userID,1);
 // 获得收藏
         for (FriendRelation friendRelation : friends) {
             FavoursService favoursService = new FavoursServiceImpl();

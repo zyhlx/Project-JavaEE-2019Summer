@@ -67,7 +67,7 @@ public class LetterServlet extends HttpServlet {
             int userID = Integer.parseInt(request.getParameter("userID"));
             List<Letter> receiveLetters = letterService.getReceiveLetter(userID);
             List<Letter> sendLetters = letterService.getSendLetters(userID);
-            List<FriendRelation> friendRequests = friendService.getFriends(userID, 0);
+            List<FriendRelation> friendRequests = friendService.getFriendRequests(userID);
             request.setAttribute("sendLetters", sendLetters);
             request.setAttribute("receiveLetters",receiveLetters);
             request.setAttribute("friendRequests", friendRequests);
