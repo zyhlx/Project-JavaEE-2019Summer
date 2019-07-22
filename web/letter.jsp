@@ -231,6 +231,7 @@
             </div>
         </div>
     </div>
+    </div>
 </main>
 </body>
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>

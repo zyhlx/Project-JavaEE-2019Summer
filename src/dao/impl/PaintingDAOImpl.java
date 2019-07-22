@@ -135,7 +135,7 @@ public class PaintingDAOImpl implements IPaintingDAO {
                 query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork, Artist, VideoPath) VALUES (?,?,?,?,?,?,?) ";
             }
             else {
-                query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=?, Artist=?, VideoPath=? WHERE PaintingID=?";
+                query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=?, Artist=?, VideoPath=?, MSRP=? WHERE PaintingID=?";
             }
             //预编译SQL，减少sql执行
             PreparedStatement ptmt = conn.prepareStatement(query);
@@ -147,9 +147,10 @@ public class PaintingDAOImpl implements IPaintingDAO {
             ptmt.setInt(5, painting.getYearOfWork());
             ptmt.setString(6, painting.getArtist());
             ptmt.setString(7, painting.getVideoPath());
+            ptmt.setBigDecimal(8,painting.getMsrp());
 
             if (painting.getPaintingID()!=0) {
-                ptmt.setInt(8, painting.getPaintingID());
+                ptmt.setInt(9, painting.getPaintingID());
             }
 
             // 执行

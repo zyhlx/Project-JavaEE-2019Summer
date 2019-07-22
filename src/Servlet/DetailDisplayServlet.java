@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet(name = "DetailDisplayServlet", value = "/detailDisplay")
 public class DetailDisplayServlet extends HttpServlet {
@@ -24,7 +25,9 @@ public class DetailDisplayServlet extends HttpServlet {
 
             // 获得对应artworkID的painting对象
 painting = paintingService.getOnePainting(artworkID);
-
+// 热度加一
+painting.setMsrp(painting.getMsrp().add(new BigDecimal(1)));
+paintingService.update(painting);
         // 返回painting给jsp
         request.setAttribute("painting", painting);
         request.getRequestDispatcher("./detail.jsp").forward(request,response);
