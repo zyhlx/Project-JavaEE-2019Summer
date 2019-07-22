@@ -195,7 +195,9 @@ function submitTheForm() {
 }
 
 $("#btn-change").on("click", function() {
+
     alert("change");
+
     $("#changeForm");
     var form = new FormData($("#changeForm"));
     $.ajax({

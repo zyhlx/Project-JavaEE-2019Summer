@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -17,7 +18,8 @@
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/paintingDetail/detail.css">
+    <link rel="stylesheet" type="text/css" href="css/paintingDetail/detail.css">
+
 </head>
 <body>
 <%@ include file="common/nav.jsp" %>

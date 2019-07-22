@@ -49,7 +49,7 @@
 <%@ include file="common/nav.jsp" %>
 <main>
 <section id="info">
-<form action="./upload" method="post" name="changeForm" role="form" id="changeForm" enctype="multipart/form-data" >
+<form action="upload" method="post" name="changeForm" role="form" id="changeForm" enctype="multipart/form-data" >
     <div class="form-group">
         <label for="title">作品名:</label>
 
@@ -102,9 +102,10 @@
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast/simply-toast.js"></script>
-<%--<script src="js/nav/registe.js"></script>--%>
-<%--<script src="js/nav/login.js"></script>--%>
-<%--<script src="js/nav/moveline.js"></script>--%>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+
 <script src="js/nav/nav.js"></script>
 <script src="js/management/work-management.js"></script>
 

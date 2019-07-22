@@ -85,11 +85,11 @@
                 </div>
 
             </div>
-            < id="menu1" class="container tab-pane fade"><br>
+            <div id="menu1" class="container tab-pane fade"><br>
             <h3>艺术品展示</h3>
             <c:choose>
             <c:when test="${favoursShow.size()==0}">
-                <div class="row border favour-result">
+                <div class="row border favour-result mx-auto">
                     <span>没有收藏~</span>
                 </div>
             </c:when>
@@ -98,7 +98,7 @@
                 <div class="row border favour-result card">
                     <div class="col-2">
                         <p class="type text-muted">Artwork</p>
-                        <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                        <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
                             <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                         </a>
                     </div>
