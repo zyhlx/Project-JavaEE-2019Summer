@@ -126,15 +126,6 @@
 <script src="js/nav/registe.js"></script>
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
-
 <script src="js/nav/nav.js"></script>
-<%--<script>--%>
-
-<%--</script>--%>
-<%--<script>--%>
-
-<%--</script>--%>
-
-
 </body>
 </html>

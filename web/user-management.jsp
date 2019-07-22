@@ -1,9 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.util.List" %>
-<%@ page import="bean.User" %>
-<%@ page import="dao.impl.UserDAOImpl" %>
-<%@ page import="dao.IUserDAO" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: christine
   Date: 2019/7/16
@@ -172,9 +169,9 @@
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast/simply-toast.js"></script>
 
-<%--<script src="js/nav/registe.js"></script>--%>
-<%--<script src="js/nav/login.js"></script>--%>
-<%--<script src="js/nav/moveline.js"></script>--%>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
 
 <script src="js/management/user-management.js"></script>
