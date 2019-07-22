@@ -145,6 +145,7 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
                friendRelation.setFriendID(rs.getInt("friendID"));
                friendRelation.setPatronID(rs.getInt("patronID"));
                friendRelation.setClientID(rs.getInt("clientID"));
+               friendRelation.setAccepted(rs.getInt("accepted"));
                String queryForClient = "SELECT * FROM users WHERE userID=" + "'" + friendRelation.getClientID() + "'";
                List<User> results = DAOFactory.getIUserDAOInstance().getUser(queryForClient);
                if (!results.isEmpty()) {

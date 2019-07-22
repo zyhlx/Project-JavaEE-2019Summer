@@ -55,8 +55,8 @@
                             </svg>
                             </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="work-management.jsp"><i class="fa fa-picture-o" aria-hidden="true"></i>作品管理</a>
-                            <a href="user-management.jsp" class="dropdown-item"><i class="fa fa-address-card" aria-hidden="true"></i>用户管理</a>
+                            <a class="dropdown-item" href="./workDisplay?artworkID=0"><i class="fa fa-picture-o" aria-hidden="true"></i>作品管理</a>
+                            <a href="./userDisplay" class="dropdown-item"><i class="fa fa-address-card" aria-hidden="true"></i>用户管理</a>
                         </div>
                     </li>
                 </c:if>

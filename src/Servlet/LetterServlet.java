@@ -68,9 +68,11 @@ public class LetterServlet extends HttpServlet {
             List<Letter> receiveLetters = letterService.getReceiveLetter(userID);
             List<Letter> sendLetters = letterService.getSendLetters(userID);
             List<FriendRelation> friendRequests = friendService.getFriendRequests(userID);
+            List<FriendRelation> friendLetters = friendService.getAllFriends(userID);
             request.setAttribute("sendLetters", sendLetters);
             request.setAttribute("receiveLetters",receiveLetters);
             request.setAttribute("friendRequests", friendRequests);
+            request.setAttribute("friendLetters", friendLetters);
             request.getRequestDispatcher("./letter.jsp").forward(request, response);
         }
 

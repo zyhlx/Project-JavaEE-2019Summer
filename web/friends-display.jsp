@@ -48,8 +48,18 @@
         .user-name {
             font-size: 20px;
         }
-        section{
-            margin-top: 5em;
+
+        main h1 {
+            font-family: "MetSerif", "Georgia", serif;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.166;
+            margin-left: 1.7em;
+            margin-top: 0.7em;
+        }
+        .btn-search{
+            margin-left: 5em;
+            margin-top: 1.7em;
         }
 
     </style>
@@ -58,7 +68,9 @@
 <%@ include file="common/nav.jsp" %>
 <body>
 <main>
-
+<h1>
+    Friends
+</h1>
     <section>
 <c:forEach items="${friends}" var="friendItem" >
     <div class="row border user-result">
@@ -79,8 +91,11 @@
         </div>
     </div>
 </c:forEach>
-        <a href="./friends-search.jsp">  <button class="btn" type="button"> 搜索</button> </a>
+
     </section>
+    <p>
+        <a href="./friends-search.jsp">  <button class="btn btn-search" type="button"> 搜索</button> </a>
+    </p>
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

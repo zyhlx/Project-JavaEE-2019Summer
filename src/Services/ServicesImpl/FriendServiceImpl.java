@@ -55,13 +55,19 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     public List<FriendRelation> getFriendRequests(int  clientID) {
-        String selectFriendRequests = "SELECT * FROM friends WHERE clientID=" + "'" + clientID + "'" + "AND accepted='0'";
+        String selectFriendRequests = "SELECT * FROM friends WHERE clientID=" + "'" + clientID + "'";
         List<FriendRelation> friendRequests =  iFriendRelationDAO.getFriends(selectFriendRequests);
         for(FriendRelation friendRelation: friendRequests) {
             String selectForpatron = "SELECT * FROM users WHERE userID=" + "'" + friendRelation.getPatronID() + "'";
             friendRelation.setPatron(iUserDAO.getUser(selectForpatron).get(0));
         }
         return friendRequests;
+    }
+
+    @Override
+    public List<FriendRelation> getAllFriends(int userID) {
+        String selectFriendRequests = "SELECT * FROM friends WHERE patronID=" + "'" + userID + "'";
+       return iFriendRelationDAO.getFriends(selectFriendRequests);
     }
 
     @Override

@@ -88,8 +88,11 @@
                                     <span class='col-sm-1'>${friendRequestItem.patron.username}请求添加您为好友</span>
 
                                     <span class='col-sm-1'>
+                                        <c:if test="${friendRequestItem.accepted == 0}">
         <button type="button" class="btn btn-primary"
                 onclick="acceptRequest(${friendRequestItem.patronID}, ${friendRequestItem.clientID})">接受</button>
+                                        </c:if>
+                                        <c:if test="${friendRequestItem.accepted == 1}">已接受</c:if>
     </span>
                                 </li>
 
@@ -108,7 +111,7 @@
                     <ul class="list-group">
 
                         <c:choose>
-                            <c:when test="${requestScope.sendLetters.size()==0}">
+                            <c:when test="${requestScope.sendLetters.size()==0 && requestScope.friendLetters.size() == 0}">
                                 <li class="list-group-item">
                                     <span>您还没有发过信息呦~</span>
                                 </li>
@@ -130,7 +133,18 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#receive"
                                         onclick="resee(<c:out value="${sendLetter.letterID}"/>)">查看详情</button></span>
                                     </li>
-                                </c:forEach> </c:otherwise>
+                                </c:forEach>
+
+                                <c:forEach items="${requestScope.friendLetters}" var="friendLetterItem">
+                            <li class="list-group-item row">
+                                <span class='col-sm-1'>请求添加${friendLetterItem.client.username}为好友</span>
+                                <span class="col-sm-1">
+                                    <c:if test="${friendLetterItem.accepted == 0}"> 未同意</c:if>
+                                    <c:if test="${friendLetterItem.accepted == 1}"> 已接受</c:if>
+                                </span>
+                                </c:forEach>
+
+                            </c:otherwise>
                         </c:choose>
 
 

@@ -32,14 +32,14 @@
         }
         .btn-add{
             margin-top: 1em;
-            margin-left: 10%;
+            /*margin-left: 7%;*/
         }
         .user-result{
             margin-top: 2em;
-            margin-left: 10%;
-            margin-right: 10%;
+            /*margin-left: 7%;*/
+            /*margin-right: 7%;*/
             padding: 1.5em;
-            width: 80%;
+            //width: 86%;
         }
         .info-title{
             font-weight: bold;
@@ -47,9 +47,7 @@
         .user-name{
             font-size: 20px;
         }
-        main{
-            margin-top: 5em;
-        }
+
 
     </style>
 
@@ -88,7 +86,7 @@
 </div>
 </c:forEach>
     <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
-    <button type="button" class="btn">添加用户</button>
+    <button type="button" class="btn btn-add">添加用户</button>
     </a>
 </main>
 

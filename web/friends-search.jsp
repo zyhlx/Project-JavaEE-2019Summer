@@ -48,10 +48,10 @@
         }
         .user-result{
             margin-top: 2em;
-            margin-left: 7%;
-            margin-right: 7%;
+            /*margin-left: 7%;*/
+            /*margin-right: 7%;*/
             padding: 1.5em;
-            width: 80%;
+            /*width: 80%;*/
         }
         .info-title{
             font-weight: bold;

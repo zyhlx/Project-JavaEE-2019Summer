@@ -124,7 +124,7 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     public User getUserInformation(int userID){
-        String sql = "select userID userID,name username,email email,loadTime loadTime,type type,signature from  users where userID=?";
+        String sql = "select userID userID,name username,email email,loadTime loadTime,password password,type type,signature from  users where userID=?";
         return DBUtil.getT(User.class,sql,userID);
     }
 
@@ -180,7 +180,8 @@ public class UserDAOImpl implements IUserDAO {
             ptmt.setString(3, user.getPassword());
             ptmt.setTimestamp(4, user.getLoadTime());
             ptmt.setString(5, user.getType());
-            ptmt.setInt(6, user.getUserID());
+            ptmt.setString(6,user.getSignature());
+            ptmt.setInt(7, user.getUserID());
             ptmt.executeUpdate();
             conn.commit();
         }catch (SQLException e){

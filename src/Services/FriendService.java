@@ -8,6 +8,7 @@ import java.util.List;
 public interface FriendService {
     public List<FriendRelation> getFriends(int userID, int accepted);
     public List<FriendRelation> getFriendRequests (int clientID);
+    public List<FriendRelation> getAllFriends(int userID);
     public List<User> searchFriends(String name, int userID);
     public FriendRelation getFriendRealtion (int patronID, int clientID);
     public int insert(FriendRelation friendRelation);

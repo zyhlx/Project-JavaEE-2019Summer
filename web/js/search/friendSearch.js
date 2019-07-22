@@ -1,6 +1,5 @@
 function load_friend() {
     var input_text = $("#search_input").val();
-    alert("loading");
     $.ajax({
         //需要提交的服务器地址
         url: "./friendSearch",
@@ -11,7 +10,6 @@ function load_friend() {
         //回调函数
         success: function (data) {
             var myData = $.parseJSON(data).users;
-            alert(myData);
             //每次清空数据,防止每次点击都叠加
             $("#list-content").html('');
             //追加数据  data.list表示需要遍历的对象  list必须是实体类pageInfo中的list属性名
@@ -21,7 +19,7 @@ function load_friend() {
                 if (users.isFriend == 0) {
                     $("#list-content").append("<div class=\"row border user-result\">\n" +
                         "                    <div class=\"col-10\">\n" +
-                        "                    <p class=\"userName\">" + users.username + "</p>\n" +
+                        "                <a href='./userDetail?userID=" + users.userID + "'>   <p class=\"userName\">" + users.username + "</p></a>\n" +
                         "</div>" +
                         "                    <div class=\"col-2\">\n" +
                         "                    <p><button type=\"button\" class=\"btn btn-addFriend\" id=\"btn-add-" + users.userID + "\"'>添加为好友</button></p>\n" +

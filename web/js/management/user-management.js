@@ -32,9 +32,12 @@ $(".btn-add-user").on("click", function () {
 
             if (result.type==="true") {
                 $.simplyToast(result.msg,'success');
+                window.location.reload();
+
 
             }else {
                 $.simplyToast(result.msg,'info');
+                setTimeout('history.go(0)',2000);
                 // setTimeout('history.go(0)',2000);
             }
         },

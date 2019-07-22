@@ -36,11 +36,20 @@
         #info{
             margin-left: 7%;
             margin-right: 7%;
-            margin-top: 5em;
+
         }
         img{
             height: 150px;
             width: auto;
+        }
+
+        main h1 {
+            font-family: "MetSerif", "Georgia", serif;
+            font-size: 48px;
+            font-weight: 400;
+            line-height: 1.166;
+            margin-left: 1.7em;
+            margin-top: 0.7em;
         }
     </style>
 
@@ -48,6 +57,14 @@
 <body>
 <%@ include file="common/nav.jsp" %>
 <main>
+    <h1>
+    <c:if test="${painting.paintingID == 0}">
+        New Artwork
+    </c:if>
+        <c:if test="${painting.paintingID != 0}">
+            Change Info
+        </c:if>
+    </h1>
 <section id="info">
 <form action="upload" method="post" name="changeForm" role="form" id="form-change" enctype="multipart/form-data" >
     <div class="form-group">
@@ -84,9 +101,8 @@
     <button type="submit" class="btn" id="btn-change">保存修改</button>
 <c:if test="${painting.paintingID != 0}">
     <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
-
-    <button type="button" class="btn" id="btn-add">添加作品</button>
 </c:if>
+    <button type="button" class="btn" id="btn-add">添加作品</button>
 </section>
 </main>
 
