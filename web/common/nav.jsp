@@ -28,11 +28,10 @@
                         <i class="fa fa-user-circle"></i> <%= session.getAttribute("user")%>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="userDetail?userID=<%= session.getAttribute("userID")%>">个人主页</a>
-                        <a class="dropdown-item" href="friendsDisplay">好友列表</a>
-                        <a class="dropdown-item" href="letter?userID=<%= session.getAttribute("userID")%>">信箱</a>
-                        <a href="favourDisplay" class="dropdown-item"><i
-                                class="fa fa-user-plus"></i>收藏夹</a>
+                        <a class="dropdown-item" href="userDetail?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-address-book-o" aria-hidden="true"></i>个人主页</a>
+                        <a class="dropdown-item" href="friendsDisplay"><i class="fa fa-smile-o" aria-hidden="true"></i>好友列表</a>
+                        <a class="dropdown-item" href="letter?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-weixin" aria-hidden="true"></i>信箱</a>
+                        <a href="favourDisplay" class="dropdown-item"><i class="fa fa-user-plus"></i>收藏夹</a>
                         <a href="#" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
                     </div>
                 </li>
@@ -48,9 +47,22 @@
                 </li>
                 <%
                     }%>
+                <c:if test="${sessionScope.userType=='admin'}">
+                    <li class="nav-item list-inline-item">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" class="doawgc">
+                                <path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"></path>
+                            </svg>
+                            </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="work-management.jsp"><i class="fa fa-picture-o" aria-hidden="true"></i>作品管理</a>
+                            <a href="user-management.jsp" class="dropdown-item"><i class="fa fa-address-card" aria-hidden="true"></i>用户管理</a>
+                        </div>
+                    </li>
+                </c:if>
 
                 <li class="nav-item list-inline-item">
-                    <a href="./userDisplay" class="nav-link" data-gacategory="navigation" data-gaaction="clicked"
+                    <a href="userDisplay" class="nav-link" data-gacategory="navigation" data-gaaction="clicked"
                        data-galabel="explore">
                         <svg width="24" height="24" viewBox="0 0 24 24" class="doawgc">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
@@ -84,7 +96,8 @@
     <nav class="navbar nav-pills navbar-light flex-column" id="mobile-menu" aria-hidden="true">
         <ul class="navbar-nav">
             <li class="nav-item p-2">
-                <a href="index.jsp" class="nav-link slide-nav-active" data-gacategory="navigation" data-gaaction="clicked"
+                <a href="index.jsp" class="nav-link slide-nav-active" data-gacategory="navigation"
+                   data-gaaction="clicked"
                    data-galabel="home">
                     <svg x="0px" y="0px" viewBox="0 0 24 24">
                         <g>
@@ -104,7 +117,8 @@
                     详情</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="search.jsp" data-gacategory="navigation" data-gaaction="clicked" data-galabel="search">
+                <a class="nav-link" href="search.jsp" data-gacategory="navigation" data-gaaction="clicked"
+                   data-galabel="search">
                     <svg width="24px" height="24px" viewBox="0 0 48 48">
                         <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"></path>
                     </svg>

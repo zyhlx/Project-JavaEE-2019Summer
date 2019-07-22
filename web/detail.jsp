@@ -10,13 +10,70 @@
 <html>
 <head>
     <title>Title</title>
+
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/paintingDetail/detail.css">
+
     <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
     <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/paintingDetail/detail.css">
+    <%--<style>--%>
+        <%--#picture-container {--%>
+            <%--height: 600px;--%>
+            <%--display: table-cell;--%>
+            <%--vertical-align: middle;--%>
+            <%--text-align: center;--%>
+        <%--}--%>
+
+        <%--#icons {--%>
+            <%--text-align: left;--%>
+        <%--}--%>
+
+        <%--#picture {--%>
+            <%--margin-top: 5%;--%>
+            <%--margin-bottom: 3%;--%>
+            <%--height: 85%;--%>
+        <%--}--%>
+
+        <%--#description-container {--%>
+            <%--margin-right: 3em;--%>
+        <%--}--%>
+        <%--#detail-panel {--%>
+            <%--padding-left: 20%;--%>
+            <%--padding-right: 20%;--%>
+            <%--padding-top: 2em;--%>
+            <%--text-align: center;--%>
+        <%--}--%>
+
+        <%--.detail-title {--%>
+            <%--font-weight: bold;--%>
+        <%--}--%>
+
+        <%--section {--%>
+            <%--padding-top: 6em;--%>
+            <%--padding-left: 10%;--%>
+            <%--padding-right: 5%;--%>
+        <%--}--%>
+
+        <%--#upper-part {--%>
+            <%--margin-bottom: 2em;--%>
+        <%--}--%>
+
+        <%--.panel-heading {--%>
+            <%--font-size: larger;--%>
+            <%--text-align: left;--%>
+            <%--padding-bottom: 1em;--%>
+        <%--}--%>
+        <%--video{--%>
+            <%--margin-left: 30%;--%>
+            <%--margin-right: 30%--%>
+
+        <%--;--%>
+        <%--}--%>
+    <%--</style>--%>
+
 </head>
 <body>
 <%@ include file="common/nav.jsp" %>
