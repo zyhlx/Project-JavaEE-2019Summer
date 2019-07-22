@@ -46,7 +46,7 @@ function toPage() {
 }
 
 function previewPic() {
-    var file=document.getElementById("file").files[0];
+    var file=document.getElementById("file");
     changed = "1";
     if(!/image\/\w+/.test(file.type)){
         $.simplyToast("请输入图片",'warning');
@@ -67,7 +67,7 @@ function previewPic() {
 }
 
 function previewVideo() {
-    var file=document.getElementById("file").files[1];
+    var file=document.getElementById("video");
     changed = "1";
     if(!/video\/\w+/.test(file.type)){
         $.simplyToast("请输入视频",'warning');
