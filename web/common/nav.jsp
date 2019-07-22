@@ -48,7 +48,7 @@
                 <%
                     }%>
                 <c:if test="${sessionScope.userType=='admin'}">
-                    <li class="nav-item list-inline-item">
+                    <li class="nav-item list-inline-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" class="doawgc">
                                 <path d="M7 14c-1.66 0-3 1.34-3 3 0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2 2.21 0 4-1.79 4-4 0-1.66-1.34-3-3-3zm13.71-9.37l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41z"></path>
@@ -62,7 +62,7 @@
                 </c:if>
 
                 <li class="nav-item list-inline-item">
-                    <a href="userDisplay" class="nav-link" data-gacategory="navigation" data-gaaction="clicked"
+                    <a href="#" class="nav-link" data-gacategory="navigation" data-gaaction="clicked"
                        data-galabel="explore">
                         <svg width="24" height="24" viewBox="0 0 24 24" class="doawgc">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
@@ -172,12 +172,12 @@
                     <div class="form-group">
                         <label for="username-register" id="username-register-label">用户名:</label>
                         <input type="text" class="form-control" id="username-register" name="username-register"
-                               onblur="ontimecheckname()" placeholder="8-16位字母数字">
+                               onblur="ontimecheckname()" placeholder="4-15位字母数字">
                     </div>
                     <div class="form-group">
                         <label for="password-register" id="password-register-label">密码:</label>
                         <input type="password" class="form-control" name="password-register" id="password-register"
-                               placeholder="8-16位字母数字" onblur="ontimecheckpassword()">
+                               placeholder="6-10位字母数字" onblur="ontimecheckpassword()">
                     </div>
                     <div class="form-group">
                         <label for="pwdconfirm-register" id="pwdconfirm-register-label">确认密码：</label>
@@ -189,16 +189,16 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
                                onblur="ontimecheckemail()">
                     </div>
-                    <div class="form-group">
-                        <label for="address" id="address-label">地址:</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter address"
-                               onblur="ontimecheckaddress()">
-                    </div>
-                    <div class="form-group">
-                        <label for="tel" id="tel-label">电话:</label>
-                        <input type="tel" class="form-control" id="tel" name="tel" placeholder="Enter tel"
-                               onblur="ontimechecktel()">
-                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="address" id="address-label">地址:</label>--%>
+                        <%--<input type="text" class="form-control" id="address" name="address" placeholder="Enter address"--%>
+                               <%--onblur="ontimecheckaddress()">--%>
+                    <%--</div>--%>
+                    <%--<div class="form-group">--%>
+                        <%--<label for="tel" id="tel-label">电话:</label>--%>
+                        <%--<input type="tel" class="form-control" id="tel" name="tel" placeholder="Enter tel"--%>
+                               <%--onblur="ontimechecktel()">--%>
+                    <%--</div>--%>
                     <div class="form-group">
                         <label for="yanzhengma" id="yanzhengma_label">验证码：</label>
                         <input type="text" class="form-control" name="yanzhengma" id="yanzhengma">

@@ -20,13 +20,13 @@ function getCode(n) {
 
 //校验用户名符不符合规范
 function is_user_name(userName) {
-    var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+    var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{4,15}$/;
     var isok = reg.test(userName);
     return isok;
 }
 //校验密码规范
 function is_psd(password) {
-    var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+    var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/;
     var isok = reg.test(password);
     return isok;
 }
@@ -45,8 +45,8 @@ function registe() {
     var p = document.getElementById('password-register').value;
     var p2 = document.getElementById('pwdconfirm-register').value;
     var em = document.getElementById('email').value;
-    var ad = document.getElementById('address').value;
-    var tel = document.getElementById('tel').value;
+    // var ad = document.getElementById('address').value;
+    // var tel = document.getElementById('tel').value;
     var checkCode = code.toUpperCase();
     var inputCode = document.getElementById("yanzhengma").value.toUpperCase(); //取得输入的验证码并转化为大写
    //校验用户名
@@ -86,15 +86,15 @@ function registe() {
         isRight = false;
     }
 
-    if (ad.length <= 0) {
-        document.getElementById("address-label").innerText="地址不能为空";
-        isRight = false;
-    }
-
-    if (tel.length <= 0) {
-        document.getElementById("tel-label").innerText="电话不能为空";
-        isRight = false;
-    }
+    // if (ad.length <= 0) {
+    //     document.getElementById("address-label").innerText="地址不能为空";
+    //     isRight = false;
+    // }
+    //
+    // if (tel.length <= 0) {
+    //     document.getElementById("tel-label").innerText="电话不能为空";
+    //     isRight = false;
+    // }
 
     if (inputCode.length <= 0) { //若输入的验证码长度为0
         document.getElementById("yanzhengma_label").innerText="请输入验证码";
@@ -160,22 +160,22 @@ function ontimecheckemail() {
         document.getElementById("email-label").innerText="邮件：";
     }
 }
-function ontimecheckaddress() {
-    var ad = document.getElementById('address').value;
-    if (ad.length <= 0) {
-        document.getElementById("address-label").innerText="地址不能为空";
-    } else {
-        document.getElementById("address-label").innerText="地址：";
-    }
-}
-function ontimechecktel() {
-    var tel = document.getElementById('tel').value;
-    if (tel.length <= 0) {
-        document.getElementById("tel-label").innerText="电话不能为空";
-    } else {
-        document.getElementById("tel-label").innerText="电话：";
-}
-}
+// function ontimecheckaddress() {
+//     var ad = document.getElementById('address').value;
+//     if (ad.length <= 0) {
+//         document.getElementById("address-label").innerText="地址不能为空";
+//     } else {
+//         document.getElementById("address-label").innerText="地址：";
+//     }
+// }
+// function ontimechecktel() {
+//     var tel = document.getElementById('tel').value;
+//     if (tel.length <= 0) {
+//         document.getElementById("tel-label").innerText="电话不能为空";
+//     } else {
+//         document.getElementById("tel-label").innerText="电话：";
+// }
+// }
 
 
 function registeAjax() {
