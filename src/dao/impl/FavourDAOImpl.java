@@ -70,7 +70,7 @@ public class FavourDAOImpl implements IFavourDAO {
                 favour.setUserID(rs.getInt("userID"));
                 favour.setPaintingID(rs.getInt("artworkID"));
                 favour.setOpen(rs.getInt("open"));
-                favour.setFavouredTime(rs.getTimestamp("favouredTime"));
+                favour.setFavouredTime(rs.getTimestamp("time"));
                 favour.setDisplayTime(favour.getFavouredTime().toString());
                 String queryForPainting = "SELECT * FROM paintings WHERE PaintingID=" + "'" + favour.getPaintingID() + "'";
                 List<Painting> results = DAOFactory.getIPaintingDAOInstance().getPaintings(queryForPainting);

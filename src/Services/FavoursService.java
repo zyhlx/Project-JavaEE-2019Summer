@@ -11,7 +11,7 @@ public interface FavoursService {
     public int delete(String query);
     public int update(Favour favour);
     public List<Favour> getShowFavours(int userID);
-    public Favour isFavoured(int userID,int artworkID);
+    public boolean isFavoured(int userID,int artworkID);
     public Favour getFavourByFavourID(int favourID);
     public void changeOpen(Favour favour);
 }

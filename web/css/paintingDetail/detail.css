@@ -1,3 +1,7 @@
+main {
+    max-width: none;
+    padding: 56px 0 12px 0;
+}
 #picture-container {
     height: 600px;
     display: table-cell;
