@@ -18,12 +18,10 @@ import java.util.List;
 
 public class UserDetailServiceImpl implements UserDetailService {
     private IUserDAO dao_user;
-    private IFriendRelationDAO dao_friend;
-    private IFavourDAO dao_favour;
     public UserDetailServiceImpl(){
         dao_user = DAOFactory.getIUserDAOInstance();
-        dao_favour = DAOFactory.getIFavourDAOInstance();
-        dao_friend = DAOFactory.getIFriendRelationDAOInstance();
+//        dao_favour = DAOFactory.getIFavourDAOInstance();
+//        dao_friend = DAOFactory.getIFriendRelationDAOInstance();
     }
     public User getUser(int userID){
         return dao_user.getUserInformation(userID);

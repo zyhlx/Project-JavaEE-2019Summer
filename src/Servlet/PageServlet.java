@@ -26,24 +26,11 @@ public class PageServlet extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         //调用servicenew出对象
         PageService service = new PageServiceImpl();
-        String[] method = req.getParameter("method").split("&");
-        if (method.length==0){
-            method = new String[1];
-            method[0] = "title";
-        }
-        StringBuilder sql = new StringBuilder();
-        String input = req.getParameter("input_text");
-        if (input.equals("")){
-            sql.append("");
-        }else {
-            sql.append(" where ").append(method[0]).append(" LIKE '%").append(input).append("%'");
-            for (int i =1; i<method.length;i++){
-                sql.append(" OR ").append(method[i]).append(" LIKE '%").append(input).append("%' ");
-            }
-        }
-        PageInfo<Painting> news = service.findAlls(Painting.class,"paintings",sql.toString(),
+        String input_info = req.getParameter("input_text");
+        String method_info = req.getParameter("method");
+        PageInfo<Painting> news = service.findAlls(Painting.class,input_info,method_info,
                 Integer.parseInt(req.getParameter("pageNum")), 5);
-        news.setTotal(service.getTotalCount(sql.toString()));
+        news.setTotal(service.getTotalCount(method_info,input_info));
         System.out.println("pageNum=====>" + req.getParameter("pageNum"));      news.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
         System.out.println("总记录数===》" + news.getTotal());
         JSONObject gson = new JSONObject();

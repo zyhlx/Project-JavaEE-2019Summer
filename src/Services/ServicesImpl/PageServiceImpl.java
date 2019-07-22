@@ -4,7 +4,6 @@ import Services.PageService;
 import bean.PageInfo;
 import dao.IPageDAO;
 import dao.factory.DAOFactory;
-import dao.impl.PageDAOImpl;
 
 public class PageServiceImpl implements PageService {
     private IPageDAO dao;
@@ -25,8 +24,8 @@ public class PageServiceImpl implements PageService {
      *  获取新闻总页数
      */
     @Override
-    public int getTotalCount(String type) {
-        return dao.getTotalCount(type);
+    public int getTotalCount(String type,String input) {
+        return dao.getTotalCount(type,input);
     }
 
 }

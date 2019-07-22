@@ -1,0 +1,52 @@
+#picture-container {
+    height: 600px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#icons {
+    text-align: left;
+}
+
+#picture {
+    margin-top: 5%;
+    margin-bottom: 3%;
+    height: 85%;
+}
+
+#description-container {
+    margin-right: 3em;
+}
+  #detail-panel {
+      padding-left: 20%;
+      padding-right: 20%;
+      padding-top: 2em;
+      text-align: center;
+  }
+
+.detail-title {
+    font-weight: bold;
+}
+
+section {
+    padding-top: 6em;
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+#upper-part {
+    margin-bottom: 2em;
+}
+
+.panel-heading {
+    font-size: larger;
+    text-align: left;
+    padding-bottom: 1em;
+}
+video{
+    margin-left: 30%;
+    margin-right: 30%
+
+;
+}
