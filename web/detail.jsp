@@ -175,10 +175,8 @@
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 
-<script src="common/simply-toast.js"></script>
-<%--<script src="js/nav/registe.js"></script>--%>
-<%--<script src="js/nav/login.js"></script>--%>
-<%--<script src="js/nav/moveline.js"></script>--%>
+<script src="common/simply-toast/simply-toast.js"></script>
+
 
 <script src="common/simply-toast/simply-toast.js"></script>
 <script src="js/nav/registe.js"></script>
