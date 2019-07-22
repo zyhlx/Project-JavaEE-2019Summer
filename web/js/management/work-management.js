@@ -45,55 +45,55 @@ function toPage() {
 
 }
 
-function previewPic() {
-    var file=document.getElementById("file").files[0];
-    changed = "1";
-    if(!/image\/\w+/.test(file.type)){
-        $.simplyToast("请输入图片",'warning');
-        //alert("看清楚，这个需要图片！");
-        return false;
-    }
+// function previewPic() {
+//     var file=document.getElementById("file").files[0];
+//     changed = "1";
+//     if(!/image\/\w+/.test(file.type)){
+//         $.simplyToast("请输入图片",'warning');
+//         //alert("看清楚，这个需要图片！");
+//         return false;
+//     }
+//
+//     var reader = new FileReader();
+//     //将文件以Data URL形式读入页面
+//     reader.readAsDataURL(file);
+//     reader.onloadend=function(){
+//         //var result=document.getElementById("result");
+//         var showPic = document.getElementById("showFile");
+//         var srcOfPic = reader.result;
+//         showPic.innerHTML='<img src="'+srcOfPic+'">';
+//
+//     }
+// }
 
-    var reader = new FileReader();
-    //将文件以Data URL形式读入页面
-    reader.readAsDataURL(file);
-    reader.onloadend=function(){
-        //var result=document.getElementById("result");
-        var showPic = document.getElementById("showFile");
-        var srcOfPic = reader.result;
-        showPic.innerHTML='<img src="'+srcOfPic+'">';
-
-    }
-}
-
-function previewVideo() {
-    var file=document.getElementById("file").files[1];
-    changed = "1";
-    if(!/video\/\w+/.test(file.type)){
-        $.simplyToast("请输入视频",'warning');
-        //alert("看清楚，这个需要图片！");
-        return false;
-    }
-
-    var reader = new FileReader();
-    //将文件以Data URL形式读入页面
-    reader.readAsDataURL(file);
-    reader.onloadend=function(){
-        //var result=document.getElementById("result");
-        var showVideo=document.getElementById("showVideo");
-        var srcOfVideo = reader.result;
-        var display = " <video width=\"320\" height=\"240\" controls=\"controls\">" +
-            "<source src=\"" + srcOfVideo + "\" type=\"video/mp4\" />" +
-            "<source src=\"" + srcOfVideo +"\" type=\"video/ogg\" />" +
-            "<source src=\"" + srcOfVideo +"\" type=\"video/webm\" />" +
-            "<object data=\"" + srcOfVideo + "\"  width=\"320\" height=\"240\">" +
-            "<embed src=\"" + srcOfVideo + "\" width=\"320\" height=\"240\" />" +
-            "</object>" +
-            "</video>";
-        showVideo.innerHTML = display;
-
-    }
-}
+// function previewVideo() {
+//     var file=$("#video").files[0];
+//     changed = "1";
+//     if(!/video\/\w+/.test(file.type)){
+//         $.simplyToast("请输入视频",'warning');
+//         //alert("看清楚，这个需要图片！");
+//         return false;
+//     }
+//
+//     var reader = new FileReader();
+//     //将文件以Data URL形式读入页面
+//     reader.readAsDataURL(file);
+//     reader.onloadend=function(){
+//         //var result=document.getElementById("result");
+//         var showVideo=document.getElementById("showVideo");
+//         var srcOfVideo = reader.result;
+//         var display = " <video width=\"320\" height=\"240\" controls=\"controls\">" +
+//             "<source src=\"" + srcOfVideo + "\" type=\"video/mp4\" />" +
+//             "<source src=\"" + srcOfVideo +"\" type=\"video/ogg\" />" +
+//             "<source src=\"" + srcOfVideo +"\" type=\"video/webm\" />" +
+//             "<object data=\"" + srcOfVideo + "\"  width=\"320\" height=\"240\">" +
+//             "<embed src=\"" + srcOfVideo + "\" width=\"320\" height=\"240\" />" +
+//             "</object>" +
+//             "</video>";
+//         showVideo.innerHTML = display;
+//
+//     }
+// }
 
 var reg1 = /^-?\d+$/; //整数
 var reg2=/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/ //正数
@@ -172,62 +172,60 @@ function checkPrice() {
 
 
 
-function submitTheForm() {
-    var takeform = document.getElementById('changeForm');
-    // userName=sessionStorage.getItem("userName");
-    // form.append('userName',userName);
-    // form.append('artworkID',artworkID);
-    $.ajax({
-        url: "./workManagement",
-        type: "POST",
-        data: $(takeform).serialize(),
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            //document.getElementById("checkSubmit").innerHTML='修改成功！';
-            //window.location.href='localhost/pj2/upload.html';
-        },
-        error: function (e) {
-            //console.log(e);
-            //window.clearInterval(timer);
-        }
-    });
-}
+// function submitTheForm() {
+//     var takeform = document.getElementById('changeForm');
+//     // userName=sessionStorage.getItem("userName");
+//     // form.append('userName',userName);
+//     // form.append('artworkID',artworkID);
+//     $.ajax({
+//         url: "./workManagement",
+//         type: "POST",
+//         data: $(takeform).serialize(),
+//         processData: false,
+//         contentType: false,
+//         success: function (data) {
+//             //document.getElementById("checkSubmit").innerHTML='修改成功！';
+//             //window.location.href='localhost/pj2/upload.html';
+//         },
+//         error: function (e) {
+//             //console.log(e);
+//             //window.clearInterval(timer);
+//         }
+//     });
+// }
 
-$("#btn-change").on("click", function() {
+// $("#btn-change").on("click", function() {
+//
+//
+//     var form = new FormData($("#changeForm"));
+//     $.ajax({
+//         url: "./upload",
+//         type: "POST",
+//         data: form,
+//         processData: false,
+//         contentType: false,
+//         success: function (data) {
+//             $.simplyToast(data.msg,'info');
+//             //window.location.href='localhost/pj2/upload.html';
+//         },
+//         error: function (e) {
+//             alert(e);
+//             window.clearInterval(timer);
+//         }
+//     });
+// });
 
-    alert("change");
-
-    $("#changeForm");
-    var form = new FormData($("#changeForm"));
-    $.ajax({
-        url: "./upload",
-        type: "POST",
-        data: form,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            $.simplyToast(data.msg,'info');
-            //window.location.href='localhost/pj2/upload.html';
-        },
-        error: function (e) {
-            alert(e);
-            window.clearInterval(timer);
-        }
-    });
-});
-
-$("#btn-add").on("click", function () {
-    location.href = "./workDisplay?artworkID=0";
-});
-
-$(".btn-delete").on("click", function () {
-    //如果已登录，收藏
-    var artworkID = $(this).attr("id").substring(4);
-        $.post("./workDelete", {
-            artworkID: artworkID
-        }, function (result) {
-            $.simplyToast(result.msg, 'info');
-        });
-
-});
+// $("#btn-add").on("click", function () {
+//     location.href = "./workDisplay?artworkID=0";
+// });
+//
+// $(".btn-delete").on("click", function () {
+//     //如果已登录，收藏
+//     var artworkID = $(this).attr("id").substring(4);
+//         $.post("./workDelete", {
+//             artworkID: artworkID
+//         }, function (result) {
+//             $.simplyToast(result.msg, 'info');
+//         });
+//
+// });

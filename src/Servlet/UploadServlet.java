@@ -35,6 +35,8 @@ public class UploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String temp = null;
+        response.setContentType("text/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
             /**
              * 上传数据及保存文件
              */
@@ -112,30 +114,35 @@ public class UploadServlet extends HttpServlet {
                                         break;
                                     case "place":
                                         gallery = fieldValue;
+                                        break;
                                     case "year":
                                         year = fieldValue;
+                                        break;
                                     case "artworkID":
                                         artworkID = fieldValue;
+                                        break;
+                                        default:break;
 
                                 }
                             }
                             else {
                                 String fileName = new File(item.getName()).getName();
-                                String type = fileName.substring(fileName.length()-4);
-                                if (type.equals(".mp4") || type.equals(".ogg") || type.equals(".swf") || fileName.substring(fileName.length()-5).equals("webm")) {
-                                    videoPath = fileName;
-                                    filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
-                                }
-                                else {
-                                    imageFileName = fileName;
-                                    filePath = UPLOAD_DIRECTORY + File.separator + fileName;
-                                }
+                                if (fileName != "") {
+                                    String type = fileName.substring(fileName.length() - 4);
+                                    if (type.equals(".mp4") || type.equals(".ogg") || type.equals(".swf") || fileName.substring(fileName.length() - 5).equals("webm")) {
+                                        videoPath = fileName;
+                                        filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
+                                    } else {
+                                        imageFileName = fileName;
+                                        filePath = UPLOAD_DIRECTORY + File.separator + fileName;
+                                    }
 
-                                File storeFile = new File(filePath);
-                                // 在控制台输出文件的上传路径
-                                System.out.println(filePath);
-                                // 保存文件到硬盘
-                                item.write(storeFile);
+                                    File storeFile = new File(filePath);
+                                    // 在控制台输出文件的上传路径
+                                    System.out.println(filePath);
+                                    // 保存文件到硬盘
+                                    item.write(storeFile);
+                                }
 //                                request.setAttribute("message",
 //                                        "文件上传成功!");
                                 //成功，更改数据库
@@ -147,10 +154,11 @@ public class UploadServlet extends HttpServlet {
                     // 更新数据库
 
                     PaintingService paintingService = new PaintingServiceImpl();
-                    Painting results =paintingService.getOnePainting(Integer.parseInt(artworkID));
-                    if (results==null)  {
+                    if (artworkID.equals("0"))  {
                         painting = new Painting();
-                        painting.setPaintingID(0);
+                    }
+                    else {
+                        painting = paintingService.getOnePainting(Integer.parseInt(artworkID));
                     }
                     painting.setTitle(title);
                     painting.setDescription(description);
@@ -162,21 +170,27 @@ public class UploadServlet extends HttpServlet {
                     if (videoPath != null) {
                         painting.setVideoPath(videoPath);
                     }
-                    paintingService.update(painting);
+
+                        paintingService.update(painting);
+
                     temp = "{\"type\":\"true\",\"msg\":\"添加成功!\"}";
+                    PrintWriter out = response.getWriter();
+                    out.println(temp);
+                    out.flush();
+                    out.close();
+
                 }
 
                 catch (Exception ex) {
                     temp = "{\"type\":\"false\",\"msg\":\"" + ex.getMessage() + "\"}";
+                    PrintWriter out = response.getWriter();
+                    out.println(temp);
+                    out.flush();
+                    out.close();
+
 //                    request.setAttribute("message",
 //                            "错误信息: " + ex.getMessage());
                 }
-
-        PrintWriter out = response.getWriter();
-        out.println(temp);
-        out.flush();
-        out.close();
-
 
             }
 

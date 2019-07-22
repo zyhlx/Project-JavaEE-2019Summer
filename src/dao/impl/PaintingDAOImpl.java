@@ -132,7 +132,7 @@ public class PaintingDAOImpl implements IPaintingDAO {
             // 新的painting
             String query = null;
             if (painting.getPaintingID() == 0) {
-                query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork, Artist, VideoPath) VALUES (?,?,?,?,?,?,?) ";
+                query = "INSERT INTO paintings(Gallery, ImageFileName, Title, Description, YearOfWork, Artist, VideoPath, MSRP) VALUES (?,?,?,?,?,?,?,?) ";
             }
             else {
                 query = "UPDATE paintings SET Gallery=?, ImageFileName=?, Title=?, Description=?, YearOfWork=?, Artist=?, VideoPath=?, MSRP=? WHERE PaintingID=?";
@@ -162,6 +162,8 @@ public class PaintingDAOImpl implements IPaintingDAO {
         }
         return 0;
     }
+
+
 
     @Override
     public int delete(int paintingID) {
