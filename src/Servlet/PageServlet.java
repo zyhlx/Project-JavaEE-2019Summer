@@ -28,7 +28,7 @@ public class PageServlet extends HttpServlet {
         PageService service = new PageServiceImpl();
         String input_info = req.getParameter("input_text");
         String method_info = req.getParameter("method");
-        PageInfo<Painting> news = service.findAlls(Painting.class,input_info,method_info,
+        PageInfo<Painting> news = service.findAlls(Painting.class,method_info,input_info,
                 Integer.parseInt(req.getParameter("pageNum")), 5);
         news.setTotal(service.getTotalCount(method_info,input_info));
         System.out.println("pageNum=====>" + req.getParameter("pageNum"));      news.setPageNum(Integer.parseInt(req.getParameter("pageNum")));

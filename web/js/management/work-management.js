@@ -95,6 +95,57 @@ function toPage() {
 //     }
 // }
 
+function previewPic() {
+    var file=document.getElementById("file");
+    changed = "1";
+    if(!/image\/\w+/.test(file.type)){
+        $.simplyToast("请输入图片",'warning');
+        //alert("看清楚，这个需要图片！");
+        return false;
+    }
+
+    var reader = new FileReader();
+    //将文件以Data URL形式读入页面
+    reader.readAsDataURL(file);
+    reader.onloadend=function(){
+        //var result=document.getElementById("result");
+        var showPic = document.getElementById("showFile");
+        var srcOfPic = reader.result;
+        showPic.innerHTML='<img src="'+srcOfPic+'">';
+
+    }
+}
+
+function previewVideo() {
+    var file=document.getElementById("video");
+    changed = "1";
+    if(!/video\/\w+/.test(file.type)){
+        $.simplyToast("请输入视频",'warning');
+        //alert("看清楚，这个需要图片！");
+        return false;
+    }
+
+    var reader = new FileReader();
+    //将文件以Data URL形式读入页面
+    reader.readAsDataURL(file);
+    reader.onloadend=function(){
+        //var result=document.getElementById("result");
+        var showVideo=document.getElementById("showVideo");
+        var srcOfVideo = reader.result;
+        var display = " <video width=\"320\" height=\"240\" controls=\"controls\">" +
+            "<source src=\"" + srcOfVideo + "\" type=\"video/mp4\" />" +
+            "<source src=\"" + srcOfVideo +"\" type=\"video/ogg\" />" +
+            "<source src=\"" + srcOfVideo +"\" type=\"video/webm\" />" +
+            "<object data=\"" + srcOfVideo + "\"  width=\"320\" height=\"240\">" +
+            "<embed src=\"" + srcOfVideo + "\" width=\"320\" height=\"240\" />" +
+            "</object>" +
+            "</video>";
+        showVideo.innerHTML = display;
+
+    }
+}
+
+
 var reg1 = /^-?\d+$/; //整数
 var reg2=/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/ //正数
 var reg3=/^[+]{0,1}(\d+)$/ //正整数

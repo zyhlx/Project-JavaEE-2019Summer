@@ -14,10 +14,10 @@ public class PageServiceImpl implements PageService {
      * 查询所有的新闻信息
      */
     @Override
-    public <T> PageInfo<T> findAlls(Class<T> clazz,String tableName,String type, int pageNum, int pageSize) {
+    public <T> PageInfo<T> findAlls(Class<T> clazz,String method,String input, int pageNum, int pageSize) {
         PageInfo<T> pageInfo = new PageInfo<>();
         // 给pageInfo对象的list集合赋值
-        pageInfo.setList(dao.findAlls(clazz,tableName,type, pageNum*5, pageSize));
+        pageInfo.setList(dao.findAlls(clazz,method,input, pageNum*5, pageSize));
         return pageInfo;
     }
     /**
