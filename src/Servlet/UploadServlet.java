@@ -36,7 +36,9 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String temp = null;
         response.setContentType("text/json;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+
             /**
              * 上传数据及保存文件
              */
@@ -103,6 +105,7 @@ public class UploadServlet extends HttpServlet {
                             if (item.isFormField()) {
                                 String fieldName = item.getFieldName();
                                 String fieldValue = item.getString();
+                                fieldValue = new String(fieldValue.getBytes("ISO-8859-1"),"UTF-8");
                                 System.out.println("fieldName" + fieldName + "fieldValue" + fieldValue);
 
                                 switch (fieldName){

@@ -2,6 +2,7 @@ package dao.impl;
 
 import bean.Gallery;
 import bean.Painting;
+import com.sun.deploy.net.HttpRequest;
 import dao.IPaintingDAO;
 import dao.factory.DAOFactory;
 import db.DBUtil;
@@ -139,14 +140,14 @@ public class PaintingDAOImpl implements IPaintingDAO {
             }
             //预编译SQL，减少sql执行
             PreparedStatement ptmt = conn.prepareStatement(query);
-            ptmt.setString(1, painting.getGallery());
+            ptmt.setObject(1, painting.getGallery());
 
-            ptmt.setString(2, painting.getImageFileName());
-            ptmt.setString(3, painting.getTitle());
-            ptmt.setString(4, painting.getDescription());
+            ptmt.setObject(2, painting.getImageFileName());
+            ptmt.setObject(3, painting.getTitle());
+            ptmt.setObject(4, painting.getDescription());
             ptmt.setInt(5, painting.getYearOfWork());
-            ptmt.setString(6, painting.getArtist());
-            ptmt.setString(7, painting.getVideoPath());
+            ptmt.setObject(6, painting.getArtist());
+            ptmt.setObject(7, painting.getVideoPath());
             ptmt.setBigDecimal(8,painting.getMsrp());
 
             if (painting.getPaintingID()!=0) {
