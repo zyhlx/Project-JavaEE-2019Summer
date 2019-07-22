@@ -50,6 +50,17 @@ public class FriendManageServlet extends HttpServlet {
                 out1.println(temp1);
                 out1.flush();
                 out1.close();
+                // 接受请求
+            case"2":
+                int myClientID = (Integer) session.getAttribute("userID");
+                String patronID = request.getParameter("patronID");
+                FriendRelation friendRelation1 = friendService.getFriendRealtion(Integer.parseInt(patronID), myClientID);
+                friendRelation1.acceptRequest();
+                String temp2 = "{\"type\":\"true\",\"msg\":\"添加成功\"}";
+                PrintWriter out2 = response.getWriter();
+                out2.println(temp2);
+                out2.flush();
+                out2.close();
         }
     }
 

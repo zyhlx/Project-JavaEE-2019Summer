@@ -65,3 +65,17 @@ function receiveLetter(a) {
         }
     });
 }
+
+function acceptRequest(patronID, clientID) {
+    $.ajax({
+        url:  "./friendManage?function=2&patronID="+patronID+"&clientID="+clientID,
+        type: "post",
+        // data: $('#receive-form').serialize(),
+        success: function (data) {
+            $.simplyToast(data.msg,'info')
+        },
+        error: function (e) {
+            $.simplyToast('未知错误', 'danger')
+        }
+    });
+}

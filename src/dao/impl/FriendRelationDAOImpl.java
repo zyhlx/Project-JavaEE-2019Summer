@@ -79,7 +79,38 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
 
 
     }
-//
+
+    @Override
+    public int update(FriendRelation friendRelation) {
+        int rs = 1;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String updateFriend = "UPDATE friends SET accepted=? WHERE friendID=?";
+            PreparedStatement ptmt = conn.prepareStatement(updateFriend);
+            ptmt.setInt(1,friendRelation.getAccepted());
+            ptmt.setInt(2,friendRelation.getFriendID());
+            rs = ptmt.executeUpdate();
+            conn.commit();
+
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally {
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return rs;
+    }
+
+    //
 //    public List<FriendRelation> getFriendsByUserID(int userID){
 //        String sql = "SELECT * FROM friends WHERE userID=" +  userID;
 //    }

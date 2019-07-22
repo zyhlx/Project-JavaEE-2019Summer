@@ -59,7 +59,7 @@
                 <div>
                     <ul class="list-group">
                         <c:choose>
-                        <c:when test="${requestScope.receiveLetters.size()==0 && requestScope.friendRequests.size == 0}">
+                        <c:when test="${requestScope.receiveLetters.size()==0 && requestScope.friendRequests.size() == 0}">
                         <li class="list-group-item"><span>您还没有收到信息呦~</span>
                             </c:when>
                             <c:otherwise>
@@ -81,14 +81,23 @@
                 onclick="receiveLetter(<c:out value="${receiveLetter.letterID}"/>)">点击阅读</button>
     </span>
                         </li>
-                    </ul>
-                    </c:forEach>
 
-                    <c:forEach items="${requestScope.friendRequests}" var="friendRequestItem">
-                        
+                    </c:forEach>
+                                <c:forEach items="${requestScope.friendRequests}" var="friendRequestItem">
+                                <li class="list-group-item row">
+                                    <span class='col-sm-1'>${friendRequestItem.patron.username}请求添加您为好友</span>
+
+                                    <span class='col-sm-1'>
+        <button type="button" class="btn btn-primary"
+                onclick="acceptRequest(${friendRequestItem.patronID}, ${friendRequestItem.clientID})">接受</button>
+    </span>
+                                </li>
+
+
                     </c:forEach>
                     </c:otherwise>
                     </c:choose>
+                    </ul>
                 </div>
             </div>
 
@@ -222,6 +231,7 @@
             </div>
         </div>
     </div>
+    </div>
 </main>
 </body>
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
@@ -231,5 +241,7 @@
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
+
 <script src="js/letter/letter.js"></script>
+
 </html>
