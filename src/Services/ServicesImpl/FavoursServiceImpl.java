@@ -59,7 +59,10 @@ public class FavoursServiceImpl implements FavoursService {
         return iFavourDAO.getShowFavour(userID);
     }
 
-    public Favour isFavoured(int userID, int artworkID) {
-        return iFavourDAO.getOneFavour(userID, artworkID);
+    public boolean isFavoured(int userID, int artworkID) {
+        if (iFavourDAO.getOneFavour(userID, artworkID) != null) {
+            return true;
+        }
+        return false;
     }
 }

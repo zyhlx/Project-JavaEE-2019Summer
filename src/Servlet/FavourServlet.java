@@ -28,7 +28,7 @@ public class FavourServlet extends HttpServlet {
 
         // 避免重复收藏
         FavoursService favoursService = new FavoursServiceImpl();
-        if (favoursService.isFavoured(userID, Integer.parseInt(artworkID)) != null) {
+        if (favoursService.isFavoured(userID, Integer.parseInt(artworkID))) {
             String temp = "{\"type\":\"false\",\"msg\":\"您已经收藏过了哦\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
