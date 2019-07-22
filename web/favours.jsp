@@ -46,7 +46,8 @@
 <%@ include file="common/nav.jsp"%>
 
 <section id="content">
-    <c:when test="${favours.size()==0}">
+<c:choose>
+    <c:when test="${favours.isEmpty()}">
         <div class="row border favour-result">
             <span>没有收藏~</span>
         </div>
@@ -101,6 +102,7 @@
         </c:forEach>
 
     </c:otherwise>
+</c:choose>
 
 
 </section>
