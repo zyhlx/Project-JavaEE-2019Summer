@@ -22,10 +22,7 @@
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
     <link href="../common/awesome-bootstrap-checkbox.css" rel="stylesheet">
     <link href="../css/detail/detail.css" rel="stylesheet">
-    <style>
 
-
-    </style>
 </head>
 <body>
 <%@ include file="../common/nav.jsp"%>

@@ -1,4 +1,3 @@
-
 var videoCheck = 1;
 var picCheck = 1;
 
@@ -110,4 +109,3 @@ $(".btn-delete").on("click", function () {
     });
 
 });
-

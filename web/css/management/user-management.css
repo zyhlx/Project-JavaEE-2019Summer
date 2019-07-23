@@ -1,0 +1,26 @@
+main {
+    max-width: none;
+    padding: 56px 0 12px 0;
+}
+main img{
+    height: 120px;
+    width: 120px;
+}
+.btn-add{
+    margin-top: 1em;
+    /*margin-left: 7%;*/
+}
+.user-result{
+    margin-top: 2em;
+    /*margin-left: 7%;*/
+    /*margin-right: 7%;*/
+    padding: 1.5em;
+//width: 86%;
+}
+.info-title{
+    font-weight: bold;
+}
+.user-name{
+    font-size: 20px;
+}
+

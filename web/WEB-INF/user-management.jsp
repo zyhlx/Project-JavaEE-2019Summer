@@ -23,34 +23,7 @@
     <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
-    <link rel="stylesheet" type="text/css" href="../css/index/index.css">
-
-    <style>
-        img{
-            height: 120px;
-            width: 120px;
-        }
-        .btn-add{
-            margin-top: 1em;
-            /*margin-left: 7%;*/
-        }
-        .user-result{
-            margin-top: 2em;
-            /*margin-left: 7%;*/
-            /*margin-right: 7%;*/
-            padding: 1.5em;
-            //width: 86%;
-        }
-        .info-title{
-            font-weight: bold;
-        }
-        .user-name{
-            font-size: 20px;
-        }
-
-
-    </style>
-
+    <link href="../css/management/user-management.css" rel="stylesheet">
 </head>
 <%@ include file="../common/nav.jsp"%>
 <body>

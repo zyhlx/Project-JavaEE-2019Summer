@@ -5,10 +5,14 @@ import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SecurityFilter implements Filter {
 
@@ -28,39 +32,41 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest servletrequest, ServletResponse servletresponse, FilterChain filterchain)
             throws IOException, ServletException {
         // 1、获得当前请求访问资源路径
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletrequest;
+        HttpServletRequest req = (HttpServletRequest) servletrequest;
+        MyRequest myReq = new MyRequest(req);
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletresponse;
-                httpServletRequest.setCharacterEncoding("utf-8");
-        String path = httpServletRequest.getRequestURI().substring(
-                httpServletRequest.getContextPath().length());
+        req.setCharacterEncoding("utf-8");
+        String path = myReq.getRequestURI().substring(
+                myReq.getContextPath().length());
+        path = URLDecoder.decode(path, "utf-8");
         System.out.println(path);
         // 2、如果路径 以/public/ 开始 ----- 游客就可以访问 无需登陆
         if (isPublic(path)) {
-            filterchain.doFilter(httpServletRequest, servletresponse);
+            filterchain.doFilter(myReq, servletresponse);
             return;
         } else {
             // 需要 用户身份 或者 管理员 --- 需要登陆 ----- 判断是否登陆
-            String userType = (String) httpServletRequest.getSession().getAttribute(
+            String userType = (String) myReq.getSession().getAttribute(
                     "userType");
             System.out.println(userType);
             if (userType == null) {
                 // 未登陆--- 没有权限 --- 跳转到登陆页面
                 servletrequest.setAttribute("msg", "您还没有登陆！");
-               httpServletResponse.sendRedirect("./index.jsp");
+                httpServletResponse.sendRedirect("./index.jsp");
                 return;
             } else {
                 // 已经登陆 --- 用户有身份
                 if (isNormal(path)) { // user 身份
 
-                        filterchain.doFilter(httpServletRequest, servletresponse);
-                        return;
-                    }
+                    filterchain.doFilter(myReq, servletresponse);
+                    return;
+                }
 
                 if (isAdmin(path)) { // 管理员身份
                     // 需要管理员身份
                     if (userType.equals("admin")) {
                         // 权限满足
-                        filterchain.doFilter(httpServletRequest, servletresponse);
+                        filterchain.doFilter(myReq, servletresponse);
                         return;
                     } else {
                         throw new RuntimeException("对不起您的权限不足！");
@@ -69,7 +75,7 @@ public class SecurityFilter implements Filter {
             }
         }
 
-        filterchain.doFilter(httpServletRequest, servletresponse);
+        filterchain.doFilter(myReq, servletresponse);
     }
 
 
@@ -101,6 +107,7 @@ public class SecurityFilter implements Filter {
         pubLicPath.add("/common");
         pubLicPath.add("/css");
         pubLicPath.add("/js");
+        pubLicPath.add("/博物馆图片资源");
 
         for (String testPath : pubLicPath) {
             if (path.startsWith(testPath))
@@ -163,6 +170,7 @@ public class SecurityFilter implements Filter {
 
     /**
      * 判断请求是否是AJAX请求
+     *
      * @param request
      * @return
      */
@@ -173,5 +181,58 @@ public class SecurityFilter implements Filter {
                 return true;
         }
         return false;
+    }
+
+    class MyRequest extends HttpServletRequestWrapper {
+        ServletRequest r;
+        private HttpServletRequest req;
+
+        MyRequest(HttpServletRequest req) {
+            super(req);
+            this.req = req;
+        }
+
+
+
+        @Override
+        public String getParameter(String name) {
+            Map<String, String[]> map = getParameterMap();
+            return map.get(name)[0];
+
+        }
+
+        @Override
+        public String[] getParameterValues(String name) {
+            Map<String, String[]> map = getParameterMap();
+            return map.get(name);
+        }
+
+        boolean flag = true;
+
+        @Override
+        public Map<String, String[]> getParameterMap() {
+            Map<String, String[]> map = req.getParameterMap();
+            if (flag) {
+                for (Map.Entry<String, String[]> en : map.entrySet()) {
+                    String[] arr = en.getValue();
+
+                    System.out.println(en.getValue());
+                    System.out.println(arr);
+
+                    for (int i = 0; i < arr.length; i++) {
+                        //数组中的每个值都要再编码再解码处理
+                        try {
+                            arr[i] = new String(arr[i].getBytes("ISO8859-1"), "utf-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                flag = false;
+            }
+            return map;
+        }
+
+
     }
 }

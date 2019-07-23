@@ -20,7 +20,7 @@
         <div class="col-sm-7 row justify-content-end">
             <ul class="nav nav-pills list-inline-item col-sm-10 justify-content-end " id="move">
                 <li class="nav-item list-inline-item">
-                    <a href="../index.jsp" class="nav-link">首页</a>
+                    <a href="./index.jsp" class="nav-link">首页</a>
                 </li>
                 <% if (session.getAttribute("user") != null) {%>
                 <li class="nav-item list-inline-item dropdown">
