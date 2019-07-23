@@ -83,7 +83,7 @@ public class RecommendServiceImpl implements RecommendService {
             User user = friendRelation.getClient();
             List<Favour> favours = iFavourDAO.getFavourByUserID(user.getUserID());
             for (Favour favour : favours) {
-                paintings.add(iPaintingDAO.getOnePaintingByArtworkID(favour.getFavourID()));
+                paintings.add(favour.getPainting());
             }
         }
         if (paintings.isEmpty()){
