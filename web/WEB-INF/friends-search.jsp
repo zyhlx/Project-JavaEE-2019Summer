@@ -23,14 +23,14 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
 
 
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 
-    <link rel="stylesheet" href="../css/search/search.css">
-    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
+    <link rel="stylesheet" href="css/search/search.css">
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 
     <style type="text/css">
 
@@ -124,12 +124,12 @@
 </body>
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<script src="../common/simply-toast/simply-toast.js"></script>
-<script src="../js/nav/registe.js"></script>
-<script src="../js/nav/login.js"></script>
-<script src="../js/nav/moveline.js"></script>
-<script src="../js/nav/nav.js"></script>
-<script type="text/javascript" src="../common/dist/jq-paginator.js"></script>
-<script type="text/javascript" src="../js/search/friendSearch.js"></script>
+<script src="common/simply-toast/simply-toast.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+<script src="js/nav/nav.js"></script>
+<script type="text/javascript" src="common/dist/jq-paginator.js"></script>
+<script type="text/javascript" src="js/search/friendSearch.js"></script>
 
 </html>

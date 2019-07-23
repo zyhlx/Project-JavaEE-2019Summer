@@ -143,6 +143,7 @@ public class UserDAOImpl implements IUserDAO {
                 user.setPassword(rs.getString("password"));
                 user.setLoadTime(rs.getTimestamp("loadTime"));
                 user.setType(rs.getString("type"));
+                user.setSignature(rs.getString("signature"));
 
                 users.add(user);
             }
