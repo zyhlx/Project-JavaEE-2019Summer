@@ -40,9 +40,11 @@
                 <button type="button" class="btn btn-light text-left btn-favour" id="btn-favour-${painting.paintingID}">
                     <i class="fa fa-heart-o"></i>
                 </button>
+                <c:if test="${sessionScope.userType.equals(\"admin\")}">
                 <button type="button" class="btn btn-light text-left btn-manage" id="btn-manage-${painting.paintingID}">
                     <i class="fa fa-folder-open"></i>
                 </button>
+                </c:if>
 
             </div>
 

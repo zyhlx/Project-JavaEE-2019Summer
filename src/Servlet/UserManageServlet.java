@@ -28,10 +28,23 @@ import java.util.List;
 @WebServlet(name = "UserManageServlet", value = "/userManagement")
 public class UserManageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String function = request.getParameter("function");
-        String userID = request.getParameter("userID");
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
+
+        String function = request.getParameter("function");
+        String userID = request.getParameter("userID");
+
+        HttpSession session = request.getSession(true);
+        String userIDOfOperator = "" + (Integer) session.getAttribute("userID");
+        if (userID.equals((userIDOfOperator))) {
+            String alert = "{\"type\":\"false\",\"msg\":\"不能修改自己！\"}";
+            PrintWriter out = response.getWriter();
+            out.println(alert);
+            out.flush();
+            out.close();
+            return;
+        }
+
         UserDetailService userDetailService = new UserDetailServiceImpl();
         LoginService loginService = new LoginServiceImpl();
         switch (function){

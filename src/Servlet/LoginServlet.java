@@ -20,6 +20,25 @@ import java.util.List;
 @WebServlet(name = "Servlet.LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      login(request, response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+logout(request, response);
+    }
+
+    private void logout(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        HttpSession httpSession = request.getSession(true);
+        httpSession.removeAttribute("user");
+        httpSession.removeAttribute("userID");
+        httpSession.removeAttribute("userType");
+        request.getRequestDispatcher("/index.jsp").forward(
+                request, response);
+
+    }
+
+    private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("username");
         String pwd = request.getParameter("password");
         HttpSession session = request.getSession(true);
@@ -44,17 +63,5 @@ public class LoginServlet extends HttpServlet {
             out.flush();
             out.close();
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    private void logout(HttpServletRequest request,HttpServletResponse response){
-        HttpSession httpSession = request.getSession(true);
-        httpSession.removeAttribute("user");
-        httpSession.removeAttribute("userID");
-        httpSession.removeAttribute("userType");
-
     }
 }
