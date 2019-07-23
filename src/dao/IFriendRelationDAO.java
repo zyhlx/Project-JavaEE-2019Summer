@@ -12,6 +12,7 @@ public interface IFriendRelationDAO {
     public List<FriendRelation> getFriends(String query);
     public List<FriendRelation> getFriends(int userID, int accepted);
     public void deleteAll(int userID);
+    public List<Integer> getHotFriends();
 
 //    public List<FriendRelation> getFriendsByUserID(int userID);
 }

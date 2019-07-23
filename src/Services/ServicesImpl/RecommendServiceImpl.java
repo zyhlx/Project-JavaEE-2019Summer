@@ -8,6 +8,7 @@ import bean.User;
 import dao.IFavourDAO;
 import dao.IFriendRelationDAO;
 import dao.IPaintingDAO;
+import dao.IUserDAO;
 import dao.factory.DAOFactory;
 
 import java.util.ArrayList;
@@ -18,11 +19,13 @@ public class RecommendServiceImpl implements RecommendService {
     private IFriendRelationDAO iFriendRelationDAO;
     private IPaintingDAO iPaintingDAO;
     private IFavourDAO iFavourDAO;
+    private IUserDAO iUserDAO;
 
     public RecommendServiceImpl() {
         iFriendRelationDAO = DAOFactory.getIFriendRelationDAOInstance();
         iPaintingDAO = DAOFactory.getIPaintingDAOInstance();
         iFavourDAO = DAOFactory.getIFavourDAOInstance();
+        iUserDAO = DAOFactory.getIUserDAOInstance();
     }
 
     public List<User> friendRecommend(int userID) {
@@ -36,7 +39,9 @@ public class RecommendServiceImpl implements RecommendService {
             }
         }
         if (users.isEmpty()){
-//            users =  iFriendRelationDAO.getHotFriends();
+            for (Integer searchID:iFriendRelationDAO.getHotFriends()){
+                users.add(iUserDAO.getUserInformation(userID));
+            };
         }
         return users;
     }
