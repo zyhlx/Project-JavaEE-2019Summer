@@ -86,37 +86,14 @@
 </c:if>
 
 </section>
+    <input type="hidden" id="userID" value="<%=session.getAttribute("user")%>">
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="js/session.js"></script>
-<script>
-
-    $(".btn-favour").on("click", function () {
-        //如果已登录，收藏
-        var userName = "<%=session.getAttribute("user")%>";
-        var artworkID = $(this).attr("id").substring(11);
-        if (userName !== "null") {
-            $.post("./favour", {
-                userName: userName,
-                artworkID: artworkID
-            }, function (result) {
-                $.simplyToast(result.msg, 'info');
-            });
-        }
-        else {
-            $.simplyToast("请先登录", 'warning');
-        }
-    });
-
-    $(".btn-manage").on("click", function () {
-        var artworkID = $(this).attr("id").substring(11);
-        location.href = "./workDisplay?artworkID="+artworkID;
-    });
-</script>
-
+<script src="js/detail/detail.js"></script>
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>

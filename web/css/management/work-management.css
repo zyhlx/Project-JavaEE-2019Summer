@@ -1,0 +1,22 @@
+main {
+    max-width: none;
+    padding: 56px 0 12px 0;
+}
+#info{
+    margin-left: 7%;
+    margin-right: 7%;
+
+}
+main img{
+    height: 150px;
+    width: auto;
+}
+
+main h1 {
+    font-family: "MetSerif", "Georgia", serif;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.166;
+    margin-left: 1.7em;
+    margin-top: 0.7em;
+}

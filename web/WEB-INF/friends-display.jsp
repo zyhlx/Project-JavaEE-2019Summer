@@ -17,52 +17,7 @@
     <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
     <link href="../common/awesome-bootstrap-checkbox.css" rel="stylesheet">
-
-    <style>
-        main {
-            padding-top: 50px!important;
-        }
-
-        img {
-            height: 120px;
-            width: 120px;
-        }
-
-        .btn-add {
-            margin-top: 1em;
-            margin-left: 10%;
-        }
-
-        .user-result {
-            margin-top: 2em;
-            margin-left: 7%;
-            margin-right: 7%;
-            padding: 1em;
-            width: 86%;
-        }
-
-        .info-title {
-            font-weight: bold;
-        }
-
-        .user-name {
-            font-size: 20px;
-        }
-
-        main h1 {
-            font-family: "MetSerif", "Georgia", serif;
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.166;
-            margin-left: 1.7em;
-            margin-top: 0.7em;
-        }
-        .btn-search{
-            margin-left: 5em;
-            margin-top: 1.7em;
-        }
-
-    </style>
+    <link href="../css/friend-display/friend-display.css" rel="stylesheet">
 
 </head>
 <%@ include file="../common/nav.jsp" %>
@@ -109,29 +64,5 @@
 <script src="../js/nav/moveline.js"></script>
 <script src="../js/nav/nav.js"></script>
 <%--页面相应逻辑--%>
-<script>
-    $(".btn-delete").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement", {
-            function: "0",
-            userID: userID
-        }, function (result) {
-            window.location.reload();
-            $.simplyToast(result.msg, 'info');
-        });
-    });
-
-    $(".btn-change").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement", {
-            function: "1",
-            userID: userID
-        }, function (result) {
-            window.location.reload();
-            $.simplyToast(result.msg, 'info');
-        });
-    });
-
-
-</script>
+<script src="../js/friend-display/friend.js"></script>
 </html>

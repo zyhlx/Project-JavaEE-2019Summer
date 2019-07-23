@@ -1,0 +1,17 @@
+main img{
+    max-height: 150px;
+    width: auto;
+}
+#content{
+    margin-top: 5em;
+    margin-left: 7%;
+    margin-right: 7%;
+    width: 86%;
+}
+main td{
+    width: 20%;
+}
+.favour-result{
+    padding: 1em;
+    margin-top: 1.5em;
+}
