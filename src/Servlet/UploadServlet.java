@@ -28,6 +28,8 @@ public class UploadServlet extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\其他";
     private static final String UPLOAD_VIDEO_DIC = "D:\\好好学习\\好好学习\\卓越软件\\Project-JavaEE-2019Summer\\web\\博物馆图片资源\\videos";
 
+    private static final String RELATIVE_PIC_PATH = "博物馆图片资源\\其他\\";
+    private static final String RELATIVE_VIDEO_PATH = "博物馆图片资源\\videos\\";
     // 上传配置
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
@@ -134,11 +136,12 @@ public class UploadServlet extends HttpServlet {
                                     String type = fileName.substring(fileName.length() - 4);
                                     if (type.equals(".mp4") || type.equals(".ogg") || type.equals(".swf") || fileName.substring(fileName.length() - 5).equals("webm")) {
                                         videoPath = fileName;
-                                        filePath = UPLOAD_VIDEO_DIC + File.separator + fileName;
+                                        filePath = request.getSession().getServletContext().getRealPath("s")  + RELATIVE_VIDEO_PATH + fileName;
                                     } else {
                                         imageFileName = fileName;
-                                        filePath = UPLOAD_DIRECTORY + File.separator + fileName;
+                                        filePath = request.getSession().getServletContext().getRealPath("")   + RELATIVE_PIC_PATH + fileName;
                                     }
+                                    System.out.println(filePath);
 
                                     File storeFile = new File(filePath);
                                     // 在控制台输出文件的上传路径
