@@ -61,7 +61,7 @@ public class UserDetailServlet extends HttpServlet {
 
         request.setAttribute("user", user);
         request.setAttribute("favoursShow", favoursShow);
-        request.getRequestDispatcher("./user-detail.jsp").forward(request, response);
+        request.getRequestDispatcher("./WEB-INF/user-detail.jsp").forward(request, response);
 
     }
 }

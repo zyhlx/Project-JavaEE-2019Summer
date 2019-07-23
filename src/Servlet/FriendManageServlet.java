@@ -41,11 +41,18 @@ public class FriendManageServlet extends HttpServlet {
             // 添加好友
             case "1":
                 FriendRelation friendRelation = new FriendRelation();
-                friendRelation.setClientID(Integer.parseInt(clientID));
-                friendRelation.setPatronID(userID);
-                friendRelation.setAccepted(0);
-                friendService.insert(friendRelation);
-                String temp1 = "{\"type\":\"true\",\"msg\":\"发送请求成功\"}";
+                String temp1 = null;
+                if (friendService.getFriendRealtion(userID, Integer.parseInt(clientID)) != null) {
+                    temp1 = "{\"type\":\"false\",\"msg\":\"已经发送过请求了哦\"}";
+                }
+                else {
+
+                    friendRelation.setClientID(Integer.parseInt(clientID));
+                    friendRelation.setPatronID(userID);
+                    friendRelation.setAccepted(0);
+                    friendService.insert(friendRelation);
+                    temp1 = "{\"type\":\"true\",\"msg\":\"发送请求成功\"}";
+                }
                 PrintWriter out1 = response.getWriter();
                 out1.println(temp1);
                 out1.flush();

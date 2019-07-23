@@ -73,7 +73,7 @@ public class LetterServlet extends HttpServlet {
             request.setAttribute("receiveLetters",receiveLetters);
             request.setAttribute("friendRequests", friendRequests);
             request.setAttribute("friendLetters", friendLetters);
-            request.getRequestDispatcher("./letter.jsp").forward(request, response);
+            request.getRequestDispatcher("./WEB-INF/letter.jsp").forward(request, response);
         }
 
 

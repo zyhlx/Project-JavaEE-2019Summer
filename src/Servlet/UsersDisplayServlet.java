@@ -19,7 +19,7 @@ public class UsersDisplayServlet extends HttpServlet {
         UserDetailService userDetailService = new UserDetailServiceImpl();
         List<User> users = userDetailService.getUserAll();
         request.setAttribute("users", users);
-        request.getRequestDispatcher("./user-management.jsp").forward(request,response);
+        request.getRequestDispatcher("./WEB-INF/user-management.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
