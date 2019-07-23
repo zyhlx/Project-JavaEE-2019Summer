@@ -136,7 +136,7 @@ public class UploadServlet extends HttpServlet {
                                     String type = fileName.substring(fileName.length() - 4);
                                     if (type.equals(".mp4") || type.equals(".ogg") || type.equals(".swf") || fileName.substring(fileName.length() - 5).equals("webm")) {
                                         videoPath = fileName;
-                                        filePath = request.getSession().getServletContext().getRealPath("s")  + RELATIVE_VIDEO_PATH + fileName;
+                                        filePath = request.getSession().getServletContext().getRealPath("")  + RELATIVE_VIDEO_PATH + fileName;
                                     } else {
                                         imageFileName = fileName;
                                         filePath = request.getSession().getServletContext().getRealPath("")   + RELATIVE_PIC_PATH + fileName;

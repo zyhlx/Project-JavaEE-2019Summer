@@ -14,7 +14,7 @@ public class Painting {
     private int width;
     private int height;
     private int cost;
-    private BigDecimal msrp;
+    private BigDecimal msrp = new BigDecimal(900.0000);
     private int yearOfWork;
     private int postOfTime;
     private String videoPath = "";
