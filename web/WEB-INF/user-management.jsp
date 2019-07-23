@@ -46,7 +46,7 @@
         </table>
     </div>
     <div class="col-2">
-        <p><button type="button" class="btn btn-change" id="change-${userItem.userID}">
+        <p><button type="button" class="btn btn-change btn-primary" id="change-${userItem.userID}">
             <c:if test="${userItem.type.equals(\"normal\")}">
                 提升为管理员
             </c:if>

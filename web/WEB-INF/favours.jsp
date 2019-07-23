@@ -70,8 +70,8 @@
                     </table>
                 </div>
                 <div class="col-2">
-                    <p><button type="button" class="btn btn-delete" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
-                    <p><button type="button" class=" btn btn-change" id="btn-change-${favourItem.favourID}">
+                    <p><button type="button" class="btn btn-delete btn-primary" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
+                    <p><button type="button" class=" btn btn-change btn-primary" id="btn-change-${favourItem.favourID}">
                         <c:if test="${favourItem.open == 0}">
                             设为公开
                         </c:if>

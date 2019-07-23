@@ -101,7 +101,7 @@
                     <div class="col-2">
                         <p class="type text-muted">Artwork</p>
                         <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
-                            <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
+                            <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" onerror="this.src='/images/assert/icon/ico-no-image.svg'">
                         </a>
                     </div>
                     <div class="col-8 card-body table-responsive">

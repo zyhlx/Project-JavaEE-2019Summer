@@ -26,6 +26,9 @@
 <h1>
     Friends
 </h1>
+    <p>
+        <a href="./friendSearch">  <button class="btn btn-search btn-primary" type="button"> 搜索</button> </a>
+    </p>
     <section>
 <c:forEach items="${friends}" var="friendItem" >
     <div class="row border user-result">
@@ -48,9 +51,7 @@
 </c:forEach>
 
     </section>
-    <p>
-       <a href="./friendSearch">  <button class="btn btn-search" type="button"> 搜索</button> </a>
-    </p>
+
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>

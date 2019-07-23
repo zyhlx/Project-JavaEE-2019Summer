@@ -35,7 +35,7 @@
 
         </div>
         <div class="col-7 bg-light text-dark" id="picture-container">
-            <img src="博物馆图片资源/其他/${painting.imageFileName}" alt="" id="picture">
+            <img src="博物馆图片资源/其他/${painting.imageFileName}" onerror="this.src='/images/assert/icon/ico-no-image.svg'" id="picture">
             <div id="icons">
                 <button type="button" class="btn btn-light text-left btn-favour" id="btn-favour-${painting.paintingID}">
                     <i class="fa fa-heart-o"></i>
