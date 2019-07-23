@@ -20,20 +20,21 @@ import java.util.List;
 @WebServlet(name = "Servlet.LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      login(request, response);
+        login(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-logout(request, response);
+        logout(request, response);
     }
 
-    private void logout(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession httpSession = request.getSession(true);
         httpSession.removeAttribute("user");
         httpSession.removeAttribute("userID");
         httpSession.removeAttribute("userType");
         response.sendRedirect("./index.jsp");
+
 
     }
 
@@ -44,18 +45,18 @@ logout(request, response);
         response.setContentType("text/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         LoginService loginService = new LoginServiceImpl();
-        User user = loginService.login(name,pwd);
-        if (user!=null) {
+        User user = loginService.login(name, pwd);
+        if (user != null) {
             session.setAttribute("user", name);
             session.setAttribute("userID", user.getUserID());
             session.setAttribute("userType", user.getType());
-            loginService.updateLoadTime( user.getUserID());
+            loginService.updateLoadTime(user.getUserID());
             String temp = "{\"type\":\"true\",\"msg\":\"登陆成功\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
             out.flush();
             out.close();
-        }else {
+        } else {
             String temp = "{\"type\":\"false\",\"msg\":\"用户名密码错误\"}";
             PrintWriter out = response.getWriter();
             out.println(temp);
