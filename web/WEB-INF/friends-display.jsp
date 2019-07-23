@@ -35,7 +35,7 @@
             <img src="images/user/${friendItem.client.type}.jpg" alt="">
         </div>
         <div class="col-8 panel panel-default">
-            <div class="panel-heading user-name">${friendItem.client.username}</div>
+            <div class="panel-heading user-name"><a href="userDetail?userID=<c:out value="${friendItem.client.userID}"/>">${friendItem.client.username}</a></div>
             <table class="table">
                 <tr><td class="info-title">邮箱</td><td>${friendItem.client.email}</td></tr>
                 <tr><td class="info-title">个性签名</td><td>${friendItem.client.signature}</td></tr>
