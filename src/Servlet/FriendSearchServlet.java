@@ -30,6 +30,9 @@ public class FriendSearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置响应编码格式
         request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+//        response.setContentType("text/json;charset=UTF-8");
+//        response.setCharacterEncoding("UTF-8");
         // 检索
         String input = request.getParameter("input_text");
         HttpSession session = request.getSession(true);

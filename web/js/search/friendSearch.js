@@ -19,7 +19,7 @@ function load_friend() {
                 if (users.isFriend == 0) {
                     $("#list-content").append("<div class=\"row border user-result\">\n" +
                         "                    <div class=\"col-10\">\n" +
-                        "                <a href='./userDetail?userID=" + users.userID + "'>   <p class=\"userName\">" + users.username + "</p></a>\n" +
+                        "                   <p class=\"userName\"> <a href='./userDetail?userID=" + users.userID + "'>"+ users.username + "</a></p>" +
                         "</div>" +
                         "                    <div class=\"col-2\">\n" +
                         "                    <p><button type=\"button\" class=\"btn btn-addFriend\" id=\"btn-add-" + users.userID + "\"'>添加为好友</button></p>\n" +
@@ -40,7 +40,9 @@ function load_friend() {
                         "            <img src=\"images/user/" + users.type + ".jpg\" alt=\"\">\n" +
                         "        </div>\n" +
                         "        <div class=\"col-8 panel panel-default\">\n" +
-                        "            <div class=\"panel-heading user-name\">" + users.username + "</div>\n" +
+                        "<a href='./userDetail?userID=" + users.userID + "'> "  +
+                        "  <div class=\"panel-heading user-name\">" + users.username + "</div>\n" +
+                        "</a>" +
                         "            <table class=\"table\">\n" +
                         "                <tr><td class=\"info-title\">邮箱</td><td>" + users.email + "</td></tr>\n" +
                         "                <tr><td class=\"info-title\">个性签名</td><td>" + users.signature + "</td></tr>\n" +

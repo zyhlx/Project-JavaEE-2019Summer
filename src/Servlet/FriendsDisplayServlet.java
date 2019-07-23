@@ -24,6 +24,9 @@ import java.util.List;
 @WebServlet(name = "FriendsDisplayServlet", value = "/friendsDisplay")
 public class FriendsDisplayServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession(true);
         int userID = (Integer) session.getAttribute("userID");
         FriendService friendService = new FriendServiceImpl();
@@ -33,7 +36,7 @@ public class FriendsDisplayServlet extends HttpServlet {
 // 获得收藏
         for (FriendRelation friendRelation : friends) {
             FavoursService favoursService = new FavoursServiceImpl();
-            friendRelation.getClient().setFavours(favoursService.getFavourByUserID(userID));
+            friendRelation.getClient().setFavours(favoursService.getFavourByUserID(friendRelation.getClientID()));
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);

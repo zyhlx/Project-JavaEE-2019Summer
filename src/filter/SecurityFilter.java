@@ -29,7 +29,8 @@ public class SecurityFilter implements Filter {
             throws IOException, ServletException {
         // 1、获得当前请求访问资源路径
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletrequest;
-        httpServletRequest.setCharacterEncoding("utf-8");
+        HttpServletResponse httpServletResponse = (HttpServletResponse) servletresponse;
+                httpServletRequest.setCharacterEncoding("utf-8");
         String path = httpServletRequest.getRequestURI().substring(
                 httpServletRequest.getContextPath().length());
         System.out.println(path);
@@ -45,8 +46,7 @@ public class SecurityFilter implements Filter {
             if (userType == null) {
                 // 未登陆--- 没有权限 --- 跳转到登陆页面
                 servletrequest.setAttribute("msg", "您还没有登陆！");
-                servletrequest.getRequestDispatcher("/index.jsp").forward(
-                        httpServletRequest, servletresponse);
+               httpServletResponse.sendRedirect("./index.jsp");
                 return;
             } else {
                 // 已经登陆 --- 用户有身份
