@@ -21,30 +21,12 @@
     <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
     <link href="../common/awesome-bootstrap-checkbox.css" rel="stylesheet">
-    <style>
-        img{
-            max-height: 150px;
-            width: auto;
-        }
-        #content{
-            margin-top: 5em;
-            margin-left: 7%;
-            margin-right: 7%;
-            width: 86%;
-        }
-        td{
-            width: 20%;
-        }
-        .favour-result{
-            padding: 1em;
-            margin-top: 1.5em;
-        }
+    <link href="../css/detail/detail.css" rel="stylesheet">
 
-    </style>
 </head>
 <body>
 <%@ include file="../common/nav.jsp"%>
-
+<main>
 <section id="content">
 <c:choose>
     <c:when test="${favours.isEmpty()}">
@@ -88,8 +70,8 @@
                     </table>
                 </div>
                 <div class="col-2">
-                    <p><button type="button" class="btn btn-delete" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
-                    <p><button type="button" class=" btn btn-change" id="btn-change-${favourItem.favourID}">
+                    <p><button type="button" class="btn btn-delete btn-primary" id="btn-delete-${favourItem.favourID}"> 删除</button> </p>
+                    <p><button type="button" class=" btn btn-change btn-primary" id="btn-change-${favourItem.favourID}">
                         <c:if test="${favourItem.open == 0}">
                             设为公开
                         </c:if>
@@ -106,7 +88,7 @@
 
 
 </section>
-
+</main>
 
 </body>
 
@@ -114,30 +96,7 @@
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script src="../js/session.js"></script>
-<script>
-
-   $(".btn-change").on("click",function () {
-       var favourID = $(this).attr("id").substring(11);
-       $.post("./favourManage",{
-           function: "1",
-           favourID: favourID
-       },function (result) {
-           window.location.reload();
-           $.simplyToast(result.msg, 'info');
-       });
-   });
-
-   $(".btn-delete").on("click",function () {
-       var favourID = $(this).attr("id").substring(11);
-       $.post("./favourManage",{
-           function: "0",
-           favourID: favourID
-       },function (result) {
-           window.location.reload();
-           $.simplyToast(result.msg, 'info');
-       });
-   })
-</script>
+<script src="../js/favour/favour.js"></script>
 
 
 

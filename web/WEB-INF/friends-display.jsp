@@ -17,60 +17,16 @@
     <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
     <link href="../common/awesome-bootstrap-checkbox.css" rel="stylesheet">
-
-    <style>
-        main {
-            padding-top: 50px!important;
-        }
-
-        img {
-            height: 120px;
-            width: 120px;
-        }
-
-        .btn-add {
-            margin-top: 1em;
-            margin-left: 10%;
-        }
-
-        .user-result {
-            margin-top: 2em;
-            margin-left: 7%;
-            margin-right: 7%;
-            padding: 1em;
-            width: 86%;
-        }
-
-        .info-title {
-            font-weight: bold;
-        }
-
-        .user-name {
-            font-size: 20px;
-        }
-
-        main h1 {
-            font-family: "MetSerif", "Georgia", serif;
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.166;
-            margin-left: 1.7em;
-            margin-top: 0.7em;
-        }
-        .btn-search{
-            margin-left: 5em;
-            margin-top: 1.7em;
-        }
-
-    </style>
+    <link href="../css/friend-display/friend-display.css" rel="stylesheet">
 
 </head>
 <%@ include file="../common/nav.jsp" %>
 <body>
 <main>
-<h1>
-    Friends
+<h1 class="">
+    Friends <a href="./friendSearch">  <button class="btn btn-search btn-primary" type="button"> 搜索</button> </a>
 </h1>
+
     <section>
 <c:forEach items="${friends}" var="friendItem" >
     <div class="row border user-result">
@@ -79,7 +35,7 @@
             <img src="images/user/${friendItem.client.type}.jpg" alt="">
         </div>
         <div class="col-8 panel panel-default">
-            <div class="panel-heading user-name">${friendItem.client.username}</div>
+            <div class="panel-heading user-name"><a href="userDetail?userID=<c:out value="${friendItem.client.userID}"/>">${friendItem.client.username}</a></div>
             <table class="table">
                 <tr><td class="info-title">邮箱</td><td>${friendItem.client.email}</td></tr>
                 <tr><td class="info-title">个性签名</td><td>${friendItem.client.signature}</td></tr>
@@ -93,9 +49,7 @@
 </c:forEach>
 
     </section>
-    <p>
-       <a href="./friendSearch">  <button class="btn btn-search" type="button"> 搜索</button> </a>
-    </p>
+
 </main>
 </body>
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -109,29 +63,5 @@
 <script src="../js/nav/moveline.js"></script>
 <script src="../js/nav/nav.js"></script>
 <%--页面相应逻辑--%>
-<script>
-    $(".btn-delete").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement", {
-            function: "0",
-            userID: userID
-        }, function (result) {
-            window.location.reload();
-            $.simplyToast(result.msg, 'info');
-        });
-    });
-
-    $(".btn-change").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./userManagement", {
-            function: "1",
-            userID: userID
-        }, function (result) {
-            window.location.reload();
-            $.simplyToast(result.msg, 'info');
-        });
-    });
-
-
-</script>
+<script src="../js/friend-display/friend.js"></script>
 </html>

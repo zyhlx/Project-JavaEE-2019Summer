@@ -22,7 +22,7 @@ function load_friend() {
                         "                   <p class=\"userName\"> <a href='./userDetail?userID=" + users.userID + "'>"+ users.username + "</a></p>" +
                         "</div>" +
                         "                    <div class=\"col-2\">\n" +
-                        "                    <p><button type=\"button\" class=\"btn btn-addFriend\" id=\"btn-add-" + users.userID + "\"'>添加为好友</button></p>\n" +
+                        "                    <p><button type=\"button\" class=\"btn btn-addFriend btn-primary\" id=\"btn-add-" + users.userID + "\"'>添加为好友</button></p>\n" +
                         "                    </div>\n" +
                         "                    </div>"
                     );
@@ -51,7 +51,7 @@ function load_friend() {
                         "            </table>\n" +
                         "        </div>\n" +
                         "<div class=\"col-2\">" +
-                        "<p><button type=\"button\" class=\"btn btn-delete\" id='btn-delete-" + users.userID + "'>删除好友</button> </p>"+
+                        "<p><button type=\"button\" class=\"btn btn-delete btn-primary\" id='btn-delete-" + users.userID + "'>删除好友</button> </p>"+
                         "    </div>" +
                         "</div>");
                 }

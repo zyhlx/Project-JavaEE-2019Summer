@@ -23,39 +23,14 @@
     <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
     <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
     <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
-    <link rel="stylesheet" type="text/css" href="../css/index/index.css">
-
-    <style>
-        img{
-            height: 120px;
-            width: 120px;
-        }
-        .btn-add{
-            margin-top: 1em;
-            /*margin-left: 7%;*/
-        }
-        .user-result{
-            margin-top: 2em;
-            /*margin-left: 7%;*/
-            /*margin-right: 7%;*/
-            padding: 1.5em;
-            //width: 86%;
-        }
-        .info-title{
-            font-weight: bold;
-        }
-        .user-name{
-            font-size: 20px;
-        }
-
-
-    </style>
-
+    <link href="../css/management/user-management.css" rel="stylesheet">
 </head>
 <%@ include file="../common/nav.jsp"%>
 <body>
 <main>
-
+    <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
+        <button type="button" class="btn btn-add btn-primary">添加用户</button>
+    </a>
 <c:forEach items="${users}" var="userItem">
 <div class="row border user-result">
     <div class="col-2">
@@ -73,7 +48,7 @@
         </table>
     </div>
     <div class="col-2">
-        <p><button type="button" class="btn btn-change" id="change-${userItem.userID}">
+        <p><button type="button" class="btn btn-change btn-primary" id="change-${userItem.userID}">
             <c:if test="${userItem.type.equals(\"normal\")}">
                 提升为管理员
             </c:if>
@@ -81,13 +56,11 @@
                 降为普通用户
             </c:if>
         </button></p>
-        <p><button type="button" class="btn btn-delete" id="delete-${userItem.userID}">删除</button></p>
+        <p><button type="button" class="btn btn-delete btn-primary" id="delete-${userItem.userID}">删除</button></p>
     </div>
 </div>
 </c:forEach>
-    <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
-    <button type="button" class="btn btn-add">添加用户</button>
-    </a>
+
 </main>
 
 <!-- 模态框 -->
@@ -175,47 +148,6 @@
 
 <script src="../js/management/user-management.js"></script>
 
-<script>
 
-    function addUser() {
-        var form1= document.getElementById('form-add');
-        if (document.getElementById('username-add').value === "") {
-            $.simplyToast("用户名不能为空",'warning');
-            return false;
-        }
-        else if (document.getElementById('password-add').value === "") {
-            $.simplyToast("密码不能为空",'warning');
-            return false;
-        }
-        else {
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "./userManagement",//url
-                data: $(form1).serialize(),
-                success: function (result) {
-
-                    if (result.type === "true") {
-                        $.simplyToast(result.msg, 'success');
-                        setTimeout('history.go(0)', 2000);
-
-
-                    } else {
-                        $.simplyToast(result.msg, 'info');
-                        setTimeout('history.go(0)', 2000);
-                        // setTimeout('history.go(0)',2000);
-                    }
-                },
-                error: function () {
-                    $.simplyToast("未知错误", 'warning');
-                    // alert("异常！");
-                }
-            });
-        }
-
-    }
-
-</script>
 
 </html>

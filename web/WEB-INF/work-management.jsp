@@ -27,31 +27,12 @@
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
-    <link rel="stylesheet" type="text/css" href="css/index/index.css">
 
-    <style>
-        #info{
-            margin-left: 7%;
-            margin-right: 7%;
-
-        }
-        img{
-            height: 150px;
-            width: auto;
-        }
-
-        main h1 {
-            font-family: "MetSerif", "Georgia", serif;
-            font-size: 48px;
-            font-weight: 400;
-            line-height: 1.166;
-            margin-left: 1.7em;
-            margin-top: 0.7em;
-        }
-    </style>
+    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
+    <%--<link rel="stylesheet" type="text/css" href="../css/index/index.css">--%>
+    <link rel="stylesheet" type="text/css" href="../css/management/work-management.css">
 
 </head>
 <body>
@@ -87,7 +68,7 @@
     <div class="form-group">
         <label for="file">上传图片</label>
         <input type="file" name="file" id="file" onchange="previewPic()" required="required" >
-        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}"></div>
+        <div id="showFile"><img src="博物馆图片资源/其他/${painting.imageFileName}"  onerror="this.src='/images/assert/icon/ico-no-image.svg'"></div>
     </div>
     <div class="form-group">
         <label for="video">上传视频</label>
@@ -98,11 +79,11 @@
     <input hidden="hidden" name="artworkID" id="artworkID" value="${painting.paintingID}">
 
 </form>
-    <button type="submit" class="btn" id="btn-change">保存修改</button>
+    <button type="submit" class="btn btn-primary" id="btn-change">保存修改</button>
 <c:if test="${painting.paintingID != 0}">
-    <button type="button" class="btn btn-delete" id="btn-${painting.paintingID}">删除</button>
+    <button type="button" class="btn btn-delete btn-primary" id="btn-${painting.paintingID}">删除</button>
 </c:if>
-    <button type="button" class="btn" id="btn-add">添加作品</button>
+    <button type="button" class="btn btn-primary" id="btn-add">添加作品</button>
 </section>
 </main>
 
@@ -117,127 +98,14 @@
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<script src="common/simply-toast/simply-toast.js"></script>
-<script src="js/nav/registe.js"></script>
-<script src="js/nav/login.js"></script>
-<script src="js/nav/moveline.js"></script>
+<script src="../common/simply-toast/simply-toast.js"></script>
+<script src="../js/nav/registe.js"></script>
+<script src="../js/nav/login.js"></script>
+<script src="../js/nav/moveline.js"></script>
 
-<script src="js/nav/nav.js"></script>
-<%--<script src="js/management/work-management.js"></script>--%>
-<script>
-    var videoCheck = 1;
-    var picCheck = 1;
+<script src="../js/nav/nav.js"></script>
+<script src="../js/management/work-management.js"></script>
 
-
-    function previewVideo() {
-        var file=document.getElementById("video").files[0];
-        changed = "1";
-        if(!/video\/\w+/.test(file.type)){
-            $.simplyToast("请输入视频",'warning');
-            videoCheck = 0;
-            //alert("看清楚，这个需要图片！");
-            return false;
-        }
-videoCheck = 1;
-        var reader = new FileReader();
-        //将文件以Data URL形式读入页面
-        reader.readAsDataURL(file);
-        reader.onloadend=function(){
-            //var result=document.getElementById("result");
-            var showVideo=document.getElementById("showVideo");
-            var srcOfVideo = reader.result;
-            var display = " <video width=\"320\" height=\"240\" controls=\"controls\">" +
-                "<source src=\"" + srcOfVideo + "\" type=\"video/mp4\" />" +
-                "<source src=\"" + srcOfVideo +"\" type=\"video/ogg\" />" +
-                "<source src=\"" + srcOfVideo +"\" type=\"video/webm\" />" +
-                "<object data=\"" + srcOfVideo + "\"  width=\"320\" height=\"240\">" +
-                "<embed src=\"" + srcOfVideo + "\" width=\"320\" height=\"240\" />" +
-                "</object>" +
-                "</video>";
-            showVideo.innerHTML = display;
-
-        }
-    }
-
-    function previewPic() {
-        var file=document.getElementById("file").files[0];
-        changed = "1";
-        if(!/image\/\w+/.test(file.type)){
-            $.simplyToast("请输入图片",'warning');
-            //alert("看清楚，这个需要图片！");
-            picCheck = 0;
-            return false;
-        }
-picCheck = 1;
-        var reader = new FileReader();
-        //将文件以Data URL形式读入页面
-        reader.readAsDataURL(file);
-        reader.onloadend=function(){
-            //var result=document.getElementById("result");
-            var showPic = document.getElementById("showFile");
-            var srcOfPic = reader.result;
-            showPic.innerHTML='<img src="'+srcOfPic+'">';
-
-        }
-    }
-
-    $("#btn-change").on("click", function() {
-        var file=document.getElementById("video").files[0];
-        var pic=document.getElementById("file").files[0];
-        if ($("#title").val() === "") {
-            $.simplyToast("请输入作品名！");
-            return;
-        }
-        else if (videoCheck === 0 && file != null) {
-            $.simplyToast("请输入正确的视频！");
-            return;
-        }
-        else if (picCheck === 0 && pic !=null) {
-            $.simplyToast("请输入正确的照片！");
-            return;
-        }
-            var form = new FormData(document.getElementById("form-change"));
-            $.ajax({
-                url: "./upload",
-                type: "POST",
-                data: form,
-                dataType: "json",
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    if (data.type === "true") {
-                        $.simplyToast("上传成功", 'info');
-                    } else {
-                        $.simplyToast("上传失败，可能由于重复的名称/图片", 'warning');
-                    }
-
-                    //window.location.href='localhost/pj2/upload.html';
-                },
-                error: function (e) {
-                    alert(e);
-                    window.clearInterval(timer);
-                }
-            });
-
-
-    });
-
-    $("#btn-add").on("click", function () {
-        location.href = "./workDisplay?artworkID=0";
-    });
-
-    $(".btn-delete").on("click", function () {
-        //如果已登录，收藏
-        var artworkID = $(this).attr("id").substring(4);
-        $.post("./workDelete", {
-            artworkID: artworkID
-        }, function (result) {
-            $.simplyToast(result.msg, 'info');
-        });
-
-    });
-
-</script>
 
 </html>
 
