@@ -34,6 +34,8 @@ public class RecommendServiceImpl implements RecommendService {
             for (Integer searchID:iFriendRelationDAO.getHotFriends()){
                 users.add(iUserDAO.getUserInformation(searchID));
             }
+            users = ifNullGetUsers(users);
+
             return users;
         }
         List<FriendRelation> friendRelations = iFriendRelationDAO.getFriends(userID,1);
@@ -50,6 +52,11 @@ public class RecommendServiceImpl implements RecommendService {
                 users.add(iUserDAO.getUserInformation(searchID));
             };
         }
+        users = ifNullGetUsers(users);
+        return users;
+    }
+
+    private List<User> ifNullGetUsers(List<User> users) {
         if (users.isEmpty()){
             List<User> users1 = iUserDAO.getUserAll();
             if (users1.size()<3){
@@ -59,8 +66,6 @@ public class RecommendServiceImpl implements RecommendService {
                 users.add(users1.get(1));
                 users.add(users1.get(2));
             }
-
-
         }
         return users;
     }

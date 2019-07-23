@@ -34,7 +34,7 @@ public class WorkDisplayServlet extends HttpServlet {
 
         // 返回painting给jsp
         request.setAttribute("painting", painting);
-        request.getRequestDispatcher("./work-management.jsp").forward(request,response);
+        request.getRequestDispatcher("./WEB-INF/work-management.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

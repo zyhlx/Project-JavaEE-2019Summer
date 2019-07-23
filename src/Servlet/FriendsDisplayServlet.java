@@ -37,7 +37,7 @@ public class FriendsDisplayServlet extends HttpServlet {
         }
         // 返回friends给jsp
         request.setAttribute("friends", friends);
-        request.getRequestDispatcher("./friends-display.jsp").forward(request, response);
+        request.getRequestDispatcher("./WEB-INF/friends-display.jsp").forward(request, response);
 
 
     }

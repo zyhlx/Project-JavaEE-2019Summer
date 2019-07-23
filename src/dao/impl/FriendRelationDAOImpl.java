@@ -110,19 +110,45 @@ public class FriendRelationDAOImpl implements IFriendRelationDAO {
     }
 
     public List<Integer> getHotFriends() {
-        String sql = "select clientID, count(*) from friends group by clientID order by count(*) desc";
-        List<FriendRelation> friends = getFriends(sql);
+
+        List<Integer> friends = getFriendFriend();
         List<Integer> integers = new ArrayList<>();
         if (friends.size() < 3) {
-            for (FriendRelation friendRelation : friends) {
-                integers.add(friendRelation.getClientID());
-            }
+            integers.addAll(friends);
         } else {
-            integers.add(friends.get(0).getClientID());
-            integers.add(friends.get(1).getClientID());
-            integers.add(friends.get(2).getClientID());
+            integers.add(friends.get(0));
+            integers.add(friends.get(1));
+            integers.add(friends.get(2));
         }
         return integers;
+    }
+
+    private List<Integer> getFriendFriend(){
+        String sql = "select clientID, count(*) from friends group by clientID order by count(*) desc";
+        List<Integer> friends = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement ptmt = conn.prepareStatement(sql);
+            ResultSet rs = ptmt.executeQuery();
+            while (rs.next()) {
+                friends.add(rs.getInt("clientID"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return friends;
+
     }
 
     //

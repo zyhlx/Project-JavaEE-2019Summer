@@ -138,6 +138,8 @@
 
     </div>
 
+    </div>
+
 
         <div class="modal fade" id="change">
             <div class="modal-dialog">
@@ -194,7 +196,6 @@
                 </div>
             </div>
         </div>
-
 
 </main>
 </body>

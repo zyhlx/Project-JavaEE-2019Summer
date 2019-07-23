@@ -144,9 +144,9 @@
             <div class="card-body row">
                 <nav class="breadcrumb">
                 <c:forEach items="${recommendFriends}" var="recommendFriend" varStatus="recommendFriendStatus">
-                    <c:if test="${sessionScope.userID==null||recommendFriend.userID!=sessionScope.userID}">
+                    <%--<c:if test="${sessionScope.userID==null||recommendFriend.userID!=sessionScope.userID}">--%>
                         <a class="breadcrumb-item" href="userDetail?userID=<c:out value="${recommendFriend.userID}"/>"><c:out value="${recommendFriend.username}"/></a>
-                    </c:if>
+                    <%--</c:if>--%>
                 </c:forEach>
                 </nav>
             </div>

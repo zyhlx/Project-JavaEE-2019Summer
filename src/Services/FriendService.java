@@ -11,6 +11,7 @@ public interface FriendService {
     public List<FriendRelation> getAllFriends(int userID);
     public List<User> searchFriends(String name, int userID);
     public FriendRelation getFriendRealtion (int patronID, int clientID);
+
     public int insert(FriendRelation friendRelation);
 
     public int delete(int userID,int clientID);

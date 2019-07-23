@@ -33,34 +33,48 @@ public class FriendSearchServlet extends HttpServlet {
         // 检索
         String input = request.getParameter("input_text");
         HttpSession session = request.getSession(true);
-        int userID = (Integer)session.getAttribute("userID");
+        int userID = (Integer) session.getAttribute("userID");
         FavoursService favoursService = new FavoursServiceImpl();
         FriendService friendService = new FriendServiceImpl();
         UserDetailService userDetailService = new UserDetailServiceImpl();
 
 
         List<User> users = userDetailService.searchUsers(input);
-        // 判断是否好友
-        for (User user:users) {
-            // 获得收藏
-            if (friendService.isFriends(userID, user.getUserID())){
-                user.setIsFriend(1);
-                user.setFavours(favoursService.getFavourByUserID(user.getUserID()));
+        User myself = null;
+
+        if (users.isEmpty()) {
+            request.getRequestDispatcher("./WEB-INF/friends-search.jsp").forward(request, response);
+        } else {
+            // 判断是否好友
+            for (User user : users) {
+                // 删掉自己
+                if (user.getUserID() == userID) {
+                    myself = user;
+                } else {
+                    // 获得收藏
+                    if (friendService.isFriends(userID, user.getUserID())) {
+                        user.setIsFriend(1);
+                        user.setFavours(favoursService.getFavourByUserID(user.getUserID()));
+                    } else {
+                        user.setIsFriend(0);
+                    }
+                }
             }
-            else {
-                user.setIsFriend(0);
+
+            if (myself != null) {
+                users.remove(myself);
             }
+
+
+            JSONObject gson = new JSONObject();
+            gson.put("users", users);
+            String json = gson.toString();
+            System.out.println(json);
+            // 获取输出流对象
+            PrintWriter writer = response.getWriter();
+            writer.print(json); // 返回数据给前台
+            writer.close();
         }
-
-
-        JSONObject gson = new JSONObject();
-        gson.put("users",users);
-        String json = gson.toString();
-        System.out.println(json);
-        // 获取输出流对象
-        PrintWriter writer = response.getWriter();
-        writer.print(json); // 返回数据给前台
-        writer.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

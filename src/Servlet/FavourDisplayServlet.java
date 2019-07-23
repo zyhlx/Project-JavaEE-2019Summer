@@ -26,7 +26,7 @@ public class FavourDisplayServlet extends HttpServlet {
         List<Favour> favours =favoursService.getFavourByUserID(userID);
 // 返回painting给jsp
         request.setAttribute("favours", favours);
-        request.getRequestDispatcher("./favours.jsp").forward(request, response);
+        request.getRequestDispatcher("./WEB-INF/favours.jsp").forward(request, response);
 
     }
 
