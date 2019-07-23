@@ -33,8 +33,7 @@ logout(request, response);
         httpSession.removeAttribute("user");
         httpSession.removeAttribute("userID");
         httpSession.removeAttribute("userType");
-        request.getRequestDispatcher("/index.jsp").forward(
-                request, response);
+        response.sendRedirect("./index.jsp");
 
     }
 

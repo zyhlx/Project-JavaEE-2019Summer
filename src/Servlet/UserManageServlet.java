@@ -36,7 +36,7 @@ public class UserManageServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         String userIDOfOperator = "" + (Integer) session.getAttribute("userID");
-        if (userID.equals((userIDOfOperator))) {
+        if (userID != null && userID.equals((userIDOfOperator))) {
             String alert = "{\"type\":\"false\",\"msg\":\"不能修改自己！\"}";
             PrintWriter out = response.getWriter();
             out.println(alert);

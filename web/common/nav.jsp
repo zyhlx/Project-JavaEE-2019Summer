@@ -32,7 +32,7 @@
                         <a class="dropdown-item" href="friendsDisplay"><i class="fa fa-smile-o" aria-hidden="true"></i>好友列表</a>
                         <a class="dropdown-item" href="letter?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-weixin" aria-hidden="true"></i>信箱</a>
                         <a href="favourDisplay" class="dropdown-item"><i class="fa fa-user-plus"></i>收藏夹</a>
-                        <a href="./login?function=1" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
+                        <a href="./login" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
                     </div>
                 </li>
                 <%--<li class="nav-item list-inline-item"><a href="../favours.jsp" class="nav-link"><i--%>
