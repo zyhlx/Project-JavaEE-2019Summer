@@ -66,7 +66,7 @@
                             <c:forEach items="${requestScope.receiveLetters}" var="receiveLetter"
                                        varStatus="letterStatus">
                         <li class="list-group-item row">
-                            <span class='col-sm-1'>发件人：<c:out value="${receiveLetter.receiveName}"/>;</span>
+                            <span class='col-sm-1'>发件人：<c:out value="${receiveLetter.senderName}"/>;</span>
                             <span class='col-sm-1'>发送时间：<c:out value="${receiveLetter.timeReleased}"/>;</span>
                             <c:if test="${receiveLetter.status==0}">
                                 echo "<span class='col-sm-1' id='status<c:out value="${receiveLetter.letterID}"/>'>接收状态：未查收;</span>"
@@ -212,7 +212,7 @@
                         <div class="border card">
                             <section class="card-body">
                                 <form method="post" class="form-group" id="write-form">
-                                    <input hidden name="userID" value="<c:out value="${sessionScope.userID}"/>"/>
+                                    <input hidden id="userHiddenID" name="userID" value="<c:out value="${sessionScope.userID}"/>"/>
                                     <div class="row col-sm-12"><label for="receiver">收信人：</label>
                                         <input class="form-control" name="receiver" id="receiver"></div>
                                     <div class="row col-sm-12">
@@ -250,12 +250,12 @@
 </body>
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<script src="common/simply-toast/simply-toast.js"></script>
-<script src="js/nav/registe.js"></script>
-<script src="js/nav/login.js"></script>
-<script src="js/nav/moveline.js"></script>
-<script src="js/nav/nav.js"></script>
+<script src="../common/simply-toast/simply-toast.js"></script>
+<script src="../js/nav/registe.js"></script>
+<script src="../js/nav/login.js"></script>
+<script src="../js/nav/moveline.js"></script>
+<script src="../js/nav/nav.js"></script>
 
-<script src="js/letter/letter.js"></script>
+<script src="../js/letter/letter.js"></script>
 
 </html>

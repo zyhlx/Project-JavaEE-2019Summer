@@ -20,10 +20,10 @@
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
-    <link rel="stylesheet" type="text/css" href="css/index/index.css">
+    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
+    <link rel="stylesheet" type="text/css" href="../css/index/index.css">
 
     <style>
         img{
@@ -168,12 +168,12 @@
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast/simply-toast.js"></script>
 
-<script src="js/nav/registe.js"></script>
-<script src="js/nav/login.js"></script>
-<script src="js/nav/moveline.js"></script>
-<script src="js/nav/nav.js"></script>
+<script src="../js/nav/registe.js"></script>
+<script src="../js/nav/login.js"></script>
+<script src="../js/nav/moveline.js"></script>
+<script src="../js/nav/nav.js"></script>
 
-<script src="js/management/user-management.js"></script>
+<script src="../js/management/user-management.js"></script>
 
 <script>
 
