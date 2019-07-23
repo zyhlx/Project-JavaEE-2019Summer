@@ -91,41 +91,31 @@
             <h3>艺术品展示</h3>
             <c:choose>
             <c:when test="${favoursShow.size()==0}">
-                <div class="row border favour-result mx-auto">
+                <div class="row border mx-auto">
                     <span>没有收藏~</span>
                 </div>
             </c:when>
             <c:otherwise>
             <c:forEach items="${favoursShow}" var="favourItem">
-                <div class="row border favour-result card">
-                    <div class="col-2">
-                        <p class="type text-muted">Artwork</p>
+                <div class="row justify-content-around">
+                    <div class="col-sm-3">
+                        <p class="text-muted">Artwork</p>
                         <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
-                            <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
+                            <img class="img-responsive show_img" src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                         </a>
                     </div>
-                    <div class="col-8 card-body table-responsive">
+                    <div class="col-sm-7 table-responsive">
                         <p class="title">${favourItem.painting.title}</p>
                             <%--<p>heat:${favourItem.msrp}</p>--%>
-                        <table class="table table-hover">
+                        <table class="table table-hover col-sm-8">
                             <tr>
                                 <td>permission</td>
                                 <td>Favoured time</td>
                                 <td>On view</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <c:if test="${favourItem.open == 0}">
-                                        private
-                                    </c:if>
-                                    <c:if test="${favourItem.open != 0}">
-                                        public
-                                    </c:if>
-                                </td>
-
-                                <td>
-                                        ${favourItem.displayTime};
-                                </td>
+                                <td>public</td>
+                                <td>${favourItem.displayTime}</td>
                                 <td>${favourItem.painting.gallery}</td>
                             </tr>
                         </table>
