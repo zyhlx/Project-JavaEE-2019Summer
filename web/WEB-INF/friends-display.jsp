@@ -23,12 +23,10 @@
 <%@ include file="../common/nav.jsp" %>
 <body>
 <main>
-<h1>
-    Friends
+<h1 class="">
+    Friends <a href="./friendSearch">  <button class="btn btn-search btn-primary" type="button"> 搜索</button> </a>
 </h1>
-    <p>
-        <a href="./friendSearch">  <button class="btn btn-search btn-primary" type="button"> 搜索</button> </a>
-    </p>
+
     <section>
 <c:forEach items="${friends}" var="friendItem" >
     <div class="row border user-result">

@@ -28,7 +28,9 @@
 <%@ include file="../common/nav.jsp"%>
 <body>
 <main>
-
+    <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
+        <button type="button" class="btn btn-add btn-primary">添加用户</button>
+    </a>
 <c:forEach items="${users}" var="userItem">
 <div class="row border user-result">
     <div class="col-2">
@@ -54,13 +56,11 @@
                 降为普通用户
             </c:if>
         </button></p>
-        <p><button type="button" class="btn btn-delete" id="delete-${userItem.userID}">删除</button></p>
+        <p><button type="button" class="btn btn-delete btn-primary" id="delete-${userItem.userID}">删除</button></p>
     </div>
 </div>
 </c:forEach>
-    <a href="#" class="nav-link" data-toggle="modal" data-target="#AddUser">
-    <button type="button" class="btn btn-add">添加用户</button>
-    </a>
+
 </main>
 
 <!-- 模态框 -->

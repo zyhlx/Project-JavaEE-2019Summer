@@ -58,9 +58,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1">艺术品展示</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">我的好友</a>
-                    </li>
+
 
                 </ul>
             </div>
@@ -91,20 +89,20 @@
             <h3>艺术品展示</h3>
             <c:choose>
             <c:when test="${favoursShow.size()==0}">
-                <div class="row border favour-result mx-auto">
+                <div class="row border mx-auto">
                     <span>没有收藏~</span>
                 </div>
             </c:when>
             <c:otherwise>
             <c:forEach items="${favoursShow}" var="favourItem">
-                <div class="row border favour-result card">
-                    <div class="col-2">
-                        <p class="type text-muted">Artwork</p>
+                <div class="row justify-content-around">
+                    <div class="col-sm-3">
+                        <p class="text-muted">Artwork</p>
                         <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
                             <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" onerror="this.src='/images/assert/icon/ico-no-image.svg'">
                         </a>
                     </div>
-                    <div class="col-8 card-body table-responsive">
+                    <div class="col-sm-7 table-responsive">
                         <p class="title">${favourItem.painting.title}</p>
                             <%--<p>heat:${favourItem.msrp}</p>--%>
                         <table class="table table-hover">
