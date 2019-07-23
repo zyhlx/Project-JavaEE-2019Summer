@@ -58,8 +58,7 @@ public class LetterDAOImpl implements ILetterDAO {
     }
 
     public void updateRead(int letterID){
-        String query = "UPDATE letters SET status=1" +
-                "WHERE letterID=?";
+        String query = "UPDATE `letters` SET `status`= 1 where `letterID` = ?";
         Connection conn = null;
         try {
             conn = getConnection();

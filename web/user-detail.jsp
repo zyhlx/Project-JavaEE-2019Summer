@@ -58,9 +58,9 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1">艺术品展示</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#menu2">我的好友</a>
-                    </li>
+                    <%--<li class="nav-item">--%>
+                        <%--<a class="nav-link" data-toggle="tab" href="#menu2">我的好友</a>--%>
+                    <%--</li>--%>
 
                 </ul>
             </div>

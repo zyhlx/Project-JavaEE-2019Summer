@@ -117,6 +117,42 @@
             </c:forEach>
         </div>
     </div>
+
+        <div class="card card-border-none">
+            <h3>推荐展品</h3>
+            <div class="card-body row">
+
+                <c:forEach items="${recommendPaintings}" var="paintingItem" varStatus="paintingStatus">
+                    <div class="p-3 col-sm-4 d-flex flex-column">
+                        <div class="d-flex justify-content-center">
+                            <img src="博物馆图片资源/其他/<c:out value="${paintingItem.imageFileName}"/>"
+                                 class="rounded-circle border-3" height='250px'>
+                        </div>
+                        <div class="text-center mt-3">
+                            <h4 class="card-title"><c:out value="${paintingItem.title}"/></h4>
+                            <p class="card-text text-leave"><c:out value="${paintingItem.description}"/></p>
+                            <a href='./detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>'
+                               class="btn btn-primary">See Profile</a>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
+        <div class="card card-border-none">
+            <h3>推荐好友</h3>
+            <div class="card-body row">
+                <nav class="breadcrumb">
+                <c:forEach items="${recommendFriends}" var="recommendFriend" varStatus="recommendFriendStatus">
+                    <c:if test="${sessionScope.userID==null||recommendFriend.userID!=sessionScope.userID}">
+                        <a class="breadcrumb-item" href="userDetail?userID=<c:out value="${recommendFriend.userID}"/>"><c:out value="${recommendFriend.username}"/></a>
+                    </c:if>
+                </c:forEach>
+                </nav>
+            </div>
+        </div>
+
+
 </main>
 
 

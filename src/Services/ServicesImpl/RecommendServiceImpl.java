@@ -29,8 +29,15 @@ public class RecommendServiceImpl implements RecommendService {
     }
 
     public List<User> friendRecommend(int userID) {
-        List<FriendRelation> friendRelations = iFriendRelationDAO.getFriends(userID,1);
         List<User> users = new ArrayList<>();
+        if (userID==0){
+            for (Integer searchID:iFriendRelationDAO.getHotFriends()){
+                users.add(iUserDAO.getUserInformation(searchID));
+            }
+            return users;
+        }
+        List<FriendRelation> friendRelations = iFriendRelationDAO.getFriends(userID,1);
+
         for (FriendRelation friendRelation : friendRelations) {
             User user = friendRelation.getClient();
             List<FriendRelation> friendRelationsOfFriends = iFriendRelationDAO.getFriends(user.getUserID(),1);
@@ -40,8 +47,20 @@ public class RecommendServiceImpl implements RecommendService {
         }
         if (users.isEmpty()){
             for (Integer searchID:iFriendRelationDAO.getHotFriends()){
-                users.add(iUserDAO.getUserInformation(userID));
+                users.add(iUserDAO.getUserInformation(searchID));
             };
+        }
+        if (users.isEmpty()){
+            List<User> users1 = iUserDAO.getUserAll();
+            if (users1.size()<3){
+                users =users1;
+            }else {
+                users.add(users1.get(0));
+                users.add(users1.get(1));
+                users.add(users1.get(2));
+            }
+
+
         }
         return users;
     }
@@ -49,8 +68,12 @@ public class RecommendServiceImpl implements RecommendService {
     ;
 
     public List<Painting> paintingRecommend(int userID) {
-        List<FriendRelation> friendRelations = iFriendRelationDAO.getFriends(userID, 1);
         List<Painting> paintings = new ArrayList<>();
+        if (userID==0){
+            paintings = Arrays.asList(iPaintingDAO.getHotPaintings());
+            return paintings;
+        }
+        List<FriendRelation> friendRelations = iFriendRelationDAO.getFriends(userID, 1);
         for (FriendRelation friendRelation : friendRelations) {
             User user = friendRelation.getClient();
             List<Favour> favours = iFavourDAO.getFavourByUserID(user.getUserID());

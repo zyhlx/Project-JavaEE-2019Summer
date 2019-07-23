@@ -29,6 +29,7 @@ public class SecurityFilter implements Filter {
             throws IOException, ServletException {
         // 1、获得当前请求访问资源路径
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletrequest;
+        httpServletRequest.setCharacterEncoding("utf-8");
         String path = httpServletRequest.getRequestURI().substring(
                 httpServletRequest.getContextPath().length());
         System.out.println(path);
