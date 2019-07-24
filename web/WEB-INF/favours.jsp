@@ -113,6 +113,7 @@
 <script src="js/nav/login.js"></script>
 <script src="js/nav/moveline.js"></script>
 <script src="js/nav/nav.js"></script>
+<script src="js/favour/favour.js"></script>
 
 <script>
     // $(".btn-change").on("click",function () {
