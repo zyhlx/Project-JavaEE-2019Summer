@@ -3,14 +3,14 @@ function writeLetter() {
     if ($('#receiver').val().length > 0 && $('#content').val().length > 0) {
         var a = $('#userHiddenID');
         $.ajax({
-            url: "/letter",
+            url: "./letter",
             type: "post",
             dataType: "json",//预期服务器返回的数据类型
             data: $('#write-form').serialize(),
             success: function (data) {
                 if (data.msg == "发送成功") {
                     $.simplyToast("发送成功", 'success');
-                    $(location).attr('href', '/letter?userID='+a.val());
+                    $(location).attr('href', './letter?userID='+a.val());
                 } else if (data.msg == "查无此人") {
                     $.simplyToast("查无此人", 'warning')
                 }

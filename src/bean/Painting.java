@@ -10,10 +10,6 @@ public class Painting {
     private String artist = "Unknown";
     private String description;
     private String gallery ="Unknown";
-    private int shapeID;
-    private int width;
-    private int height;
-    private int cost;
     private BigDecimal msrp = new BigDecimal(900.0000);
     private int yearOfWork = 0;
     private int postOfTime;
@@ -77,38 +73,6 @@ public class Painting {
         this.description = description;
     }
 
-
-    public int getShapeID() {
-        return shapeID;
-    }
-
-    public void setShapeID(int shapeID) {
-        this.shapeID = shapeID;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 
     public BigDecimal getMsrp() {
         return msrp;

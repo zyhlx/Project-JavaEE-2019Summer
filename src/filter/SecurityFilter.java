@@ -102,7 +102,7 @@ public class SecurityFilter implements Filter {
         pubLicPath.add("/index");
         pubLicPath.add("/login");
         pubLicPath.add("/page");
-        pubLicPath.add("register");
+        pubLicPath.add("/register");
         pubLicPath.add("/search");
         pubLicPath.add("/common");
         pubLicPath.add("/css");

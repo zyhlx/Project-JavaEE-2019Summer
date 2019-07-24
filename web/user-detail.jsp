@@ -100,7 +100,7 @@
                 <div class="row justify-content-around">
                     <div class="col-sm-3">
                         <p class="text-muted">Artwork</p>
-                        <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                        <a href="paintingDetail.display?paintingID=${favourItem.painting.paintingID}">
                             <img class="img-responsive show_img" src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                         </a>
                     </div>
