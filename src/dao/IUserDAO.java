@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IUserDAO {
-    public int insertUser(String name, String pwd, String email, String tel, String address);
+    public int insertUser(String name, String pwd, String email);
     public int getUserID(String userName);
     public User login(String userName, String pwd);
     public List<User> getUser(String query);

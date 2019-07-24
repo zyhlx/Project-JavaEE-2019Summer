@@ -24,7 +24,7 @@ public class UserDAOImpl implements IUserDAO {
         return   new OpenConnection().getConnection();
     }
 
-    public int insertUser(String name, String pwd, String email, String tel, String address) {
+    public int insertUser(String name, String pwd, String email) {
         int rs = 0;
         String query = "INSERT INTO users(name,password,email) values (" + "?,?,?)";
         Connection conn = null;
