@@ -11,7 +11,7 @@ public class PageServiceImpl implements PageService {
         dao = DAOFactory.getIPageDAOInstance();
     }
     /**
-     * 查询所有的新闻信息
+     * 查询所有的信息
      */
     @Override
     public <T> PageInfo<T> findAlls(Class<T> clazz,String method,String input, int pageNum, int pageSize) {
@@ -21,7 +21,7 @@ public class PageServiceImpl implements PageService {
         return pageInfo;
     }
     /**
-     *  获取新闻总页数
+     *  获取总页数
      */
     @Override
     public int getTotalCount(String type,String input) {

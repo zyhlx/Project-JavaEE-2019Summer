@@ -172,9 +172,6 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("username-add");
         String pwd = request.getParameter("password-add");
         String email = request.getParameter("email-add");
-        String tel = request.getParameter("tel-add");
-        String address = request.getParameter("address-add");
-
 
         int addUserID = userDetailService.getUserID(name);
         response.setContentType("text/json;charset=UTF-8");
@@ -185,7 +182,7 @@ public class UserServlet extends HttpServlet {
             temp2 = "{\"type\":\"false\",\"msg\":\"用户名已注册过\"}";
         }else {
 
-            if (loginService.insertUser(name,pwd,email,tel,address)!=0){
+            if (loginService.insertUser(name,pwd,email)!=0){
                 temp2 = "{\"type\":\"true\",\"msg\":\"添加成功！\"}";
 
             }else {

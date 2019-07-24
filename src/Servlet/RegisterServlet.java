@@ -23,8 +23,6 @@ public class RegisterServlet extends HttpServlet {
         String name = request.getParameter("username-register");
         String pwd = request.getParameter("password-register");
         String email = request.getParameter("email");
-        String tel = request.getParameter("tel");
-        String address = request.getParameter("address");
         LoginService loginService = new LoginServiceImpl();
 
         int userID = loginService.getUserID(name);
@@ -39,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
             out.close();
         }else {
             HttpSession session = request.getSession(true);
-            if (loginService.insertUser(name,pwd,email,tel,address)!=0){
+            if (loginService.insertUser(name,pwd,email)!=0){
                 User user = loginService.login(name, pwd);
                 session.setAttribute("user", name);
 

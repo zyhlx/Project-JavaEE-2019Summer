@@ -23,8 +23,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public int insertUser(String name, String pwd, String email, String tel, String address) {
-        return userDAO.insertUser(name,pwd,email,tel,address);
+    public int insertUser(String name, String pwd, String email) {
+        return userDAO.insertUser(name,pwd,email);
     }
 
     @Override

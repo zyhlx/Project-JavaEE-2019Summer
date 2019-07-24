@@ -38,17 +38,7 @@
         <div>
 
             <div class="tablist-div" role="tablist">
-                <%--<div class="tablist-node-div" aria-selected="true" role="tab" tabindex="0"  data-toggle="tab">--%>
-                <%--<div class="favourites-div" style="  top: 25.4875px; left: 60.575px; width: 118px; height: 118px;   "></div>--%>
-                <%--<span class="favourites-span">Favourites</span>--%>
-                <%--<div class="after-span"></div>--%>
-                <%--</div>--%>
-                <%--<div class="tablist-node-div" aria-selected="false" role="tab" tabindex="-1" aria-controls="panel-2"--%>
-                <%--data-tabid="gl">--%>
-                <%--<div class="favourites-div"--%>
-                <%--style="top: 29.4875px; left: 42.95px; width: 108px; height: 108px;"></div>--%>
-                <%--<span  class="favourites-span">Galleries</span></div>--%>
-                <%--<div class="tablist-underline" style="width: 118px; left: 656px;"></div>--%>
+
                 <div class="line_100"></div>
                 <ul class="nav nav-tabs ul" role="tablist" id="move_information">
 
@@ -58,9 +48,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1">艺术品展示</a>
                     </li>
-                    <%--<li class="nav-item">--%>
-                        <%--<a class="nav-link" data-toggle="tab" href="#menu2">我的好友</a>--%>
-                    <%--</li>--%>
+
 
                 </ul>
             </div>
@@ -100,7 +88,7 @@
                 <div class="row justify-content-around">
                     <div class="col-sm-3">
                         <p class="text-muted">Artwork</p>
-                        <a href="detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                        <a href="paintingDetail.display?paintingID=${favourItem.painting.paintingID}">
                             <img class="img-responsive show_img" src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                         </a>
                     </div>
