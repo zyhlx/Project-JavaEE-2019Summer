@@ -53,59 +53,58 @@ function previewPic() {
 
     }
 }
+$("#btn-change").on("click", function() {
+    var file=document.getElementById("video").files[0];
+    var pic=document.getElementById("file").files[0];
+    if ($("#title").val() === "" || $("#description").val() === "" || $("#place").val() === "" || $("#year").val() === "") {
+        $.simplyToast("请输入完整信息！");
+        return;
+    }
+    else if (videoCheck === 0 && file != null) {
+        $.simplyToast("请输入正确的视频！");
+        return;
+    }
+    else if (picCheck === 0 && pic !=null) {
+        $.simplyToast("请输入正确的照片！");
+        return;
+    }
+    var form = new FormData(document.getElementById("form-change"));
+    $.ajax({
+        url: "./upload.work",
+        type: "POST",
+        data: form,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            if (data.type === "true") {
+                $.simplyToast("上传成功", 'info');
+            } else {
+                $.simplyToast("上传失败，可能由于重复的名称/图片", 'warning');
+            }
 
-// $("#btn-change").on("click", function() {
-//     var file=document.getElementById("video").files[0];
-//     var pic=document.getElementById("file").files[0];
-//     if ($("#title").val() === "") {
-//         $.simplyToast("请输入作品名！");
-//         return;
-//     }
-//     else if (videoCheck === 0 && file != null) {
-//         $.simplyToast("请输入正确的视频！");
-//         return;
-//     }
-//     else if (picCheck === 0 && pic !=null) {
-//         $.simplyToast("请输入正确的照片！");
-//         return;
-//     }
-//     var form = new FormData(document.getElementById("form-change"));
-//     $.ajax({
-//         url: "./upload.work",
-//         type: "POST",
-//         data: form,
-//         dataType: "json",
-//         processData: false,
-//         contentType: false,
-//         success: function (data) {
-//             if (data.type === "true") {
-//                 $.simplyToast("上传成功", 'info');
-//             } else {
-//                 $.simplyToast("上传失败，可能由于重复的名称/图片", 'warning');
-//             }
-//
-//             //window.location.href='localhost/pj2/upload.html';
-//         },
-//         error: function (e) {
-//             alert(e);
-//             window.clearInterval(timer);
-//         }
-//     });
-//
-//
-// });
-//
-// $("#btn-add").on("click", function () {
-//     location.href = "./work.display?artworkID=0";
-// });
-//
-// $(".btn-delete").on("click", function () {
-//     //如果已登录，收藏
-//     var artworkID = $(this).attr("id").substring(4);
-//     $.post("./delete.work", {
-//         artworkID: artworkID
-//     }, function (result) {
-//         $.simplyToast(result.msg, 'info');
-//     });
-//
-// });
+            //window.location.href='localhost/pj2/upload.html';
+        },
+        error: function (e) {
+            alert(e);
+            window.clearInterval(timer);
+        }
+    });
+
+
+});
+
+$("#btn-add").on("click", function () {
+    location.href = "./work.display?artworkID=0";
+});
+
+$(".btn-delete").on("click", function () {
+    //如果已登录，收藏
+    var artworkID = $(this).attr("id").substring(4);
+    $.post("./delete.work", {
+        artworkID: artworkID
+    }, function (result) {
+        $.simplyToast(result.msg, 'info');
+    });
+
+});

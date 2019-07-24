@@ -145,27 +145,27 @@
 <script src="js/management/user-management.js"></script>
 
 <script>
-    $(".btn-delete").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./delete.user",{
-            function: "0",
-            userID: userID
-        },function (result) {
-            $.simplyToast(result.msg, 'info');
-            setTimeout('history.go(0)',2000);
-        });
-    });
-
-    $(".btn-change").on("click", function () {
-        var userID = $(this).attr("id").substring(7);
-        $.post("./changePermission.user",{
-            function: "1",
-            userID: userID
-        },function (result) {
-            $.simplyToast(result.msg, 'info');
-            setTimeout('history.go(0)',2000);
-        });
-    });
+    // $(".btn-delete").on("click", function () {
+    //     var userID = $(this).attr("id").substring(7);
+    //     $.post("./delete.user",{
+    //         function: "0",
+    //         userID: userID
+    //     },function (result) {
+    //         $.simplyToast(result.msg, 'info');
+    //         setTimeout('history.go(0)',2000);
+    //     });
+    // });
+    //
+    // $(".btn-change").on("click", function () {
+    //     var userID = $(this).attr("id").substring(7);
+    //     $.post("./changePermission.user",{
+    //         function: "1",
+    //         userID: userID
+    //     },function (result) {
+    //         $.simplyToast(result.msg, 'info');
+    //         setTimeout('history.go(0)',2000);
+    //     });
+    // });
 </script>
 
 
