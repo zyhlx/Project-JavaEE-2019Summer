@@ -32,10 +32,10 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest servletrequest, ServletResponse servletresponse, FilterChain filterchain)
             throws IOException, ServletException {
         // 1、获得当前请求访问资源路径
-        HttpServletRequest req = (HttpServletRequest) servletrequest;
-        MyRequest myReq = new MyRequest(req);
+        HttpServletRequest myReq = (HttpServletRequest) servletrequest;
+
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletresponse;
-        req.setCharacterEncoding("utf-8");
+        myReq.setCharacterEncoding("utf-8");
         String path = myReq.getRequestURI().substring(
                 myReq.getContextPath().length());
         path = URLDecoder.decode(path, "utf-8");
@@ -108,6 +108,10 @@ public class SecurityFilter implements Filter {
         pubLicPath.add("/css");
         pubLicPath.add("/js");
         pubLicPath.add("/博物馆图片资源");
+        pubLicPath.add("/images");
+        pubLicPath.add("/paintingDetail.display");
+        pubLicPath.add("/userDetail.display");
+        pubLicPath.add("/painting.search");
 
         for (String testPath : pubLicPath) {
             if (path.startsWith(testPath))
@@ -183,56 +187,59 @@ public class SecurityFilter implements Filter {
         return false;
     }
 
-    class MyRequest extends HttpServletRequestWrapper {
-        ServletRequest r;
-        private HttpServletRequest req;
-
-        MyRequest(HttpServletRequest req) {
-            super(req);
-            this.req = req;
-        }
-
-
-
-        @Override
-        public String getParameter(String name) {
-            Map<String, String[]> map = getParameterMap();
-            return map.get(name)[0];
-
-        }
-
-        @Override
-        public String[] getParameterValues(String name) {
-            Map<String, String[]> map = getParameterMap();
-            return map.get(name);
-        }
-
-        boolean flag = true;
-
-        @Override
-        public Map<String, String[]> getParameterMap() {
-            Map<String, String[]> map = req.getParameterMap();
-            if (flag) {
-                for (Map.Entry<String, String[]> en : map.entrySet()) {
-                    String[] arr = en.getValue();
-
-                    System.out.println(en.getValue());
-                    System.out.println(arr);
-
-                    for (int i = 0; i < arr.length; i++) {
-                        //数组中的每个值都要再编码再解码处理
-                        try {
-                            arr[i] = new String(arr[i].getBytes("ISO8859-1"), "utf-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                flag = false;
-            }
-            return map;
-        }
-
-
-    }
+//    class MyRequest extends HttpServletRequestWrapper {
+//        ServletRequest r;
+//        private HttpServletRequest req;
+//
+//        MyRequest(HttpServletRequest req) {
+//            super(req);
+//            this.req = req;
+//        }
+//
+//
+//
+//        @Override
+//        public String getParameter(String name) {
+//            Map<String, String[]> map = getParameterMap();
+//            if (map.get(name) == null) {
+//                return "";
+//            }
+//            return map.get(name)[0];
+//
+//        }
+//
+//        @Override
+//        public String[] getParameterValues(String name) {
+//            Map<String, String[]> map = getParameterMap();
+//            return map.get(name);
+//        }
+//
+//        boolean flag = true;
+//
+//        @Override
+//        public Map<String, String[]> getParameterMap() {
+//            Map<String, String[]> map = req.getParameterMap();
+//            if (flag) {
+//                for (Map.Entry<String, String[]> en : map.entrySet()) {
+//                    String[] arr = en.getValue();
+//
+//                    System.out.println(en.getValue());
+//                    System.out.println(arr);
+//
+//                    for (int i = 0; i < arr.length; i++) {
+//                        //数组中的每个值都要再编码再解码处理
+//                        try {
+//                            arr[i] = new String(arr[i].getBytes("ISO8859-1"), "utf-8");
+//                        } catch (UnsupportedEncodingException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//                flag = false;
+//            }
+//            return map;
+//        }
+//
+//
+//    }
 }

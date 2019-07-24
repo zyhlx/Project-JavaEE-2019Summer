@@ -28,10 +28,10 @@
                         <i class="fa fa-user-circle"></i> <%= session.getAttribute("user")%>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="userDetail?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-address-book-o" aria-hidden="true"></i>个人主页</a>
-                        <a class="dropdown-item" href="friendsDisplay"><i class="fa fa-smile-o" aria-hidden="true"></i>好友列表</a>
+                        <a class="dropdown-item" href="./userDetail.display?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-address-book-o" aria-hidden="true"></i>个人主页</a>
+                        <a class="dropdown-item" href="./friend.display"><i class="fa fa-smile-o" aria-hidden="true"></i>好友列表</a>
                         <a class="dropdown-item" href="letter?userID=<%= session.getAttribute("userID")%>"><i class="fa fa-weixin" aria-hidden="true"></i>信箱</a>
-                        <a href="favourDisplay" class="dropdown-item"><i class="fa fa-user-plus"></i>收藏夹</a>
+                        <a href="./favour.display" class="dropdown-item"><i class="fa fa-user-plus"></i>收藏夹</a>
                         <a href="./login" class="dropdown-item"><i class="fa fa-sign-out"></i>登出</a>
                     </div>
                 </li>
@@ -55,8 +55,8 @@
                             </svg>
                             </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./workDisplay?artworkID=0"><i class="fa fa-picture-o" aria-hidden="true"></i>作品管理</a>
-                            <a href="./userDisplay" class="dropdown-item"><i class="fa fa-address-card" aria-hidden="true"></i>用户管理</a>
+                            <a class="dropdown-item" href="./work.display?artworkID=0"><i class="fa fa-picture-o" aria-hidden="true"></i>作品管理</a>
+                            <a href="./user.display" class="dropdown-item"><i class="fa fa-address-card" aria-hidden="true"></i>用户管理</a>
                         </div>
                     </li>
                 </c:if>
@@ -86,7 +86,7 @@
         <div class="col-sm-1 row" id="user-button-div">
 
             <button class="btn" type="button">
-                <img src="../images/nav/user.PNG">
+                <img src="./images/nav/user.PNG">
             </button>
         </div>
 
@@ -96,7 +96,7 @@
     <nav class="navbar nav-pills navbar-light flex-column" id="mobile-menu" aria-hidden="true">
         <ul class="navbar-nav">
             <li class="nav-item p-2">
-                <a href="../index.jsp" class="nav-link slide-nav-active" data-gacategory="navigation"
+                <a href="./index.jsp" class="nav-link slide-nav-active" data-gacategory="navigation"
                    data-gaaction="clicked"
                    data-galabel="home">
                     <svg x="0px" y="0px" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="../detail.jsp" data-gacategory="navigation" data-gaaction="clicked"
+                <a class="nav-link" href="./detail.jsp" data-gacategory="navigation" data-gaaction="clicked"
                    data-galabel="detail">
                     <svg width="48px" height="48px" viewBox="0 0 48 48">
                         <path d="M42 38V10c0-2.21-1.79-4-4-4H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4zM17 27l5 6.01L29 24l9 12H10l7-9z"></path>
@@ -117,7 +117,7 @@
                     详情</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link" href="../search.jsp" data-gacategory="navigation" data-gaaction="clicked"
+                <a class="nav-link" href="./search.jsp" data-gacategory="navigation" data-gaaction="clicked"
                    data-galabel="search">
                     <svg width="24px" height="24px" viewBox="0 0 48 48">
                         <path d="M31 28h-1.59l-.55-.55C30.82 25.18 32 22.23 32 19c0-7.18-5.82-13-13-13S6 11.82 6 19s5.82 13 13 13c3.23 0 6.18-1.18 8.45-3.13l.55.55V31l10 9.98L40.98 38 31 28zm-12 0c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"></path>

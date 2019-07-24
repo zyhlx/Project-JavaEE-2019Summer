@@ -5,17 +5,17 @@ import java.math.BigDecimal;
 
 public class Painting {
     private int paintingID;
-    private String imageFileName;
+    private String imageFileName = "";
     private String title;
     private String artist = "Unknown";
     private String description;
-    private String gallery;
+    private String gallery ="Unknown";
     private int shapeID;
     private int width;
     private int height;
     private int cost;
     private BigDecimal msrp = new BigDecimal(900.0000);
-    private int yearOfWork;
+    private int yearOfWork = 0;
     private int postOfTime;
     private String videoPath = "";
 

@@ -69,7 +69,7 @@ function receiveLetter(a) {
 
 function acceptRequest(patronID, clientID) {
     $.ajax({
-        url:  "./friendManage?function=2&patronID="+patronID+"&clientID="+clientID,
+        url:  "./accept.friend?patronID="+patronID+"&clientID="+clientID,
         type: "post",
         // data: $('#receive-form').serialize(),
         success: function (data) {

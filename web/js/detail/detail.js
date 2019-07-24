@@ -3,7 +3,7 @@ $(".btn-favour").on("click", function () {
     var userName = $("#userID").val();
     var artworkID = $(this).attr("id").substring(11);
     if (userName !== "null") {
-        $.post("./favour", {
+        $.post("./add.favour", {
             userName: userName,
             artworkID: artworkID
         }, function (result) {
@@ -17,5 +17,5 @@ $(".btn-favour").on("click", function () {
 
 $(".btn-manage").on("click", function () {
     var artworkID = $(this).attr("id").substring(11);
-    location.href = "./workDisplay?artworkID="+artworkID;
+    location.href = "./work.display?artworkID="+artworkID;
 });

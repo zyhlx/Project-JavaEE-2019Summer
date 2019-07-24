@@ -63,7 +63,7 @@
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
-                                <a href="./detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>">
+                                <a href="./paintingDetail.display?paintingID=<c:out value="${paintingItem.paintingID}"/>">
                                     <h3><c:out value="${paintingItem.title}"/></h3>
                                 </a>
                                 <p><c:out value="${paintingItem.description}"/></p>
@@ -78,7 +78,7 @@
                                  class="img-responsive center-block mr-3 mt-1"
                                  height='200px'>
                             <div class="carousel-caption">
-                                <a href="./detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>">
+                                <a href="./paintingDetail.display?paintingID=<c:out value="${paintingItem.paintingID}"/>">
                                     <h3><c:out value="${paintingItem.title}"/></h3>
                                 </a>
                                 <p><c:out value="${paintingItem.description}"/></p>
@@ -110,7 +110,7 @@
                     <div class="text-center mt-3">
                         <h4 class="card-title"><c:out value="${paintingItem.title}"/></h4>
                         <p class="card-text text-leave"><c:out value="${paintingItem.description}"/></p>
-                        <a href='./detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>'
+                        <a href='./paintingDetail.display?paintingID=<c:out value="${paintingItem.paintingID}"/>'
                            class="btn btn-primary">See Profile</a>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                         <div class="text-center mt-3">
                             <h4 class="card-title"><c:out value="${paintingItem.title}"/></h4>
                             <p class="card-text text-leave"><c:out value="${paintingItem.description}"/></p>
-                            <a href='./detailDisplay?paintingID=<c:out value="${paintingItem.paintingID}"/>'
+                            <a href='./paintingDetail.display?paintingID=<c:out value="${paintingItem.paintingID}"/>'
                                class="btn btn-primary">See Profile</a>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                 <nav class="breadcrumb">
                 <c:forEach items="${recommendFriends}" var="recommendFriend" varStatus="recommendFriendStatus">
                     <c:if test="${sessionScope.userID==null||recommendFriend.userID!=sessionScope.userID}">
-                        <a class="breadcrumb-item" href="userDetail?userID=<c:out value="${recommendFriend.userID}"/>"><c:out value="${recommendFriend.username}"/></a>
+                        <a class="breadcrumb-item" href="./userDetail.display?userID=<c:out value="${recommendFriend.userID}"/>"><c:out value="${recommendFriend.username}"/></a>
                     </c:if>
                 </c:forEach>
                 </nav>

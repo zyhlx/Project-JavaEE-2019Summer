@@ -23,16 +23,16 @@
     <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
 
 
     <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
 
-    <link rel="stylesheet" href="../css/search/search.css">
-    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
+    <link rel="stylesheet" href="css/search/search.css">
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
 
-    <link type="text/css" rel="stylesheet" href="../css/search/friend-search.css">
+    <link type="text/css" rel="stylesheet" href="css/search/friend-search.css">
 </head>
 <body>
 <%@ include file="../common/nav.jsp" %>
@@ -95,12 +95,78 @@
 </body>
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<script src="../common/simply-toast/simply-toast.js"></script>
-<script src="../js/nav/registe.js"></script>
-<script src="../js/nav/login.js"></script>
-<script src="../js/nav/moveline.js"></script>
-<script src="../js/nav/nav.js"></script>
-<script type="text/javascript" src="../common/dist/jq-paginator.js"></script>
-<script type="text/javascript" src="../js/search/friendSearch.js"></script>
+<script src="common/simply-toast/simply-toast.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+<script src="js/nav/nav.js"></script>
+<script type="text/javascript" src="common/dist/jq-paginator.js"></script>
+<script type="text/javascript" src="js/search/friendSearch.js"></script>
+
+<script>
+    function load_friend() {
+        var input_text = $("#search_input").val();
+        $.ajax({
+            //需要提交的服务器地址
+            url: "./friend.search",
+            //请求的方式
+            type: "post",
+            //传递给服务器的参数
+            data: {"input_text": input_text},
+            //回调函数
+            success: function (data) {
+                var myData = $.parseJSON(data).users;
+                //每次清空数据,防止每次点击都叠加
+                $("#list-content").html('');
+                //追加数据  data.list表示需要遍历的对象  list必须是实体类pageInfo中的list属性名
+                $.each(myData, function (i, users) {
+                    //一个dom就是一个用户对象
+                    // 不是好友
+                    if (users.isFriend == 0) {
+                        $("#list-content").append("<div class=\"row border user-result\">\n" +
+                            "                    <div class=\"col-10\">\n" +
+                            "                   <p class=\"userName\"> <a href='./userDetail?userID=" + users.userID + "'>"+ users.username + "</a></p>" +
+                            "</div>" +
+                            "                    <div class=\"col-2\">\n" +
+                            "                    <p><button type=\"button\" class=\"btn btn-addFriend btn-primary\" id=\"btn-add-" + users.userID + "\"'>添加为好友</button></p>\n" +
+                            "                    </div>\n" +
+                            "                    </div>"
+                        );
+                    } else {
+                        var favourString = "";
+                        var myFavour = users.favours;
+                        $.each(myFavour, function (i,favours) {
+                            favourString = favourString + " <a href=\"./detailDisplay?paintingID=" + favours.painting.paintingID + "\">" + favours.painting.title + "</a>";
+                        });
+
+
+                        $("#list-content").append(" <div class=\"row border user-result\">\n" +
+                            "        <div class=\"col-2\">\n" +
+                            "            <p class=\"type\">" + users.type + "</p>\n" +
+                            "            <img src=\"images/user/" + users.type + ".jpg\" alt=\"\">\n" +
+                            "        </div>\n" +
+                            "        <div class=\"col-8 panel panel-default\">\n" +
+                            "<a href='./userDetail?userID=" + users.userID + "'> "  +
+                            "  <div class=\"panel-heading user-name\">" + users.username + "</div>\n" +
+                            "</a>" +
+                            "            <table class=\"table\">\n" +
+                            "                <tr><td class=\"info-title\">邮箱</td><td>" + users.email + "</td></tr>\n" +
+                            "                <tr><td class=\"info-title\">个性签名</td><td>" + users.signature + "</td></tr>\n" +
+                            "                <tr><td class=\"info-title\">最近收藏</td><td>" + favourString + "</td>\n" +
+                            "                </tr>\n" +
+                            "            </table>\n" +
+                            "        </div>\n" +
+                            "<div class=\"col-2\">" +
+                            "<p><button type=\"button\" class=\"btn btn-delete btn-primary\" id='btn-delete-" + users.userID + "'>删除好友</button> </p>"+
+                            "    </div>" +
+                            "</div>");
+                    }
+
+
+                });
+            }
+        });
+    }
+</script>
 
 </html>

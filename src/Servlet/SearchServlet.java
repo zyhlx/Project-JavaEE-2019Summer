@@ -8,11 +8,9 @@ import Services.ServicesImpl.FriendServiceImpl;
 import Services.ServicesImpl.PageServiceImpl;
 import Services.ServicesImpl.UserDetailServiceImpl;
 import Services.UserDetailService;
-import bean.Favour;
 import bean.PageInfo;
 import bean.Painting;
 import bean.User;
-import dao.factory.DAOFactory;
 import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -25,14 +23,29 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "FriendSearchServlet", value = "/friendSearch")
-public class FriendSearchServlet extends HttpServlet {
+@WebServlet(name = "SearchServlet")
+public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String function = request.getServletPath();
+        function = function.substring(1, function.length()-7);
+        System.out.println(function);
+        switch (function){
+            case "friend": searchFriend(request,response);
+            break;
+            case "painting": searchPainting(request, response);
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+doPost(request,response);
+    }
+
+    private void searchFriend(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置响应编码格式
         request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
+//        response.setContentType("text/html;charset=utf-8");
 //        response.setContentType("text/json;charset=UTF-8");
-//        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // 检索
         String input = request.getParameter("input_text");
         HttpSession session = request.getSession(true);
@@ -80,7 +93,27 @@ public class FriendSearchServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doPost(request,response);
+    private void searchPainting(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        //设置响应编码格式
+        req.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+        //调用servicenew出对象
+        PageService service = new PageServiceImpl();
+        String input_info = req.getParameter("input_text");
+        String method_info = req.getParameter("method");
+        PageInfo<Painting> news = service.findAlls(Painting.class,method_info,input_info,
+                Integer.parseInt(req.getParameter("pageNum")), 5);
+        news.setTotal(service.getTotalCount(method_info,input_info));
+        System.out.println("pageNum=====>" + req.getParameter("pageNum"));      news.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
+        System.out.println("总记录数===》" + news.getTotal());
+        JSONObject gson = new JSONObject();
+        gson.put("page",news);
+        String json = gson.toString();
+        System.out.println(json);
+        // 获取输出流对象
+        PrintWriter writer = resp.getWriter();
+        writer.print(json); // 返回数据给前台
+        writer.close();
     }
 }

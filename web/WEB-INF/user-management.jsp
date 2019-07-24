@@ -20,10 +20,10 @@
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
-    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
-    <link href="../css/management/user-management.css" rel="stylesheet">
+    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+    <link href="css/management/user-management.css" rel="stylesheet">
 </head>
 <%@ include file="../common/nav.jsp"%>
 <body>
@@ -87,11 +87,7 @@
                         <input type="password" class="form-control" name="password-add" id="password-add"
                         >
                     </div>
-                    <div class="form-group">
-                        <label for="pwd-confirm-add" id="pwd-confirm-add-label">确认密码：</label>
-                        <input type="password" class="form-control" name="pwd-confirm-add" id="pwd-confirm-add"
-                        >
-                    </div>
+
                     <div class="form-group">
                         <label for="email-add" id="email-add-label">邮箱:</label>
                         <input type="email" class="form-control" id="email-add" name="email-add" placeholder="Enter email"
@@ -141,13 +137,36 @@
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
 <script src="common/simply-toast/simply-toast.js"></script>
 
-<script src="../js/nav/registe.js"></script>
-<script src="../js/nav/login.js"></script>
-<script src="../js/nav/moveline.js"></script>
-<script src="../js/nav/nav.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+<script src="js/nav/nav.js"></script>
 
-<script src="../js/management/user-management.js"></script>
+<script src="js/management/user-management.js"></script>
 
+<script>
+    $(".btn-delete").on("click", function () {
+        var userID = $(this).attr("id").substring(7);
+        $.post("./delete.user",{
+            function: "0",
+            userID: userID
+        },function (result) {
+            $.simplyToast(result.msg, 'info');
+            setTimeout('history.go(0)',2000);
+        });
+    });
+
+    $(".btn-change").on("click", function () {
+        var userID = $(this).attr("id").substring(7);
+        $.post("./changePermission.user",{
+            function: "1",
+            userID: userID
+        },function (result) {
+            $.simplyToast(result.msg, 'info');
+            setTimeout('history.go(0)',2000);
+        });
+    });
+</script>
 
 
 </html>

@@ -1,42 +1,39 @@
-$(".btn-delete").on("click", function () {
-    var userID = $(this).attr("id").substring(7);
-    $.post("./userManagement",{
-        function: "0",
-        userID: userID
-    },function (result) {
-        window.location.reload();
-        $.simplyToast(result.msg, 'info');
-    });
-});
-
-$(".btn-change").on("click", function () {
-    var userID = $(this).attr("id").substring(7);
-    $.post("./userManagement",{
-        function: "1",
-        userID: userID
-    },function (result) {
-        window.location.reload();
-        $.simplyToast(result.msg, 'info');
-    });
-});
+// $(".btn-delete").on("click", function () {
+//     var userID = $(this).attr("id").substring(7);
+//     $.post("./userManagement",{
+//         function: "0",
+//         userID: userID
+//     },function (result) {
+//         $.simplyToast(result.msg, 'info');
+//         setTimeout('history.go(0)',2000);
+//     });
+// });
+//
+// $(".btn-change").on("click", function () {
+//     var userID = $(this).attr("id").substring(7);
+//     $.post("./userManagement",{
+//         function: "1",
+//         userID: userID
+//     },function (result) {
+//         $.simplyToast(result.msg, 'info');
+//         setTimeout('history.go(0)',2000);
+//     });
+// });
 
 
 function addUser() {
     var form1= document.getElementById('form-add');
-    if (document.getElementById('username-add').value === "") {
-        $.simplyToast("用户名不能为空",'warning');
+    if (document.getElementById('username-add').value === "" || document.getElementById('password-add').value === "" || document.getElementById('email-add').value === "" || document.getElementById('address-add').value === "" || document.getElementById('tel-add').value === "") {
+        $.simplyToast("请输入完整信息！",'warning');
         return false;
     }
-    else if (document.getElementById('password-add').value === "") {
-        $.simplyToast("密码不能为空",'warning');
-        return false;
-    }
+
     else {
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "./userManagement",//url
+            url: "./addUser.user",//url
             data: $(form1).serialize(),
             success: function (result) {
 

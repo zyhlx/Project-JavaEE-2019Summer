@@ -16,12 +16,18 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="../common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
+    <link href="common/simply-toast/simply-toast.css" rel="stylesheet" type="text/css">
 
-    <link href="../common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
-    <link rel="stylesheet" type="text/css" href="../css/nav/header_line.css">
-    <link href="../common/awesome-bootstrap-checkbox.css" rel="stylesheet">
-    <link href="../css/detail/detail.css" rel="stylesheet">
+    <link href="common/modal.css" rel="stylesheet"><!--bootstrap自带问题-->
+    <link rel="stylesheet" type="text/css" href="css/nav/header_line.css">
+    <link href="common/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="css/detail/detail.css" rel="stylesheet">
+<style>
+    main img{
+        max-height: 150px;
+        max-width: 190px;
+    }
+</style>
 
 </head>
 <body>
@@ -39,7 +45,7 @@
             <div class="row border favour-result">
                 <div class="col-2">
                     <p class="type text-muted">Artwork</p>
-                    <a href="./detailDisplay?paintingID=${favourItem.painting.paintingID}">
+                    <a href="./paintingDetail.display?paintingID=${favourItem.painting.paintingID}">
                         <img src="博物馆图片资源/其他/${favourItem.painting.imageFileName}" alt="">
                     </a>
                 </div>
@@ -95,16 +101,39 @@
 <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="../js/session.js"></script>
-<script src="../js/favour/favour.js"></script>
+<script src="js/session.js"></script>
+<%--<script src="js/favour/favour.js"></script>--%>
 
 
 
 <script src="http://www.daiwei.org/global/js/jquery.easing.js"></script>
 <script src="http://www.daiwei.org/components/toast/js/toast.js"></script>
-<script src="../common/simply-toast/simply-toast.js"></script>
-<script src="../js/nav/registe.js"></script>
-<script src="../js/nav/login.js"></script>
-<script src="../js/nav/moveline.js"></script>
-<script src="../js/nav/nav.js"></script>
+<script src="common/simply-toast/simply-toast.js"></script>
+<script src="js/nav/registe.js"></script>
+<script src="js/nav/login.js"></script>
+<script src="js/nav/moveline.js"></script>
+<script src="js/nav/nav.js"></script>
+
+<script>
+    $(".btn-change").on("click",function () {
+        var favourID = $(this).attr("id").substring(11);
+        $.post("./change.favour",{
+            favourID: favourID
+        },function (result) {
+            $.simplyToast(result.msg, 'info');
+            setTimeout('history.go(0)',2000);
+        });
+    });
+
+    $(".btn-delete").on("click",function () {
+        var favourID = $(this).attr("id").substring(11);
+        $.post("./delete.favour",{
+            favourID: favourID
+        },function (result) {
+            $.simplyToast(result.msg, 'info');
+            setTimeout('history.go(0)',2000);
+        });
+    });
+</script>
+
 </html>
